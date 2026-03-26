@@ -29,12 +29,6 @@ jobs:
           node-version: 20
           cache: yarn
 
-      # Install npm package for component library and update package.json file to use that component library, instead of local library
-      - name: Install npm package for react-kit
-        run: |
-          cd documentation
-          yarn add @dhua5922/react-kit
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 

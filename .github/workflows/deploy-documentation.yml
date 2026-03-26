@@ -3,7 +3,7 @@ name: Deploy Docs
 on:
   push:
     branches:
-      - fix-docs-deployment
+      - main
   workflow_dispatch:
 
 permissions:

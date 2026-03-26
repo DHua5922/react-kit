@@ -1,0 +1,1 @@
+const r={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i},expanded:!0,hideNoControlsWarning:!0},actions:{argTypesRegex:"^on[A-Z].*"},docs:{canvas:{sourceState:"shown"},source:{type:"dynamic",transform:e=>e}}}};export{r as default};

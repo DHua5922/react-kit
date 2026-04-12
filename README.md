@@ -28,4 +28,4 @@ yarn docs:dev
 
 ## Contribution
 
-See [CONTRIBUTING.md](/Users/dylanhua/Desktop/Coding/Personal/react-kit/CONTRIBUTING.md)
+See [CONTRIBUTING.md](/CONTRIBUTING.md)

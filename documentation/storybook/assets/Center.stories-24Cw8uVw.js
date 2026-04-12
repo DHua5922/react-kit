@@ -1,4 +1,4 @@
-import{j as r}from"./jsx-runtime-DFAAy_2V.js";import{C as i,L as s}from"./LiveCodeBlock-Ck6Guhcd.js";import"./index-Bc2G9s8g.js";const l={title:"Components/Center",component:i,tags:["autodocs"],parameters:{layout:"centered"},argTypes:{type:{control:"radio",options:["","vertical","horizontal"]}},args:{children:"Centered content",style:{width:240,height:120,border:"1px dashed #cbd5e1",borderRadius:8,background:"#f8fafc",padding:16}}},o=`<Center
+import{j as r}from"./jsx-runtime-DFAAy_2V.js";import{C as i}from"./Center-CeCnhLpT.js";import{L as s}from"./LiveCodeBlock-MP6rWtjX.js";import"./index-Bc2G9s8g.js";const m={title:"Components/Center",component:i,tags:["autodocs"],parameters:{layout:"centered"},argTypes:{type:{control:"radio",options:["","vertical","horizontal"]}},args:{children:"Centered content",style:{width:240,height:120,border:"1px dashed #cbd5e1",borderRadius:8,background:"#f8fafc",padding:16}}},o=`<Center
   style={{
     width: 260,
     height: 140,
@@ -26,4 +26,4 @@ import{j as r}from"./jsx-runtime-DFAAy_2V.js";import{C as i,L as s}from"./LiveCo
       Center
     }} />
     </div>
-}`,...(a=(d=e.parameters)==null?void 0:d.docs)==null?void 0:a.source}}};const m=["LiveExample"];export{e as LiveExample,m as __namedExportsOrder,l as default};
+}`,...(a=(d=e.parameters)==null?void 0:d.docs)==null?void 0:a.source}}};const u=["LiveExample"];export{e as LiveExample,u as __namedExportsOrder,m as default};

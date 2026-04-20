@@ -47,7 +47,7 @@ const liveCode = `<Center
   Live render preview
 </Center>`
 
-export const LiveExample: Story = {
+export const Example: Story = {
   parameters: {
     layout: 'padded',
     docs: {

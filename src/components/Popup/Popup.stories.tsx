@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
 import Popup from './Popup'
 import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
@@ -78,45 +77,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Interactive: Story = {
-  render: function Render() {
-    const [show, setShow] = useState(false)
-
-    return (
-      <div style={{ minHeight: 260, padding: 32, background: '#f8fafc' }}>
-        <button
-          type="button"
-          onClick={() => setShow(true)}
-          style={{
-            padding: '10px 14px',
-            borderRadius: 10,
-            border: '1px solid #cbd5e1',
-            background: '#ffffff',
-            cursor: 'pointer',
-          }}
-        >
-          Open popup
-        </button>
-
-        <Popup show={show} onHide={() => setShow(false)} left="32px" top="88px">
-          <div
-            style={{
-              width: 240,
-              padding: 16,
-              borderRadius: 12,
-              background: '#ffffff',
-              boxShadow: '0 12px 32px rgba(15, 23, 42, 0.16)',
-            }}
-          >
-            Press Escape or click outside to close.
-          </div>
-        </Popup>
-      </div>
-    )
-  },
-}
-
-export const LiveExample: Story = {
+export const Example: Story = {
   parameters: {
     docs: {
       source: {

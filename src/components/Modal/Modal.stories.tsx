@@ -63,14 +63,5 @@ export const Examples: Story = {
       },
     },
   },
-  render: () => (
-    <LiveCodeBlock
-      title="Modal Live Playground"
-      code={liveCode}
-        editorHeight="360px"
-        noInline
-        previewPosition="top"
-        scope={{ Modal }}
-    />
-  ),
+  render: () => <LiveCodeBlock code={liveCode} noInline scope={{ Modal }} />,
 }

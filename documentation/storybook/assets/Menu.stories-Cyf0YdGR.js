@@ -1,4 +1,4 @@
-import{j as i}from"./jsx-runtime-DFAAy_2V.js";import{r as d,R as c}from"./index-Bc2G9s8g.js";import{u as q}from"./styled-components.browser.esm-BWXllbBW.js";import{P as E}from"./Popup-UsBpTGPP.js";import{L as N}from"./LiveCodeBlock-DYl2xIvc.js";import"./index-Dy83Z4lh.js";const v=d.createContext(null);try{Context.displayName="Context",Context.__docgenInfo={description:`Context lets components pass information deep down without explicitly
+import{j as i}from"./jsx-runtime-DFAAy_2V.js";import{r as d,R as c}from"./index-Bc2G9s8g.js";import{u as q}from"./styled-components.browser.esm-BWXllbBW.js";import{P as E}from"./Popup-UsBpTGPP.js";import{L as N}from"./LiveCodeBlock-AoAg4Juf.js";import"./index-Dy83Z4lh.js";const v=d.createContext(null);try{Context.displayName="Context",Context.__docgenInfo={description:`Context lets components pass information deep down without explicitly
 passing props.
 
 Created from {@link createContext}`,displayName:"Context",props:{}}}catch{}const b=q.div`

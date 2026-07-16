@@ -88,7 +88,6 @@ export const Example: Story = {
   render: () => (
     <div style={{ maxWidth: 1080, margin: '0 auto' }}>
       <LiveCodeBlock
-        title="Popup Live Playground"
         code={liveCode}
         editorHeight="340px"
         noInline

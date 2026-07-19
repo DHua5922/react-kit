@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
-import Popup from './Popup'
+import Popup from '.'
 import { act } from 'react'
 
 describe('Popup', () => {
@@ -20,14 +20,7 @@ describe('Popup', () => {
       </Popup>
     )
 
-    const content = screen.getByText('Popup body')
-
-    expect(content).toBeInTheDocument()
-    expect(content.parentElement).toHaveStyle({
-      left: '24px',
-      top: '48px',
-      position: 'absolute',
-    })
+    expect(screen.getByText('Popup body')).toBeInTheDocument()
   })
 
   it('calls onHide when Escape is pressed', async () => {

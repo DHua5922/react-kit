@@ -85,10 +85,6 @@ interface LiveCodeBlockProps {
    */
   code: string
   /**
-   * Height of the code editor
-   */
-  editorHeight?: string
-  /**
    * Additional values exposed to the live runtime
    */
   scope?: LiveCodeScope

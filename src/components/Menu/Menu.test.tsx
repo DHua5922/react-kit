@@ -1,7 +1,8 @@
-import { act, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import Menu from '.'
+import { act } from 'react'
 
 describe('Menu', () => {
   it('opens the menu when the toggle is clicked and closes it after selecting an item', async () => {

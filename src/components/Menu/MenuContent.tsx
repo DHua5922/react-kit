@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import Popup from '../Popup/Popup'
+import Popup from '../Popup'
 import MenuContext from './MenuContext'
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {

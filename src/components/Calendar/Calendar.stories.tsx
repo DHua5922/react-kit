@@ -16,25 +16,50 @@ import {
 const basicCalendarCode = `function Example() {
   const [value, setValue] = React.useState(new Date(2026, 2, 26))
 
+  const containerStyle = {
+    width: 360,
+    padding: 20,
+    border: '1px solid #e2e8f0',
+    borderRadius: 16,
+    background: '#ffffff',
+    boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
+  }
+
+  const headerStyle = {
+    justifyContent: 'space-between'
+  }
+
+  const directionButtonStyle = {
+    cursor: 'pointer'
+  }
+
+  const weekdaysStyle = {
+    marginBottom: 12
+  }
+
+  const daysStyle = {
+    flexWrap: 'wrap',
+    rowGap: 12
+  }
+
   return (
-    <div
-      style={{
-        width: 360,
-        padding: 20,
-        border: '1px solid #e2e8f0',
-        borderRadius: 16,
-        background: '#ffffff',
-        boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
-      }}
-    >
+    <div style={containerStyle}>
       <Calendar value={value} onChange={setValue}>
-        <Calendar.Header style={{ justifyContent: 'space-between' }}>
-          <Calendar.Left style={{ cursor: 'pointer' }}>◀</Calendar.Left>
+        <Calendar.Header style={headerStyle}>
+          <Calendar.Left style={directionButtonStyle}>
+            ◀
+          </Calendar.Left>
+
           <Calendar.Title />
-          <Calendar.Right style={{ cursor: 'pointer' }}>▶</Calendar.Right>
+
+          <Calendar.Right style={directionButtonStyle}>
+            ▶
+          </Calendar.Right>
         </Calendar.Header>
-        <Calendar.Weekdays style={{ marginBottom: 12 }} />
-        <Calendar.Days style={{ flexWrap: 'wrap', rowGap: 12 }} />
+
+        <Calendar.Weekdays style={weekdaysStyle} />
+
+        <Calendar.Days style={daysStyle} />
       </Calendar>
     </div>
   )
@@ -195,13 +220,7 @@ export const BasicCalendar: Story = {
   },
   render: () => (
     <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-      <LiveCodeBlock
-        title="Calendar Live Playground"
-        code={basicCalendarCode}
-        editorHeight="360px"
-        noInline
-        scope={{ Calendar }}
-      />
+      <LiveCodeBlock code={basicCalendarCode} noInline scope={{ Calendar }} />
     </div>
   ),
 }
@@ -220,25 +239,21 @@ export const CustomCalendar: Story = {
     },
   },
   render: () => (
-    <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-      <LiveCodeBlock
-        title="Calendar Live Playground"
-        code={customCalendarCode}
-        editorHeight="360px"
-        noInline
-        scope={{
-          Calendar,
-          addDays,
-          addMonths,
-          endOfMonth,
-          eachDayOfInterval,
-          getDay,
-          isSameMonth,
-          startOfMonth,
-          subDays,
-          subMonths,
-        }}
-      />
-    </div>
+    <LiveCodeBlock
+      code={customCalendarCode}
+      noInline
+      scope={{
+        Calendar,
+        addDays,
+        addMonths,
+        endOfMonth,
+        eachDayOfInterval,
+        getDay,
+        isSameMonth,
+        startOfMonth,
+        subDays,
+        subMonths,
+      }}
+    />
   ),
 }

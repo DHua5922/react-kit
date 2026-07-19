@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Center from '../Center'
 import React, { useContext } from 'react'
 import CalendarContext from './CalendarContext'
 import { format, isSameMonth } from 'date-fns'
@@ -22,7 +21,7 @@ interface DayValueProps {
   $opacity: number
 }
 
-const DayContainer = styled(Center)`
+const DayContainer = styled.div`
   width: 14.28%;
 `
 const DayNumber = styled.div<DayNumberProps>`

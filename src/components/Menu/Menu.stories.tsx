@@ -57,15 +57,5 @@ export const Example: Story = {
       },
     },
   },
-  render: () => (
-    <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-      <LiveCodeBlock
-        title="Menu Live Playground"
-        code={liveCode}
-        editorHeight="360px"
-        noInline
-        scope={{ Menu }}
-      />
-    </div>
-  ),
+  render: () => <LiveCodeBlock code={liveCode} noInline scope={{ Menu }} />,
 }

@@ -1,42 +1,42 @@
-import React, { useContext, useRef } from "react";
-import MenuContext from "./MenuContext";
+import React, { useContext, useRef } from 'react'
+import MenuContext from './MenuContext'
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 function MenuToggle({ children, onClick, type, ...props }: Props) {
-  const context = useContext(MenuContext);
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const context = useContext(MenuContext)
+  const triggerRef = useRef<HTMLDivElement>(null)
 
   if (!context) {
-    return null;
+    return null
   }
 
   const openMenu = () => {
-    const trigger = triggerRef.current;
+    const trigger = triggerRef.current
     if (!trigger) {
-      context.onShowMenu();
-      return;
+      context.onShowMenu && context.onShowMenu()
+      return
     }
 
-    const rect = trigger.getBoundingClientRect();
+    const rect = trigger.getBoundingClientRect()
     context.setMenuPos({
       top: `${rect.bottom + context.offsetMenuPosVertical}px`,
       left: `${rect.left + context.offsetMenuPosHorizontal}px`,
-    });
-    context.onShowMenu();
-  };
+    })
+    context.onShowMenu && context.onShowMenu()
+  }
 
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick?.(event);
-    openMenu();
-  };
+    onClick?.(event)
+    openMenu()
+  }
 
   if (React.isValidElement(children)) {
     const child = children as React.ReactElement<{
-      onClick?: React.MouseEventHandler<HTMLElement>;
-    }>;
+      onClick?: React.MouseEventHandler<HTMLElement>
+    }>
 
     return (
       <div ref={triggerRef}>
@@ -44,24 +44,27 @@ function MenuToggle({ children, onClick, type, ...props }: Props) {
           ...props,
           ...child.props,
           onClick: (event: React.MouseEvent<HTMLElement>) => {
-            child.props.onClick?.(event);
+            child.props.onClick?.(event)
             onClick?.(
-              event as unknown as React.MouseEvent<HTMLButtonElement, MouseEvent>,
-            );
-            openMenu();
+              event as unknown as React.MouseEvent<
+                HTMLButtonElement,
+                MouseEvent
+              >
+            )
+            openMenu()
           },
         })}
       </div>
-    );
+    )
   }
 
   return (
     <div ref={triggerRef}>
-      <button type={type || "button"} onClick={handleClick} {...props}>
+      <button type={type || 'button'} onClick={handleClick} {...props}>
         {children}
       </button>
     </div>
-  );
+  )
 }
 
-export default MenuToggle;
+export default MenuToggle

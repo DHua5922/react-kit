@@ -13,7 +13,9 @@ function renderModal(props = {}) {
         <Modal.Title>Modal Title</Modal.Title>
         <Modal.CloseButton />
       </Modal.Header>
+
       <Modal.Body>Modal body content goes here.</Modal.Body>
+      
       <Modal.Footer>
         <button onClick={onHide}>Close</button>
       </Modal.Footer>
@@ -52,7 +54,6 @@ describe('Modal', () => {
     const { onHide } = renderModal()
 
     await user.click(screen.getByRole('button', { name: /Close/i }))
-
     expect(onHide).toHaveBeenCalledOnce()
   })
 })

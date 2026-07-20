@@ -8,7 +8,8 @@ interface Props {
     onHideMenu?: () => void;
     offsetMenuPosVertical?: number;
     offsetMenuPosHorizontal?: number;
+    onSelect?: (item: unknown) => void;
 }
-declare function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+declare function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, ...props }: Props): import("react/jsx-runtime").JSX.Element;
 export default Menu;
 //# sourceMappingURL=Menu.d.ts.map

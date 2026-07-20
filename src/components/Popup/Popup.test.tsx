@@ -2,24 +2,31 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { vi } from 'vitest'
 import Popup from '.'
-import { act } from 'react'
+import { ComponentProps } from 'react'
+
+function renderPopup({ children, ...props }: ComponentProps<typeof Popup>) {
+  const renderResult = render(
+    <Popup {...props}>{children || <div>Popup body</div>}</Popup>
+  )
+
+  return renderResult
+}
 
 describe('Popup', () => {
   it('renders portal content only when show is true', () => {
-    const { rerender } = render(
+    const { rerender } = renderPopup({ show: false })
+    render(
       <Popup show={false} onHide={vi.fn()}>
         <div>Popup body</div>
       </Popup>
     )
-
     expect(screen.queryByText('Popup body')).not.toBeInTheDocument()
 
     rerender(
-      <Popup show onHide={vi.fn()} left="24px" top="48px">
+      <Popup show onHide={vi.fn()}>
         <div>Popup body</div>
       </Popup>
     )
-
     expect(screen.getByText('Popup body')).toBeInTheDocument()
   })
 
@@ -33,10 +40,7 @@ describe('Popup', () => {
       </Popup>
     )
 
-    await act(async () => {
-      await user.keyboard('{Escape}')
-    })
-
+    await user.keyboard('{Escape}')
     expect(onHide).toHaveBeenCalledTimes(1)
   })
 
@@ -50,24 +54,13 @@ describe('Popup', () => {
       </Popup>
     )
 
-    await act(async () => {
-      await user.click(screen.getByRole('button', { name: 'Inside action' }))
-    })
-
+    await user.click(screen.getByRole('button', { name: 'Inside action' }))
     expect(onHide).not.toHaveBeenCalled()
 
     const overlay = screen
       .getByRole('button', { name: 'Inside action' })
       .closest('div')?.parentElement
-
-    await act(async () => {
-      if (!overlay) {
-        throw new Error('Popup overlay not found')
-      }
-
-      await user.click(overlay)
-    })
-
+    await user.click(overlay!)
     expect(onHide).toHaveBeenCalledTimes(1)
   })
 })

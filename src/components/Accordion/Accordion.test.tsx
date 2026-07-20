@@ -3,11 +3,13 @@ import Accordion from ".";
 
 function renderAccordion(expanded: boolean) {
   return render(
-    <Accordion activeKeys={expanded ? ["0"] : []} onSelect={() => {}}>
+    <Accordion activeKeys={expanded ? ["0"] : []} onSelect={() => { }}>
+      
       <Accordion.Item eventKey="0">
         <Accordion.Header>Header</Accordion.Header>
         <Accordion.Body>Body</Accordion.Body>
       </Accordion.Item>
+
     </Accordion>,
   );
 }

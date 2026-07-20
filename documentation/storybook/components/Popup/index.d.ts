@@ -5,7 +5,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
     top?: string;
     children?: React.ReactNode;
     show?: boolean;
-    onHide: () => void;
+    onHide?: () => void;
 }
 export default function Popup({ children, left, top, show, onHide, className, ...props }: Props): React.ReactPortal | null;
 export {};

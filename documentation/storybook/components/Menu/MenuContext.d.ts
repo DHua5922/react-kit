@@ -1,7 +1,8 @@
 interface DefaultValue {
-    showMenu: boolean;
-    onShowMenu: () => void;
-    onHideMenu: () => void;
+    showMenu?: boolean;
+    onShowMenu?: () => void;
+    onHideMenu?: () => void;
+    onSelect?: (item: unknown) => void;
     offsetMenuPosVertical: number;
     offsetMenuPosHorizontal: number;
     menuPos: {
@@ -13,6 +14,6 @@ interface DefaultValue {
         left: string;
     }) => void;
 }
-declare const MenuContext: import('../../../node_modules/react').Context<DefaultValue | null>;
+declare const MenuContext: import('../../../node_modules/react').Context<DefaultValue>;
 export default MenuContext;
 //# sourceMappingURL=MenuContext.d.ts.map

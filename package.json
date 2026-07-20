@@ -83,8 +83,7 @@
   },
   "dependencies": {
     "date-fns": "^4.1.0",
-    "react-live": "^4.1.8",
-    "styled-components": "^6.3.12"
+    "react-live": "^4.1.8"
   },
   "repository": {
     "type": "git",

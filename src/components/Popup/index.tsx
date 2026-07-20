@@ -7,7 +7,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
   top?: string
   children?: React.ReactNode
   show?: boolean
-  onHide: () => void
+  onHide?: () => void
 }
 
 export default function Popup({
@@ -26,7 +26,7 @@ export default function Popup({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onHide()
+        onHide && onHide()
       }
     }
 

@@ -1,24 +1,25 @@
-import React, { useMemo, useState } from "react";
-import MenuContext from "./MenuContext";
-import MenuContent from "./MenuContent";
-import MenuToggle from "./MenuToggle";
+import React, { useMemo, useState } from 'react'
+import MenuContext from './MenuContext'
+import MenuContent from './MenuContent'
+import MenuToggle from './MenuToggle'
 
 interface Props {
-  children?: React.ReactNode;
-  showMenu?: boolean;
-  defaultShowMenu?: boolean;
-  onShowMenu?: () => void;
-  onHideMenu?: () => void;
-  offsetMenuPosVertical?: number;
-  offsetMenuPosHorizontal?: number;
+  children?: React.ReactNode
+  showMenu?: boolean
+  defaultShowMenu?: boolean
+  onShowMenu?: () => void
+  onHideMenu?: () => void
+  offsetMenuPosVertical?: number
+  offsetMenuPosHorizontal?: number
+  onSelect?: (item: unknown) => void
 }
 
 function hasCompoundChildren(children: React.ReactNode) {
   return React.Children.toArray(children).some(
     (child) =>
       React.isValidElement(child) &&
-      (child.type === MenuToggle || child.type === MenuContent),
-  );
+      (child.type === MenuToggle || child.type === MenuContent)
+  )
 }
 
 function Menu({
@@ -29,37 +30,39 @@ function Menu({
   onHideMenu,
   offsetMenuPosVertical = 0,
   offsetMenuPosHorizontal = 0,
+  onSelect,
   ...props
 }: Props) {
-  const [internalShowMenu, setInternalShowMenu] = useState(defaultShowMenu);
+  const [internalShowMenu, setInternalShowMenu] = useState(defaultShowMenu)
   const [menuPos, setMenuPos] = useState({
-    top: "auto",
-    left: "auto",
-  });
-  const isControlled = typeof showMenu === "boolean";
-  const visible = isControlled ? showMenu : internalShowMenu;
+    top: 'auto',
+    left: 'auto',
+  })
+  const isControlled = typeof showMenu === 'boolean'
+  const visible = isControlled ? showMenu : internalShowMenu
 
   const contextValue = useMemo(
     () => ({
       showMenu: visible,
       onShowMenu: () => {
         if (!isControlled) {
-          setInternalShowMenu(true);
+          setInternalShowMenu(true)
         }
 
-        onShowMenu && onShowMenu();
+        onShowMenu && onShowMenu()
       },
       onHideMenu: () => {
         if (!isControlled) {
-          setInternalShowMenu(false);
+          setInternalShowMenu(false)
         }
 
-        onHideMenu && onHideMenu();
+        onHideMenu && onHideMenu()
       },
       offsetMenuPosVertical,
       offsetMenuPosHorizontal,
       menuPos,
       setMenuPos,
+      onSelect: onSelect || (() => {}),
     }),
     [
       isControlled,
@@ -68,9 +71,10 @@ function Menu({
       offsetMenuPosVertical,
       onHideMenu,
       onShowMenu,
+      onSelect,
       visible,
-    ],
-  );
+    ]
+  )
 
   return (
     <MenuContext.Provider value={contextValue}>
@@ -80,7 +84,7 @@ function Menu({
         <MenuContent {...props}>{children}</MenuContent>
       )}
     </MenuContext.Provider>
-  );
+  )
 }
 
-export default Menu;
+export default Menu

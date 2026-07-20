@@ -1,9 +1,10 @@
-import AccordionContext from "./AccordionContext";
+import { HTMLAttributes, ReactNode } from 'react'
+import AccordionContext from './AccordionContext'
 
-interface Props extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
-  activeKeys: string[];
-  onSelect: (key: string) => void;
-  children?: React.ReactNode;
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+  activeKeys: string[]
+  onSelect: (key: string) => void
+  children?: ReactNode
 }
 
 export default function Accordion({
@@ -16,5 +17,5 @@ export default function Accordion({
     <AccordionContext.Provider value={{ activeKeys, onSelect }}>
       <div {...props}>{children}</div>
     </AccordionContext.Provider>
-  );
+  )
 }

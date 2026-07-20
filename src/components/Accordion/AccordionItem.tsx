@@ -1,8 +1,9 @@
-import AccordionItemContext from "./AccordionItemContext";
+import { HTMLAttributes, ReactNode } from 'react'
+import AccordionItemContext from './AccordionItemContext'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  eventKey: string;
-  children?: React.ReactNode;
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  eventKey: string
+  children?: ReactNode
 }
 
 export default function AccordionItem({ children, eventKey, ...props }: Props) {
@@ -10,5 +11,5 @@ export default function AccordionItem({ children, eventKey, ...props }: Props) {
     <AccordionItemContext.Provider value={{ eventKey }}>
       <div {...props}>{children}</div>
     </AccordionItemContext.Provider>
-  );
+  )
 }

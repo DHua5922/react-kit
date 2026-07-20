@@ -1,6 +1,8 @@
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+import { HTMLAttributes, ReactNode } from '../../../node_modules/react';
+
+interface Props extends HTMLAttributes<HTMLDivElement> {
     eventKey: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 export default function AccordionItem({ children, eventKey, ...props }: Props): import("react/jsx-runtime").JSX.Element;
 export {};

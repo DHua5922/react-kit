@@ -39,7 +39,7 @@ render(<Example />)`
 const meta = {
   title: 'Components/Menu',
   component: Menu,
-  tags: ['autodocs'],
+  tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
   },

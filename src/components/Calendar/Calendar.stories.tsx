@@ -195,7 +195,7 @@ const customCalendarCode = `
 const meta = {
   title: 'Components/Calendar',
   component: Calendar,
-  tags: ['autodocs'],
+  tags: ['!autodocs'],
   parameters: {
     layout: 'centered',
   },

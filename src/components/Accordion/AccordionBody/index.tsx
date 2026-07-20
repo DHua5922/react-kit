@@ -1,0 +1,24 @@
+import { useContext, type HTMLAttributes } from 'react'
+import AccordionContext from '../AccordionContext'
+import AccordionItemContext from '../AccordionItemContext'
+import styles from './index.module.css'
+
+export default function AccordionBody({
+  children,
+  className = '',
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  const { activeKeys } = useContext(AccordionContext)
+  const { eventKey } = useContext(AccordionItemContext)
+  const isExpanded = activeKeys.includes(eventKey)
+
+  return (
+    <div
+      className={`${styles.container} ${isExpanded ? styles.expanded : ''} ${className}`}
+      aria-hidden={!isExpanded}
+      {...props}
+    >
+      <div className={styles['container--inner']}>{children}</div>
+    </div>
+  )
+}

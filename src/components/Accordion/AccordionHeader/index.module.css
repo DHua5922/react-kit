@@ -1,0 +1,11 @@
+.button {
+  width: 100%;
+  padding: 1rem;
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+.button.active {
+  border-bottom: 1px solid rgb(201, 201, 201);
+  background-color: rgb(240, 240, 240);
+}

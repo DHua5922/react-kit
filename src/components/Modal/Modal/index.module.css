@@ -13,32 +13,34 @@
     position: fixed;
     top: 50%;
     left: 50%;
-}
 
-.container::backdrop {
-    transition: var(--transition);
-    background-color: rgba(0, 0, 0);
-    opacity: 0;
-}
-
-.container:open::backdrop {
-    background-color: rgba(0, 0, 0);
-    opacity: 0.75;
-}
-
-.container:open {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-}
-
-@starting-style {
-    .container:open::backdrop {
+    &::backdrop {
+        transition: var(--transition);
+        background-color: rgba(0, 0, 0);
         opacity: 0;
-        background-color: transparent;
     }
 
-    .container:open {
-        opacity: 0;
-        transform: translate(-50%, -100%);
+    &:open::backdrop {
+        background-color: rgba(0, 0, 0);
+        opacity: 0.75;
+    }
+
+    &:open {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    @starting-style {
+        &:open::backdrop {
+            opacity: 0;
+            background-color: transparent;
+        }
+
+        &:open {
+            opacity: 0;
+            transform: translate(-50%, -100%);
+        }
     }
 }
+
+

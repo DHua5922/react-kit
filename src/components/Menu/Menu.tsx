@@ -1,10 +1,10 @@
-import React, { useMemo, useState } from 'react'
+import { ReactNode, useMemo, useState, isValidElement, Children } from 'react'
 import MenuContext from './MenuContext'
 import MenuContent from './MenuContent'
 import MenuToggle from './MenuToggle'
 
 interface Props {
-  children?: React.ReactNode
+  children?: ReactNode
   showMenu?: boolean
   defaultShowMenu?: boolean
   onShowMenu?: () => void
@@ -14,15 +14,7 @@ interface Props {
   onSelect?: (item: unknown) => void
 }
 
-function hasCompoundChildren(children: React.ReactNode) {
-  return React.Children.toArray(children).some(
-    (child) =>
-      React.isValidElement(child) &&
-      (child.type === MenuToggle || child.type === MenuContent)
-  )
-}
-
-function Menu({
+export default function Menu({
   children,
   showMenu,
   defaultShowMenu = false,
@@ -87,4 +79,10 @@ function Menu({
   )
 }
 
-export default Menu
+function hasCompoundChildren(children: ReactNode) {
+  return Children.toArray(children).some(
+    (child) =>
+      isValidElement(child) &&
+      (child.type === MenuToggle || child.type === MenuContent)
+  )
+}

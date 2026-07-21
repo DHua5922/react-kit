@@ -1,5 +1,4 @@
-import { default as React } from '../../../../node_modules/react';
+import { HTMLProps } from '../../../../node_modules/react';
 
-declare function CalendarWeekdays({ children, className, ...props }: React.HTMLProps<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
-export default CalendarWeekdays;
+export default function CalendarWeekdays({ children, className, ...props }: HTMLProps<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=index.d.ts.map

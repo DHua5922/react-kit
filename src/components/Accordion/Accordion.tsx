@@ -13,8 +13,9 @@ export default function Accordion({
   onSelect,
   ...props
 }: Props) {
+  const contextValue = { activeKeys, onSelect }
   return (
-    <AccordionContext.Provider value={{ activeKeys, onSelect }}>
+    <AccordionContext.Provider value={contextValue}>
       <div {...props}>{children}</div>
     </AccordionContext.Provider>
   )

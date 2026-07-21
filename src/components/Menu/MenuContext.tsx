@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-interface DefaultValue {
+interface Type {
   showMenu?: boolean
   onShowMenu?: () => void
   onHideMenu?: () => void
@@ -14,7 +14,7 @@ interface DefaultValue {
   setMenuPos: (position: { top: string; left: string }) => void
 }
 
-const MenuContext = createContext<DefaultValue>({
+const defaultValues: Type = {
   showMenu: false,
   onShowMenu: () => {},
   onHideMenu: () => {},
@@ -26,6 +26,8 @@ const MenuContext = createContext<DefaultValue>({
     left: '0px',
   },
   setMenuPos: () => {},
-})
+}
+
+const MenuContext = createContext<Type>(defaultValues)
 
 export default MenuContext

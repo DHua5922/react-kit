@@ -1,0 +1,53 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as AccordionStories from './Accordion.stories'
+import AccordionItem from './AccordionItem'
+
+<Meta of={AccordionStories} />
+
+# Accordion
+
+Accordions organize related content into expandable sections. They work well
+when users need to scan several headings while viewing only one or a few
+sections at a time.
+
+## Usage guidance
+
+Use an accordion when:
+
+- Content can be divided into clearly labeled sections.
+- Showing everything simultaneously would make the page difficult to scan.
+- Users do not need to compare the hidden sections side by side.
+
+Avoid using an accordion for essential information that users must always see.
+
+## Accessibility
+
+Accordion headers should clearly describe their associated content. Users
+should be able to operate each header with a keyboard and understand whether
+the section is expanded.
+
+## Basic usage
+
+Click the accordion header to expand or collapse its content.
+
+<Canvas of={AccordionStories.Example} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### Accordion
+
+<ArgTypes of={AccordionStories.Example} />
+
+### Accordion.Item
+
+<ArgTypes of={AccordionItem} />
+
+### Accordion.Header
+
+Accepts all standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
+### Accordion.Body
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.

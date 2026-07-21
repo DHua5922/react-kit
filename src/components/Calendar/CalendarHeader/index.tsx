@@ -1,16 +1,14 @@
-import styles from "./index.module.css";
-import React from "react";
+import styles from './index.module.css'
+import { HTMLProps } from 'react'
 
-function CalendarHeader({
+export default function CalendarHeader({
   children,
-  className = "",
+  className = '',
   ...props
-}: React.HTMLProps<HTMLDivElement>) {
+}: HTMLProps<HTMLDivElement>) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children}
     </div>
-  );
+  )
 }
-
-export default CalendarHeader;

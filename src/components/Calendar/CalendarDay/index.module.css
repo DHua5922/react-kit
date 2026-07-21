@@ -1,12 +1,12 @@
 .container {
     width: 14.28%;
     margin: auto;
-}
 
-.number {
-    display: flex;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
+    .number {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        cursor: pointer;
+    }
 }

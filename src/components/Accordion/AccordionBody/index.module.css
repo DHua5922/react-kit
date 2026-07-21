@@ -2,12 +2,12 @@
   display: grid;
   grid-template-rows: 0fr;
   transition: grid-template-rows 300ms ease-in-out;
-}
 
-.container.expanded {
-  grid-template-rows: 1fr;
-}
+  &.expanded {
+    grid-template-rows: 1fr;
+  }
 
-.container--inner {
-  overflow: hidden;
+  .container--inner {
+    overflow: hidden;
+  }
 }

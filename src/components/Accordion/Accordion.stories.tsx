@@ -30,31 +30,22 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-const meta = {
+type AccordionMeta = Meta<typeof Accordion>
+type Story = StoryObj<AccordionMeta>
+
+const meta: AccordionMeta = {
   title: 'Components/Accordion',
   component: Accordion,
   tags: ['!autodocs'],
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof Accordion>
-
+  parameters: { layout: 'fullscreen' },
+} satisfies AccordionMeta
 export default meta
 
-type Story = StoryObj<typeof meta>
-
 export const Example: Story = {
+  tags: ['!dev'],
   args: {
     activeKeys: [],
     onSelect: () => {},
-  },
-  parameters: {
-    layout: 'padded',
-    docs: {
-      source: {
-        code: liveCode,
-      },
-    },
   },
   render: () => (
     <LiveCodeBlock code={liveCode} noInline scope={{ Accordion }} />

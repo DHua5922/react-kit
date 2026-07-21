@@ -1,8 +1,8 @@
-import { default as React } from '../../../node_modules/react';
+import { ReactNode, ButtonHTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children?: React.ReactNode;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children?: ReactNode;
 }
-declare function MenuToggle({ children, onClick, type, ...props }: Props): import("react/jsx-runtime").JSX.Element | null;
-export default MenuToggle;
+export default function MenuToggle({ children, onClick, type, ...props }: Props): import("react/jsx-runtime").JSX.Element | null;
+export {};
 //# sourceMappingURL=MenuToggle.d.ts.map

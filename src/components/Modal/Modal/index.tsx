@@ -1,4 +1,4 @@
-import { HTMLAttributes, useEffect, useRef } from 'react'
+import { HTMLAttributes, SyntheticEvent, useEffect, useRef } from 'react'
 import ModalContext from '../ModalContext'
 import styles from './index.module.css'
 
@@ -6,6 +6,20 @@ interface Props extends HTMLAttributes<HTMLDialogElement> {
   show?: boolean
   onShow?: () => void
   onHide?: () => void
+}
+
+function useModal(show: boolean) {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  
+  useEffect(() => {
+    if (show) {
+      dialogRef.current?.showModal()
+    } else {
+      dialogRef.current?.close()
+    }
+  }, [show])
+
+  return dialogRef
 }
 
 export default function Modal({
@@ -16,25 +30,22 @@ export default function Modal({
   onHide,
   ...props
 }: Props) {
-  const dialogRef = useRef<HTMLDialogElement>(null)
+  const dialogRef = useModal(!!show)
+  const value = { show, onShow, onHide }
 
-  useEffect(() => {
-    if (show) {
-      dialogRef.current?.showModal()
-    } else {
-      dialogRef.current?.close()
-    }
-  }, [show])
+  const handleCancelDialog = (
+    event: SyntheticEvent<HTMLDialogElement, Event>
+  ) => {
+    event.preventDefault()
+    onHide?.()
+  }
 
   return (
-    <ModalContext.Provider value={{ show, onShow, onHide }}>
+    <ModalContext.Provider value={value}>
       <dialog
         ref={dialogRef}
         onClose={onHide}
-        onCancel={(event) => {
-          event.preventDefault()
-          onHide?.()
-        }}
+        onCancel={handleCancelDialog}
         className={`${styles.container} ${className}`}
         {...props}
       >

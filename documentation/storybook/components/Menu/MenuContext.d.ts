@@ -1,4 +1,4 @@
-interface DefaultValue {
+interface Type {
     showMenu?: boolean;
     onShowMenu?: () => void;
     onHideMenu?: () => void;
@@ -14,6 +14,6 @@ interface DefaultValue {
         left: string;
     }) => void;
 }
-declare const MenuContext: import('../../../node_modules/react').Context<DefaultValue>;
+declare const MenuContext: import('../../../node_modules/react').Context<Type>;
 export default MenuContext;
 //# sourceMappingURL=MenuContext.d.ts.map

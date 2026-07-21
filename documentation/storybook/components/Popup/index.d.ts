@@ -1,12 +1,12 @@
-import { default as React } from '../../../node_modules/react';
+import { HTMLAttributes, ReactNode } from '../../../node_modules/react';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
     left?: string;
     top?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     show?: boolean;
     onHide?: () => void;
 }
-export default function Popup({ children, left, top, show, onHide, className, ...props }: Props): React.ReactPortal | null;
+export default function Popup({ children, left, top, show, onHide, className, ...props }: Props): import('../../../node_modules/react').ReactPortal | null;
 export {};
 //# sourceMappingURL=index.d.ts.map

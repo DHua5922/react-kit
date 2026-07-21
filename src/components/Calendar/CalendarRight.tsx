@@ -1,26 +1,23 @@
-import React, { useContext } from 'react'
+import { HTMLProps, useContext } from 'react'
 import CalendarContext from './CalendarContext'
 import { addMonths } from 'date-fns'
 
-interface Props extends React.HTMLProps<HTMLDivElement> {
+interface Props extends HTMLProps<HTMLDivElement> {
   onPress?: (date: Date) => void
 }
 
-function CalendarRight({ children, onPress, ...props }: Props) {
+export default function CalendarRight({ children, onPress, ...props }: Props) {
   const { currentMonth, setCurrentMonth } = useContext(CalendarContext)
 
+  const handleClick = () => {
+    const newMonth = addMonths(currentMonth, 1)
+    setCurrentMonth(newMonth)
+    onPress && onPress(newMonth)
+  }
+
   return (
-    <div
-      onClick={() => {
-        const newMonth = addMonths(currentMonth, 1)
-        setCurrentMonth(newMonth)
-        onPress && onPress(newMonth)
-      }}
-      {...props}
-    >
+    <div onClick={handleClick} {...props}>
       {children || <div>▶</div>}
     </div>
   )
 }
-
-export default CalendarRight

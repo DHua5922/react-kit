@@ -1,19 +1,17 @@
-import styles from "./index.module.css";
-import { format } from "date-fns";
-import React, { useContext } from "react";
-import CalendarContext from "../CalendarContext";
+import styles from './index.module.css'
+import { format } from 'date-fns'
+import { useContext, HTMLProps } from 'react'
+import CalendarContext from '../CalendarContext'
 
-function CalendarTitle({
+export default function CalendarTitle({
   children,
-  className = "",
+  className = '',
   ...props
-}: React.HTMLProps<HTMLDivElement>) {
-  const { currentMonth } = useContext(CalendarContext);
+}: HTMLProps<HTMLDivElement>) {
+  const { currentMonth } = useContext(CalendarContext)
   return (
     <div className={`${styles.container} ${className}`} {...props}>
-      {children || format(currentMonth, "MMMM yyyy")}
+      {children || format(currentMonth, 'MMMM yyyy')}
     </div>
-  );
+  )
 }
-
-export default CalendarTitle;

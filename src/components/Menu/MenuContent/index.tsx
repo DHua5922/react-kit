@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
+import { useContext, HTMLAttributes, ReactNode } from 'react'
 import Popup from '../../Popup'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactNode
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode
 }
 
-function MenuContent({ children, className = '', ...props }: Props) {
+export default function MenuContent({
+  children,
+  className = '',
+  ...props
+}: Props) {
   const context = useContext(MenuContext)
 
   return (
@@ -23,5 +27,3 @@ function MenuContent({ children, className = '', ...props }: Props) {
     </Popup>
   )
 }
-
-export default MenuContent

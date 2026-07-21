@@ -11,10 +11,11 @@ export default function AccordionBody({
   const { activeKeys } = useContext(AccordionContext)
   const { eventKey } = useContext(AccordionItemContext)
   const isExpanded = activeKeys.includes(eventKey)
+  const defaultClassName = `${styles.container} ${isExpanded ? styles.expanded : ''}`
 
   return (
     <div
-      className={`${styles.container} ${isExpanded ? styles.expanded : ''} ${className}`}
+      className={`${defaultClassName} ${className}`}
       aria-hidden={!isExpanded}
       {...props}
     >

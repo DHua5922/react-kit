@@ -4,8 +4,12 @@
   background: none;
   cursor: pointer;
   border: none;
-}
-.button.active {
-  border-bottom: 1px solid rgb(201, 201, 201);
-  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &.active {
+    border-bottom: 1px solid rgb(201, 201, 201);
+    background-color: rgb(240, 240, 240);
+  }
 }

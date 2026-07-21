@@ -1,4 +1,8 @@
-import React, { HTMLAttributes, useContext } from 'react'
+import {
+  HTMLAttributes,
+  useContext,
+  MouseEvent as ReactMouseEvent,
+} from 'react'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
@@ -16,7 +20,7 @@ export default function MenuItem({
 }: Props) {
   const { onSelect, onHideMenu } = useContext(MenuContext)
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
     onSelect && onSelect(value)
     onClick && onClick(event)
     onHideMenu && onHideMenu()

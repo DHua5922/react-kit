@@ -1,0 +1,54 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as Stories from './Menu.stories'
+import MenuItem from './MenuItem'
+import Menu from './Menu'
+import MenuContent from './MenuContent'
+import MenuToggle from './MenuToggle'
+
+<Meta of={Stories} />
+
+# Menu
+
+The Menu component displays a list of options that users can choose from.
+
+## Usage guidance
+
+Use a menu when:
+
+- Users need to choose an option.
+- Users do not need to see all options at all times.
+
+Avoid using a menu when users should always see all available options.
+
+## Accessibility
+
+Menu toggles should show a visible focus state. Users should be able to open the menu,
+choose an option, and close the menu using only a keyboard. They should also be able to
+understand whether the menu is currently open.
+
+## Basic usage
+
+Click the button to open the menu. Then choose an option, click outside the menu, or press
+Esc to close it.
+
+<Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### Menu
+
+<ArgTypes of={Menu} />
+
+### Menu.Item
+
+<ArgTypes of={MenuItem} />
+
+### Menu.Content
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Menu.Toggle
+
+Accepts all standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.

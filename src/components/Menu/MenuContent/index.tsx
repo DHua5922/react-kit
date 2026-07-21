@@ -1,18 +1,40 @@
-import { useContext, HTMLAttributes, ReactNode } from 'react'
+import { useContext, useEffect, useRef, HTMLAttributes } from 'react'
 import Popup from '../../Popup'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode
+function useMenuContent() {
+  const context = useContext(MenuContext)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!context.showMenu) {
+      return
+    }
+
+    const container = containerRef.current
+    if (!container) {
+      return
+    }
+
+    const firstFocusable = container.querySelector<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+    firstFocusable?.focus()
+  }, [context.showMenu])
+
+  return {
+    containerRef,
+    context,
+  }
 }
 
 export default function MenuContent({
   children,
   className = '',
   ...props
-}: Props) {
-  const context = useContext(MenuContext)
+}: HTMLAttributes<HTMLDivElement>) {
+  const { containerRef, context } = useMenuContent()
 
   return (
     <Popup
@@ -21,7 +43,11 @@ export default function MenuContent({
       show={context.showMenu}
       onHide={context.onHideMenu}
     >
-      <div className={`${styles.container} ${className}`} {...props}>
+      <div
+        ref={containerRef}
+        className={`${styles.container} ${className}`}
+        {...props}
+      >
         {children}
       </div>
     </Popup>

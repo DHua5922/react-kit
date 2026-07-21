@@ -1,24 +1,14 @@
-import { useContext, useRef, isValidElement, cloneElement } from 'react'
+import { useContext, useRef } from 'react'
 import type {
-  ReactNode,
+  KeyboardEvent as ReactKeyboardEvent,
   ButtonHTMLAttributes,
-  ReactElement,
-  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
 } from 'react'
 import MenuContext from './MenuContext'
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactNode
-}
-
 function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
   const context = useContext(MenuContext)
   const triggerRef = useRef<HTMLDivElement>(null)
-
-  if (!context) {
-    throw new Error('MenuToggle must be used within a Menu component')
-  }
 
   const openMenu = () => {
     const trigger = triggerRef.current
@@ -40,49 +30,33 @@ function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
     openMenu()
   }
 
-  return { context, triggerRef, openMenu, handleClick }
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      openMenu()
+    }
+  }
+
+  return { triggerRef, handleClick, handleKeyDown }
 }
 
 export default function MenuToggle({
   children,
   onClick,
-  type,
   ...props
-}: Props) {
-  const { context, triggerRef, openMenu, handleClick } = useMenuToggle(onClick)
-
-  if (!context) {
-    return null
-  }
-
-  if (isValidElement(children)) {
-    const child = children as ReactElement<{
-      onClick?: MouseEventHandler<HTMLElement>
-    }>
-
-    const handleChildClick = (event: ReactMouseEvent<HTMLElement>) => {
-      const onClickEvent =
-        event as unknown as ReactMouseEvent<HTMLButtonElement>
-
-      child.props.onClick?.(event)
-      onClick?.(onClickEvent)
-      openMenu()
-    }
-
-    return (
-      <div ref={triggerRef}>
-        {cloneElement(child, {
-          ...props,
-          ...child.props,
-          onClick: handleChildClick,
-        })}
-      </div>
-    )
-  }
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
+  const context = useContext(MenuContext)
+  const { triggerRef, handleClick, handleKeyDown } = useMenuToggle(onClick)
 
   return (
     <div ref={triggerRef}>
-      <button type={type || 'button'} onClick={handleClick} {...props}>
+      <button
+        aria-haspopup="menu"
+        aria-expanded={Boolean(context.showMenu)}
+        onKeyDown={handleKeyDown}
+        onClick={handleClick}
+        {...props}
+      >
         {children}
       </button>
     </div>

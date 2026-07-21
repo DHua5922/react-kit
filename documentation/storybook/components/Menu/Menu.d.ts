@@ -12,6 +12,6 @@ interface MenuHookProps {
 interface MenuProps extends MenuHookProps {
     children?: ReactNode;
 }
-export default function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, ...props }: MenuProps): import("react/jsx-runtime").JSX.Element;
+export default function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, }: MenuProps): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=Menu.d.ts.map

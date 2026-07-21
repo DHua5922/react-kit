@@ -1,7 +1,5 @@
-import { ReactNode, useMemo, useState, isValidElement, Children } from 'react'
+import { ReactNode, useMemo, useState } from 'react'
 import MenuContext from './MenuContext'
-import MenuContent from './MenuContent'
-import MenuToggle from './MenuToggle'
 
 interface MenuHookProps {
   showMenu?: boolean
@@ -15,18 +13,17 @@ interface MenuHookProps {
 
 interface MenuProps extends MenuHookProps {
   children?: ReactNode
-  // These props are now inherited from MenuHookProps
 }
 
-function useMenu(
-  showMenu?: boolean,
+function useMenu({
+  showMenu,
   defaultShowMenu = false,
-  onShowMenu?: () => void,
-  onHideMenu?: () => void,
+  onShowMenu,
+  onHideMenu,
   offsetMenuPosVertical = 0,
   offsetMenuPosHorizontal = 0,
-  onSelect?: (item: unknown) => void
-) {
+  onSelect,
+}: MenuHookProps) {
   const [internalShowMenu, setInternalShowMenu] = useState(defaultShowMenu)
   const [menuPos, setMenuPos] = useState({
     top: 'auto',
@@ -82,33 +79,18 @@ export default function Menu({
   offsetMenuPosVertical = 0,
   offsetMenuPosHorizontal = 0,
   onSelect,
-  ...props
 }: MenuProps) {
-  const contextValue = useMenu(
+  const contextValue = useMenu({
     showMenu,
     defaultShowMenu,
     onShowMenu,
     onHideMenu,
     offsetMenuPosVertical,
     offsetMenuPosHorizontal,
-    onSelect
-  )
+    onSelect,
+  })
 
   return (
-    <MenuContext.Provider value={contextValue}>
-      {hasCompoundChildren(children) ? (
-        children
-      ) : (
-        <MenuContent {...props}>{children}</MenuContent>
-      )}
-    </MenuContext.Provider>
-  )
-}
-
-function hasCompoundChildren(children: ReactNode) {
-  return Children.toArray(children).some(
-    (child) =>
-      isValidElement(child) &&
-      (child.type === MenuToggle || child.type === MenuContent)
+    <MenuContext.Provider value={contextValue}>{children}</MenuContext.Provider>
   )
 }

@@ -43,10 +43,6 @@ export default meta
 
 export const Example: Story = {
   tags: ['!dev'],
-  args: {
-    activeKeys: [],
-    onSelect: () => {},
-  },
   render: () => (
     <LiveCodeBlock code={liveCode} noInline scope={{ Accordion }} />
   ),

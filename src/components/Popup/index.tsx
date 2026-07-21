@@ -1,7 +1,6 @@
 import {
   useEffect,
   HTMLAttributes,
-  ReactNode,
   CSSProperties,
   MouseEvent as ReactMouseEvent,
 } from 'react'
@@ -11,7 +10,6 @@ import styles from './index.module.css'
 interface Props extends HTMLAttributes<HTMLDivElement> {
   left?: string
   top?: string
-  children?: ReactNode
   show?: boolean
   onHide?: () => void
 }

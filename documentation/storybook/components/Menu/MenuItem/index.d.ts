@@ -1,8 +1,8 @@
-import { HTMLAttributes } from '../../../../node_modules/react';
+import { ButtonHTMLAttributes } from '../../../../node_modules/react';
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface MenuItemProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value'> {
     value: unknown;
 }
-export default function MenuItem({ children, className, onClick, value, style, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+export default function MenuItem({ children, className, onClick, value, style, ...props }: MenuItemProps): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=index.d.ts.map

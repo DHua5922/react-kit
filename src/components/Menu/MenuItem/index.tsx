@@ -1,12 +1,15 @@
 import {
-  HTMLAttributes,
+  ButtonHTMLAttributes,
   useContext,
   MouseEvent as ReactMouseEvent,
 } from 'react'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+interface MenuItemProps extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'value'
+> {
   value: unknown
 }
 
@@ -17,7 +20,7 @@ export default function MenuItem({
   value,
   style,
   ...props
-}: Props) {
+}: MenuItemProps) {
   const { onSelect, onHideMenu } = useContext(MenuContext)
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
@@ -33,6 +36,7 @@ export default function MenuItem({
 
   return (
     <button
+      type="button"
       className={`${styles.container} ${className}`}
       onClick={handleClick}
       style={buttonStyle}

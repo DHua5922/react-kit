@@ -34,6 +34,34 @@ describe('Menu', () => {
     expect(onHideMenu).toHaveBeenCalledTimes(1)
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
   })
+
+  it('focuses the first menu item on open and tabs to the next item', async () => {
+    const user = userEvent.setup()
+
+    renderMenu()
+
+    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    const profileItem = screen.getByRole('button', { name: 'Profile' })
+    const billingItem = screen.getByRole('button', { name: 'Billing' })
+
+    expect(profileItem).toHaveFocus()
+
+    await user.keyboard('{Tab}')
+    expect(billingItem).toHaveFocus()
+  })
+
+  it('keeps the menu open while tabbing through items', async () => {
+    const user = userEvent.setup()
+
+    renderMenu()
+
+    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    expect(screen.getByRole('button', { name: 'Profile' })).toBeInTheDocument()
+
+    await user.keyboard('{Tab}')
+    expect(screen.getByRole('button', { name: 'Profile' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Billing' })).toHaveFocus()
+  })
 })
 
 function renderMenu(props = {}) {
@@ -43,6 +71,7 @@ function renderMenu(props = {}) {
 
       <Menu.Content>
         <Menu.Item value="profile">Profile</Menu.Item>
+        <Menu.Item value="billing">Billing</Menu.Item>
       </Menu.Content>
     </Menu>
   )

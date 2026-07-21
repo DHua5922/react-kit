@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as c}from"./index-ChEI-nsM.js";import{M as t,C as r,A as i}from"./index-CS3lWUqQ.js";import{S as d,E as a,A as l,a as h}from"./Accordion.stories-Dh-OUDW7.js";import"./index-DRjF_FHU.js";import"./iframe-C2EhxJoj.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-QgfrSyUJ.js";function s(o){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...c(),...o.components};return e.jsxs(e.Fragment,{children:[e.jsx(t,{of:d}),`
+import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as c}from"./index-ChEI-nsM.js";import{M as r,C as t,A as i}from"./index-B2iZG5OP.js";import{S as d,E as a,A as l,a as h}from"./Accordion.stories-Dh-OUDW7.js";import"./index-DRjF_FHU.js";import"./iframe-BhbWpRM3.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-QgfrSyUJ.js";function s(o){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...c(),...o.components};return e.jsxs(e.Fragment,{children:[e.jsx(r,{of:d}),`
 `,e.jsx(n.h1,{id:"accordion",children:"Accordion"}),`
 `,e.jsx(n.p,{children:`Accordions organize related content into expandable sections. They work well
 when users need to scan several headings while viewing only one or a few
@@ -13,11 +13,11 @@ sections at a time.`}),`
 `,e.jsx(n.p,{children:"Avoid using an accordion for essential information that users must always see."}),`
 `,e.jsx(n.h2,{id:"accessibility",children:"Accessibility"}),`
 `,e.jsx(n.p,{children:`Accordion headers should clearly describe their associated content. Users
-should be able to operate each header with a keyboard and understand whether
-the section is expanded.`}),`
+should be able to operate each header using only a keyboard and understand
+whether the section is expanded.`}),`
 `,e.jsx(n.h2,{id:"basic-usage",children:"Basic usage"}),`
 `,e.jsx(n.p,{children:"Click the accordion header to expand or collapse its content."}),`
-`,e.jsx(r,{of:a,sourceState:"none",layout:"fullscreen"}),`
+`,e.jsx(t,{of:a,sourceState:"none",layout:"fullscreen"}),`
 `,e.jsx(n.h2,{id:"props",children:"Props"}),`
 `,e.jsx(n.h3,{id:"accordion-1",children:"Accordion"}),`
 `,e.jsx(i,{of:l}),`

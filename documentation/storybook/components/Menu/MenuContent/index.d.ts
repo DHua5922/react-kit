@@ -1,8 +1,4 @@
-import { HTMLAttributes, ReactNode } from '../../../../node_modules/react';
+import { HTMLAttributes } from '../../../../node_modules/react';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
-    children?: ReactNode;
-}
-export default function MenuContent({ children, className, ...props }: Props): import("react/jsx-runtime").JSX.Element;
-export {};
+export default function MenuContent({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=index.d.ts.map

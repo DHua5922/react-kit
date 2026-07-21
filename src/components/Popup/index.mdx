@@ -1,0 +1,39 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as Stories from './index.stories'
+import Popup from '.'
+
+<Meta of={Stories} />
+
+# Popup
+
+The Popup component shows content when it is triggered by a user action.
+
+## Usage guidance
+
+Use a popup when:
+
+- Content should appear only when needed.
+- Content should not be shown immediately.
+
+Avoid using a popup when content should always be shown.
+
+## Accessibility
+
+Popup component can be used for different things, depending on the situation. If it's for creating a dropdown menu, then users should be able to open the menu,
+choose an option, and close the menu using only a keyboard. They should also be able to understand whether the menu is currently open. If it's custom
+dropdown input, accessibility should function the same way as the HTML `select` element.
+
+## Basic usage
+
+Click the button to open the popup. Then press Esc to close it.
+
+<Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### Popup
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+<ArgTypes of={Popup} />

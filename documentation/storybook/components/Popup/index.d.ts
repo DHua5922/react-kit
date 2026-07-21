@@ -1,9 +1,8 @@
-import { HTMLAttributes, ReactNode } from '../../../node_modules/react';
+import { HTMLAttributes } from '../../../node_modules/react';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
     left?: string;
     top?: string;
-    children?: ReactNode;
     show?: boolean;
     onHide?: () => void;
 }

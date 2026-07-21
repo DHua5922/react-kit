@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as i}from"./index-ChEI-nsM.js";import{M as l,C as r,A as o}from"./index-CS3lWUqQ.js";import{S as c,E as a,M as d,a as h}from"./Menu.stories-DK0Qcpw8.js";import"./index-DRjF_FHU.js";import"./iframe-C2EhxJoj.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-CgmY5G0d.js";import"./index-QgfrSyUJ.js";function t(s){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...i(),...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:c}),`
+import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as i}from"./index-ChEI-nsM.js";import{M as l,C as r,A as o}from"./index-B2iZG5OP.js";import{S as c,E as a,M as d,a as h}from"./Menu.stories-DK0Qcpw8.js";import"./index-DRjF_FHU.js";import"./iframe-BhbWpRM3.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-CgmY5G0d.js";import"./index-QgfrSyUJ.js";function t(s){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...i(),...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:c}),`
 `,e.jsx(n.h1,{id:"menu",children:"Menu"}),`
 `,e.jsx(n.p,{children:"The Menu component displays a list of options that users can choose from."}),`
 `,e.jsx(n.h2,{id:"usage-guidance",children:"Usage guidance"}),`
@@ -9,9 +9,9 @@ import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as i}from"
 `]}),`
 `,e.jsx(n.p,{children:"Avoid using a menu when users should always see all available options."}),`
 `,e.jsx(n.h2,{id:"accessibility",children:"Accessibility"}),`
-`,e.jsx(n.p,{children:`Menu toggles should show a visible focus state. Users should be able to open the menu,
-choose an option, and close the menu using only a keyboard. They should also be able to
-understand whether the menu is currently open.`}),`
+`,e.jsx(n.p,{children:`Menu toggles should show a visible focus state. Users should be able to open the
+menu, choose an option, and close the menu using only a keyboard. They should
+also be able to understand whether the menu is currently open.`}),`
 `,e.jsx(n.h2,{id:"basic-usage",children:"Basic usage"}),`
 `,e.jsx(n.p,{children:`Click the button to open the menu. Then choose an option, click outside the menu, or press
 Esc to close it.`}),`

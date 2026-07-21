@@ -1,4 +1,4 @@
-import{j as r}from"./jsx-runtime-DiklIkkE.js";import{P as s}from"./index-CgmY5G0d.js";import{L as d}from"./index-QgfrSyUJ.js";import"./index-DRjF_FHU.js";import"./index-BKlBQwGM.js";const e=`function Example() {
+import{j as r}from"./jsx-runtime-DiklIkkE.js";import{P as p}from"./index-CgmY5G0d.js";import{L as s}from"./index-QgfrSyUJ.js";const a=`function Example() {
   const [show, setShow] = React.useState(false)
   
   const containerStyle = {
@@ -55,15 +55,9 @@ import{j as r}from"./jsx-runtime-DiklIkkE.js";import{P as s}from"./index-CgmY5G0
   )
 }
 
-render(<Example />)`,f={title:"Components/Popup",component:s,tags:["!autodocs"],parameters:{layout:"padded"},args:{show:!0,left:"32px",top:"88px",children:r.jsx("div",{style:{width:220,padding:16,borderRadius:12,background:"#ffffff",boxShadow:"0 12px 32px rgba(15, 23, 42, 0.16)"},children:"Popup content"}),onHide:()=>{}}},o={parameters:{docs:{source:{code:e}}},render:()=>r.jsx(d,{code:e,noInline:!0,scope:{Popup:s}})};var t,n,p;o.parameters={...o.parameters,docs:{...(t=o.parameters)==null?void 0:t.docs,source:{originalSource:`{
-  parameters: {
-    docs: {
-      source: {
-        code: liveCode
-      }
-    }
-  },
+render(<Example />)`,d={title:"Components/Popup",component:p,tags:["!autodocs"],parameters:{layout:"fullscreen"}},o={tags:["!dev"],render:()=>r.jsx(s,{code:a,noInline:!0,scope:{Popup:p}})};var e,t,n;o.parameters={...o.parameters,docs:{...(e=o.parameters)==null?void 0:e.docs,source:{originalSource:`{
+  tags: ['!dev'],
   render: () => <LiveCodeBlock code={liveCode} noInline scope={{
     Popup
   }} />
-}`,...(p=(n=o.parameters)==null?void 0:n.docs)==null?void 0:p.source}}};const m=["Example"];export{o as Example,m as __namedExportsOrder,f as default};
+}`,...(n=(t=o.parameters)==null?void 0:t.docs)==null?void 0:n.source}}};const u=["Example"],f=Object.freeze(Object.defineProperty({__proto__:null,Example:o,__namedExportsOrder:u,default:d},Symbol.toStringTag,{value:"Module"}));export{o as E,f as S};

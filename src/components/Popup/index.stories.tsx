@@ -61,45 +61,18 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
+type PopupMeta = Meta<typeof Popup>
+type Story = StoryObj<PopupMeta>
+
 const meta = {
   title: 'Components/Popup',
   component: Popup,
   tags: ['!autodocs'],
-  parameters: {
-    layout: 'padded',
-  },
-  args: {
-    show: true,
-    left: '32px',
-    top: '88px',
-    children: (
-      <div
-        style={{
-          width: 220,
-          padding: 16,
-          borderRadius: 12,
-          background: '#ffffff',
-          boxShadow: '0 12px 32px rgba(15, 23, 42, 0.16)',
-        }}
-      >
-        Popup content
-      </div>
-    ),
-    onHide: () => {},
-  },
+  parameters: { layout: 'fullscreen' },
 } satisfies Meta<typeof Popup>
-
 export default meta
 
-type Story = StoryObj<typeof meta>
-
 export const Example: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code: liveCode,
-      },
-    },
-  },
+  tags: ['!dev'],
   render: () => <LiveCodeBlock code={liveCode} noInline scope={{ Popup }} />,
 }

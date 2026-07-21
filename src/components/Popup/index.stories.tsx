@@ -64,12 +64,12 @@ render(<Example />)`
 type PopupMeta = Meta<typeof Popup>
 type Story = StoryObj<PopupMeta>
 
-const meta = {
+const meta: PopupMeta = {
   title: 'Components/Popup',
   component: Popup,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<typeof Popup>
+} satisfies PopupMeta
 export default meta
 
 export const Example: Story = {

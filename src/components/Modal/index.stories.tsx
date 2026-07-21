@@ -37,31 +37,18 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-const meta = {
+type ModalMeta = Meta<typeof Modal>
+type Story = StoryObj<ModalMeta>
+
+const meta: ModalMeta = {
   title: 'Components/Modal',
   component: Modal,
   tags: ['!autodocs'],
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof Modal>
-
+  parameters: { layout: 'fullscreen' },
+} satisfies ModalMeta
 export default meta
 
-type Story = StoryObj<typeof meta>
-
-export const Examples: Story = {
-  args: {
-    show: false,
-    onShow: () => {},
-    onHide: () => {},
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: liveCode,
-      },
-    },
-  },
+export const Example: Story = {
+  tags: ['!dev'],
   render: () => <LiveCodeBlock code={liveCode} noInline scope={{ Modal }} />,
 }

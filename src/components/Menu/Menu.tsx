@@ -3,8 +3,7 @@ import MenuContext from './MenuContext'
 import MenuContent from './MenuContent'
 import MenuToggle from './MenuToggle'
 
-interface Props {
-  children?: ReactNode
+interface MenuHookProps {
   showMenu?: boolean
   defaultShowMenu?: boolean
   onShowMenu?: () => void
@@ -14,17 +13,20 @@ interface Props {
   onSelect?: (item: unknown) => void
 }
 
-export default function Menu({
-  children,
-  showMenu,
+interface MenuProps extends MenuHookProps {
+  children?: ReactNode
+  // These props are now inherited from MenuHookProps
+}
+
+function useMenu(
+  showMenu?: boolean,
   defaultShowMenu = false,
-  onShowMenu,
-  onHideMenu,
+  onShowMenu?: () => void,
+  onHideMenu?: () => void,
   offsetMenuPosVertical = 0,
   offsetMenuPosHorizontal = 0,
-  onSelect,
-  ...props
-}: Props) {
+  onSelect?: (item: unknown) => void
+) {
   const [internalShowMenu, setInternalShowMenu] = useState(defaultShowMenu)
   const [menuPos, setMenuPos] = useState({
     top: 'auto',
@@ -66,6 +68,30 @@ export default function Menu({
       onSelect,
       visible,
     ]
+  )
+
+  return contextValue
+}
+
+export default function Menu({
+  children,
+  showMenu,
+  defaultShowMenu = false,
+  onShowMenu,
+  onHideMenu,
+  offsetMenuPosVertical = 0,
+  offsetMenuPosHorizontal = 0,
+  onSelect,
+  ...props
+}: MenuProps) {
+  const contextValue = useMenu(
+    showMenu,
+    defaultShowMenu,
+    onShowMenu,
+    onHideMenu,
+    offsetMenuPosVertical,
+    offsetMenuPosHorizontal,
+    onSelect
   )
 
   return (

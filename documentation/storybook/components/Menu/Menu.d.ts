@@ -1,7 +1,6 @@
 import { ReactNode } from '../../../node_modules/react';
 
-interface Props {
-    children?: ReactNode;
+interface MenuHookProps {
     showMenu?: boolean;
     defaultShowMenu?: boolean;
     onShowMenu?: () => void;
@@ -10,6 +9,9 @@ interface Props {
     offsetMenuPosHorizontal?: number;
     onSelect?: (item: unknown) => void;
 }
-export default function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, ...props }: Props): import("react/jsx-runtime").JSX.Element;
+interface MenuProps extends MenuHookProps {
+    children?: ReactNode;
+}
+export default function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, ...props }: MenuProps): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=Menu.d.ts.map

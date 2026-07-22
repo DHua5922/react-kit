@@ -27,6 +27,10 @@ Accordion headers should clearly describe their associated content. Users
 should be able to operate each header using only a keyboard and understand
 whether the section is expanded.
 
+Consumers are responsible for supplying the ARIA relationships between each
+header and its associated panel. Use attributes such as `id`, `aria-controls`,
+and `aria-labelledby` to connect them when appropriate.
+
 ## Basic usage
 
 Click the accordion header to expand or collapse its content.
@@ -37,8 +41,8 @@ Click the accordion header to expand or collapse its content.
 
 ### Accordion
 
-Accepts all standard props for an HTML `<div>` element:
-`React.HTMLAttributes<HTMLDivElement>`.
+Accepts standard props for an HTML `<div>` element, except `onSelect`, which is
+used to receive the selected accordion item key.
 
 <ArgTypes of={Accordion} />
 

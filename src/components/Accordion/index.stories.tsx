@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta } from '@storybook/react'
 import Accordion from '.'
 import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
@@ -30,18 +30,16 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-type AccordionMeta = Meta<typeof Accordion>
-type Story = StoryObj<AccordionMeta>
-
-const meta: AccordionMeta = {
+const meta = {
   title: 'Components/Accordion',
   component: Accordion,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
-} satisfies AccordionMeta
+} satisfies Meta<typeof Accordion>
+
 export default meta
 
-export const Example: Story = {
+export const Example = {
   tags: ['!dev'],
   render: () => (
     <LiveCodeBlock code={liveCode} noInline scope={{ Accordion }} />

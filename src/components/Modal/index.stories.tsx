@@ -37,16 +37,16 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-type ModalMeta = Meta<typeof Modal>
-type Story = StoryObj<ModalMeta>
-
-const meta: ModalMeta = {
+const meta = {
   title: 'Components/Modal',
   component: Modal,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
-} satisfies ModalMeta
+} satisfies Meta<typeof Modal>
+
 export default meta
+
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
   tags: ['!dev'],

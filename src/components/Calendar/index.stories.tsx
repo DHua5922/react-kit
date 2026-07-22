@@ -192,18 +192,22 @@ const customCalendarCode = `
 
   render(<Example />)`
 
-type CalendarMeta = Meta<typeof Calendar>
-type Story = StoryObj<CalendarMeta>
-
 const meta = {
   title: 'Components/Calendar',
   component: Calendar,
   tags: ['!autodocs'],
   parameters: {
-    layout: 'fullsceen',
+    layout: 'fullscreen',
   },
-} satisfies CalendarMeta
+  args: {
+    value: new Date(2026, 2, 26),
+    onChange: () => {},
+  },
+} satisfies Meta<typeof Calendar>
+
 export default meta
+
+type Story = StoryObj<typeof meta>
 
 export const BasicCalendar: Story = {
   tags: ['!dev'],

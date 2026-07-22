@@ -61,16 +61,16 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-type PopupMeta = Meta<typeof Popup>
-type Story = StoryObj<PopupMeta>
-
-const meta: PopupMeta = {
+const meta = {
   title: 'Components/Popup',
   component: Popup,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
-} satisfies PopupMeta
+} satisfies Meta<typeof Popup>
+
 export default meta
+
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
   tags: ['!dev'],

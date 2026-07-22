@@ -50,16 +50,16 @@ const liveCode = `function Example() {
 
 render(<Example />)`
 
-type MenuMeta = Meta<typeof Menu>
-type Story = StoryObj<MenuMeta>
-
-const meta: MenuMeta = {
+const meta = {
   title: 'Components/Menu',
   component: Menu,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
-} satisfies MenuMeta
+} satisfies Meta<typeof Menu>
+
 export default meta
+
+type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
   tags: ['!dev'],

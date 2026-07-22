@@ -10,6 +10,7 @@ interface LiveEditorHeaderProps {
 
 interface LiveCodeBlockProps {
   code: string
+  enableTypeScript?: boolean
   /**
    * Additional values exposed to the live runtime
    */
@@ -140,6 +141,7 @@ export default function LiveCodeBlock({
         scope={liveScope}
         theme={theme}
         noInline={noInline}
+        enableTypeScript
         {...props}
       >
         <div className={styles['header']}>RESULT</div>

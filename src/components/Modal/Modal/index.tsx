@@ -11,7 +11,6 @@ import styles from './index.module.css'
 
 export interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
   show?: boolean
-  onShow?: () => void
   onHide?: () => void
 }
 
@@ -30,12 +29,12 @@ function useModal(show: boolean) {
 }
 
 const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
-  { children, className = '', show, onShow, onHide, ...props },
+  { children, className = '', show, onHide, ...props },
   ref
 ) {
   const dialogRef = useModal(!!show)
   useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement)
-  const value = { show, onShow, onHide }
+  const value = { show, onHide }
 
   const handleCancelDialog = (
     event: SyntheticEvent<HTMLDialogElement, Event>

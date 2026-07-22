@@ -4,11 +4,10 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 function renderModal(props = {}) {
-  const onShow = vi.fn()
   const onHide = vi.fn()
 
   render(
-    <Modal show={true} onShow={onShow} onHide={onHide} {...props}>
+    <Modal show={true} onHide={onHide} {...props}>
       <Modal.Header>
         <Modal.Title>Modal Title</Modal.Title>
         <Modal.CloseButton />
@@ -22,7 +21,7 @@ function renderModal(props = {}) {
     </Modal>
   )
 
-  return { onShow, onHide }
+  return { onHide }
 }
 
 describe('Modal', () => {

@@ -3,11 +3,13 @@ import AccordionContext from '../AccordionContext'
 import AccordionItemContext from '../AccordionItemContext'
 import styles from './index.module.css'
 
+export type AccordionHeaderProps = ButtonHTMLAttributes<HTMLButtonElement>
+
 export default function AccordionHeader({
   children,
   className = '',
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+}: AccordionHeaderProps) {
   const { activeKeys, onSelect } = useContext(AccordionContext)
   const { eventKey } = useContext(AccordionItemContext)
   const isExpanded = activeKeys.includes(eventKey)

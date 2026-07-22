@@ -11,6 +11,8 @@ import {
 } from 'date-fns'
 import styles from './index.module.css'
 
+export type CalendarDaysProps = HTMLAttributes<HTMLDivElement>
+
 function getDatesInMonth(currentMonth: Date) {
   const firstDay = startOfMonth(currentMonth)
   const lastDay = endOfMonth(firstDay)
@@ -38,7 +40,7 @@ export default function CalendarDays({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: CalendarDaysProps) {
   const { currentMonth } = useContext(CalendarContext)
 
   return (

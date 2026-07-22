@@ -3,6 +3,8 @@ import Popup from '../../Popup'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
+export type MenuContentProps = HTMLAttributes<HTMLDivElement>
+
 function useMenuContent() {
   const context = useContext(MenuContext)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -33,7 +35,7 @@ export default function MenuContent({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: MenuContentProps) {
   const { containerRef, context } = useMenuContent()
 
   return (

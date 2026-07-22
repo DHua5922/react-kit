@@ -7,7 +7,7 @@ import {
 import { createPortal } from 'react-dom'
 import styles from './index.module.css'
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   left?: string
   top?: string
   show?: boolean
@@ -39,7 +39,7 @@ export default function Popup({
   onHide,
   className = '',
   ...props
-}: Props) {
+}: PopupProps) {
   usePopup(show, onHide)
 
   if (!show) {

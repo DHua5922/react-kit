@@ -6,6 +6,8 @@ import type {
 } from 'react'
 import MenuContext from './MenuContext'
 
+export type MenuToggleProps = ButtonHTMLAttributes<HTMLButtonElement>
+
 function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
   const context = useContext(MenuContext)
   const triggerRef = useRef<HTMLDivElement>(null)
@@ -44,7 +46,7 @@ export default function MenuToggle({
   children,
   onClick,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) {
+}: MenuToggleProps) {
   const context = useContext(MenuContext)
   const { triggerRef, handleClick, handleKeyDown } = useMenuToggle(onClick)
 

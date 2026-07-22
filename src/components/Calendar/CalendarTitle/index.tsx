@@ -3,11 +3,13 @@ import { format } from 'date-fns'
 import { useContext, HTMLAttributes } from 'react'
 import CalendarContext from '../CalendarContext'
 
+export type CalendarTitleProps = HTMLAttributes<HTMLDivElement>
+
 export default function CalendarTitle({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: CalendarTitleProps) {
   const { currentMonth } = useContext(CalendarContext)
   return (
     <div className={`${styles.container} ${className}`} {...props}>

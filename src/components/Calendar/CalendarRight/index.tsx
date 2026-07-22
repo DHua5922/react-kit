@@ -3,7 +3,7 @@ import CalendarContext from '../CalendarContext'
 import { addMonths } from 'date-fns'
 import styles from './index.module.css'
 
-interface Props extends Omit<
+export interface CalendarRightProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'onClick'
 > {
@@ -15,7 +15,7 @@ export default function CalendarRight({
   onClick,
   className = '',
   ...props
-}: Props) {
+}: CalendarRightProps) {
   const { currentMonth, setCurrentMonth } = useContext(CalendarContext)
 
   const handleClick = () => {

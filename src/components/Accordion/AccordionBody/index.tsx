@@ -3,11 +3,13 @@ import AccordionContext from '../AccordionContext'
 import AccordionItemContext from '../AccordionItemContext'
 import styles from './index.module.css'
 
+export type AccordionBodyProps = HTMLAttributes<HTMLDivElement>
+
 export default function AccordionBody({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: AccordionBodyProps) {
   const { activeKeys } = useContext(AccordionContext)
   const { eventKey } = useContext(AccordionItemContext)
   const isExpanded = activeKeys.includes(eventKey)

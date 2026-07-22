@@ -2,7 +2,7 @@ import { HTMLAttributes, SyntheticEvent, useEffect, useRef } from 'react'
 import ModalContext from '../ModalContext'
 import styles from './index.module.css'
 
-interface Props extends HTMLAttributes<HTMLDialogElement> {
+export interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
   show?: boolean
   onShow?: () => void
   onHide?: () => void
@@ -29,7 +29,7 @@ export default function Modal({
   onShow,
   onHide,
   ...props
-}: Props) {
+}: ModalProps) {
   const dialogRef = useModal(!!show)
   const value = { show, onShow, onHide }
 

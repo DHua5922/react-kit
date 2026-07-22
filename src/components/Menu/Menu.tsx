@@ -11,7 +11,7 @@ interface MenuHookProps {
   onSelect?: (item: unknown) => void
 }
 
-interface MenuProps extends MenuHookProps {
+export interface MenuProps extends MenuHookProps {
   children?: ReactNode
 }
 

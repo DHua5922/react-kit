@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import CalendarContext from './CalendarContext'
 import { useState, HTMLAttributes } from 'react'
 
-interface Props extends Omit<
+export interface CalendarProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
   'value' | 'onChange'
 > {
@@ -15,7 +15,7 @@ export default function Calendar({
   value,
   onChange,
   ...props
-}: Props) {
+}: CalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(value)
   const contextValue = {
     value,

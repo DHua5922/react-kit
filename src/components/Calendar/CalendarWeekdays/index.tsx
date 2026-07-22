@@ -2,13 +2,15 @@ import { HTMLAttributes } from 'react'
 import CalendarWeekday from '../CalendarWeekday'
 import styles from './index.module.css'
 
+export type CalendarWeekdaysProps = HTMLAttributes<HTMLDivElement>
+
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 export default function CalendarWeekdays({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: CalendarWeekdaysProps) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children ||

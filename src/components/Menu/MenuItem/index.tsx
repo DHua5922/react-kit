@@ -6,7 +6,7 @@ import {
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
-interface MenuItemProps extends Omit<
+export interface MenuItemProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'value'
 > {

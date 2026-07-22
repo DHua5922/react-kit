@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, useContext } from 'react'
 import CalendarContext from '../CalendarContext'
 import { format, isSameMonth } from 'date-fns'
 
-interface Props extends Omit<
+export interface CalendarDayProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'value' | 'onClick'
 > {
@@ -47,7 +47,7 @@ export default function CalendarDay({
   onClick,
   style,
   ...props
-}: Props) {
+}: CalendarDayProps) {
   const { isChosen, isInCurrentMonth, handleDayNumberClick } = useCalendarDay(
     value,
     onClick

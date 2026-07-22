@@ -1,4 +1,4 @@
-import { HTMLProps } from 'react'
+import { HTMLAttributes } from 'react'
 import CalendarWeekday from '../CalendarWeekday'
 import styles from './index.module.css'
 
@@ -8,7 +8,7 @@ export default function CalendarWeekdays({
   children,
   className = '',
   ...props
-}: HTMLProps<HTMLDivElement>) {
+}: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children ||

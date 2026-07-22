@@ -5,7 +5,7 @@ export default function ModalHeader({
   children,
   className = "",
   ...props
-}: HTMLAttributes<HTMLHeadingElement>) {
+}: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children}

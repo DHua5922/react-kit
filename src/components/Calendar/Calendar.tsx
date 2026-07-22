@@ -1,8 +1,11 @@
 import { format } from 'date-fns'
 import CalendarContext from './CalendarContext'
-import { useState, HTMLProps } from 'react'
+import { useState, HTMLAttributes } from 'react'
 
-interface Props extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'onChange'> {
+interface Props extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'value' | 'onChange'
+> {
   value: Date
   onChange: (date: Date) => void
 }

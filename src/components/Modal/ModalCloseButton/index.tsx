@@ -1,4 +1,4 @@
-import { HTMLAttributes, useContext } from 'react'
+import { ButtonHTMLAttributes, useContext } from 'react'
 import styles from './index.module.css'
 import ModalContext from '../ModalContext'
 
@@ -6,7 +6,7 @@ export default function ModalCloseButton({
   children,
   className = '',
   ...props
-}: HTMLAttributes<HTMLButtonElement>) {
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
   const { onHide } = useContext(ModalContext)
   return (
     <button

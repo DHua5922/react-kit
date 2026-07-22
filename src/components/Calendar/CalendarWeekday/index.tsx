@@ -1,11 +1,11 @@
 import styles from './index.module.css'
-import { HTMLProps } from 'react'
+import { HTMLAttributes } from 'react'
 
 export default function CalendarWeekday({
   children,
   className = '',
   ...props
-}: HTMLProps<HTMLDivElement>) {
+}: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children}

@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as r}from"./index-ChEI-nsM.js";import{M as l,C as s,A as a}from"./index-BkK4Ptb8.js";import{S as c,B as i,C as o,a as h,b as x,c as p,d as j}from"./index.stories-bFx-Perr.js";import"./index-DRjF_FHU.js";import"./iframe-dHMyFuXa.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-QgfrSyUJ.js";function d(t){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...r(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:c}),`
+import{j as e}from"./jsx-runtime-DiklIkkE.js";import{useMDXComponents as r}from"./index-ChEI-nsM.js";import{M as l,C as s,A as a}from"./index-CJqnlYV6.js";import{S as c,B as i,C as o,a as h,b as p,c as x,d as j}from"./index.stories-bFx-Perr.js";import"./index-DRjF_FHU.js";import"./iframe-BnUduI1n.js";import"./index-BKlBQwGM.js";import"./index-D-Mha1DF.js";import"./index-DrFu-skq.js";import"./index-QgfrSyUJ.js";function d(t){const n={code:"code",h1:"h1",h2:"h2",h3:"h3",li:"li",p:"p",ul:"ul",...r(),...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(l,{of:c}),`
 `,e.jsx(n.h1,{id:"calendar",children:"Calendar"}),`
 `,e.jsx(n.p,{children:`The Calendar component displays the current month and year, along with day
 buttons for date selection.`}),`
@@ -22,6 +22,8 @@ months.`}),`
 `,e.jsx(s,{of:o,sourceState:"none",layout:"fullscreen"}),`
 `,e.jsx(n.h2,{id:"props",children:"Props"}),`
 `,e.jsx(n.h3,{id:"calendar-1",children:"Calendar"}),`
+`,e.jsxs(n.p,{children:["Accepts all standard props for an HTML ",e.jsx(n.code,{children:"<div>"}),` element:
+`,e.jsx(n.code,{children:"React.HTMLAttributes<HTMLDivElement>"}),"."]}),`
 `,e.jsx(a,{of:h}),`
 `,e.jsx(n.h3,{id:"calendarheader",children:"Calendar.Header"}),`
 `,e.jsxs(n.p,{children:["Accepts all standard props for an HTML ",e.jsx(n.code,{children:"<div>"}),` element:
@@ -29,11 +31,11 @@ months.`}),`
 `,e.jsx(n.h3,{id:"calendarleft",children:"Calendar.Left"}),`
 `,e.jsxs(n.p,{children:["Accepts all standard props for an HTML ",e.jsx(n.code,{children:"<button>"}),` element:
 `,e.jsx(n.code,{children:"React.ButtonHTMLAttributes<HTMLButtonElement>"}),"."]}),`
-`,e.jsx(a,{of:x}),`
+`,e.jsx(a,{of:p}),`
 `,e.jsx(n.h3,{id:"calendarright",children:"Calendar.Right"}),`
 `,e.jsxs(n.p,{children:["Accepts all standard props for an HTML ",e.jsx(n.code,{children:"<button>"}),` element:
 `,e.jsx(n.code,{children:"React.ButtonHTMLAttributes<HTMLButtonElement>"}),"."]}),`
-`,e.jsx(a,{of:p}),`
+`,e.jsx(a,{of:x}),`
 `,e.jsx(n.h3,{id:"calendartitle",children:"Calendar.Title"}),`
 `,e.jsxs(n.p,{children:["Accepts all standard props for an HTML ",e.jsx(n.code,{children:"<div>"}),` element:
 `,e.jsx(n.code,{children:"React.HTMLAttributes<HTMLDivElement>"}),"."]}),`

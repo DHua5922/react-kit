@@ -1,5 +1,5 @@
 import CalendarContext from '../CalendarContext'
-import { useContext, HTMLProps } from 'react'
+import { useContext, HTMLAttributes } from 'react'
 import CalendarDay from '../CalendarDay'
 import {
   addDays,
@@ -38,7 +38,7 @@ export default function CalendarDays({
   children,
   className = '',
   ...props
-}: HTMLProps<HTMLDivElement>) {
+}: HTMLAttributes<HTMLDivElement>) {
   const { currentMonth } = useContext(CalendarContext)
 
   return (

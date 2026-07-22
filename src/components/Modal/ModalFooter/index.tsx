@@ -1,14 +1,14 @@
-import { HTMLAttributes } from "react";
-import styles from "./index.module.css";
+import { HTMLAttributes } from 'react'
+import styles from './index.module.css'
 
 export default function ModalFooter({
   children,
-  className = "",
+  className = '',
   ...props
-}: HTMLAttributes<HTMLHeadingElement>) {
+}: HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={`${styles.container} ${className}`} {...props}>
       {children}
     </div>
-  );
+  )
 }

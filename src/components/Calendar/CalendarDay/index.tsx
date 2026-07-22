@@ -1,10 +1,10 @@
 import styles from './index.module.css'
-import { HTMLAttributes, useContext } from 'react'
+import { ButtonHTMLAttributes, useContext } from 'react'
 import CalendarContext from '../CalendarContext'
 import { format, isSameMonth } from 'date-fns'
 
 interface Props extends Omit<
-  HTMLAttributes<HTMLButtonElement>,
+  ButtonHTMLAttributes<HTMLButtonElement>,
   'value' | 'onClick'
 > {
   value: Date

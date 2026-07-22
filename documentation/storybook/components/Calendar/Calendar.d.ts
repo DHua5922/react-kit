@@ -1,6 +1,6 @@
-import { HTMLProps } from '../../../node_modules/react';
+import { HTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'onChange'> {
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'> {
     value: Date;
     onChange: (date: Date) => void;
 }

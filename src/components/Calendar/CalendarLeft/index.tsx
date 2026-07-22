@@ -1,9 +1,12 @@
-import { useContext, HTMLAttributes } from 'react'
+import { useContext, ButtonHTMLAttributes } from 'react'
 import CalendarContext from '../CalendarContext'
 import { subMonths } from 'date-fns'
 import styles from './index.module.css'
 
-interface Props extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+interface Props extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'onClick'
+> {
   onClick?: (date: Date) => void
 }
 

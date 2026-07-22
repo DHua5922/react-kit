@@ -1,6 +1,6 @@
-import { HTMLAttributes } from '../../../../node_modules/react';
+import { ButtonHTMLAttributes } from '../../../../node_modules/react';
 
-interface Props extends Omit<HTMLAttributes<HTMLButtonElement>, 'value' | 'onClick'> {
+interface Props extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'value' | 'onClick'> {
     value: Date;
     onClick?: (value: Date) => void;
 }

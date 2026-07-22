@@ -1,0 +1,93 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as Stories from './index.stories'
+import Calendar from './Calendar'
+import CalendarLeft from './CalendarLeft'
+import CalendarRight from './CalendarRight'
+import CalendarDay from './CalendarDay'
+
+<Meta of={Stories} />
+
+# Calendar
+
+The Calendar component displays the current month and year, along with day
+buttons for date selection.
+
+## Usage guidance
+
+Use a calendar when:
+
+- Users need to choose a date from a calendar view.
+- You are building a custom date input that includes date selection.
+
+Avoid using a calendar when none of the above applies.
+
+## Accessibility
+
+Users should be able to go to the previous month, go to the next month, and
+choose a date using only a keyboard.
+
+## Basic usage
+
+Click a day to select it. Use the next and previous buttons to move between
+months.
+
+<Canvas of={Stories.BasicCalendar} sourceState="none" layout="fullscreen" />
+
+## Creating Custom Calendar
+
+Click a day to select it. Use the next and previous buttons to move between
+months.
+
+<Canvas of={Stories.CustomCalendar} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### Calendar
+
+<ArgTypes of={Calendar} />
+
+### Calendar.Header
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Calendar.Left
+
+Accepts all standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
+<ArgTypes of={CalendarLeft} />
+
+### Calendar.Right
+
+Accepts all standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
+<ArgTypes of={CalendarRight} />
+
+### Calendar.Title
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Calendar.Weekdays
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Calendar.Weekday
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Calendar.Days
+
+Accepts all standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### Calendar.Day
+
+Accepts all standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
+<ArgTypes of={CalendarDay} />

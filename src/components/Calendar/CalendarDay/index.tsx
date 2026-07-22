@@ -1,12 +1,14 @@
 import styles from './index.module.css'
-import { HTMLProps, useContext, CSSProperties } from 'react'
+import { HTMLAttributes, useContext } from 'react'
 import CalendarContext from '../CalendarContext'
 import { format, isSameMonth } from 'date-fns'
 
-interface Props extends Omit<HTMLProps<HTMLDivElement>, 'value' | 'onClick'> {
+interface Props extends Omit<
+  HTMLAttributes<HTMLButtonElement>,
+  'value' | 'onClick'
+> {
   value: Date
   onClick?: (value: Date) => void
-  textStyle?: CSSProperties
 }
 
 function useCalendarDay(value: Date, onClick?: (value: Date) => void) {
@@ -43,7 +45,6 @@ export default function CalendarDay({
   children,
   value,
   onClick,
-  textStyle,
   style,
   ...props
 }: Props) {
@@ -54,25 +55,22 @@ export default function CalendarDay({
 
   const numberContainerStyle = {
     backgroundColor: isInCurrentMonth && isChosen ? '#0d6efd' : 'transparent',
-    ...style,
-  }
-
-  const numberTextStyle = {
     color: isChosen && isInCurrentMonth ? '#ffffff' : '#000000',
     opacity: isInCurrentMonth ? 1 : 0.25,
-    ...textStyle,
+    cursor: !isChosen ? 'pointer' : 'default',
+    ...style,
   }
 
   return (
     <div className={`${styles.container} ${className}`}>
-      <div
+      <button
         className={styles.number}
         {...props}
         onClick={handleDayNumberClick}
         style={numberContainerStyle}
       >
-        <div style={numberTextStyle}>{children || format(value, 'd')}</div>
-      </div>
+        {children || format(value, 'd')}
+      </button>
     </div>
   )
 }

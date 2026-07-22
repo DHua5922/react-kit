@@ -139,7 +139,7 @@ const customCalendarCode = `
             <Calendar.Left
               onPress={() => setCurrentMonth(subMonths(currentMonth, 1))}
             >
-              {'<'}
+              ◀
             </Calendar.Left>
 
             <Calendar.Title>
@@ -149,7 +149,7 @@ const customCalendarCode = `
             <Calendar.Right
               onPress={() => setCurrentMonth(addMonths(currentMonth, 1))}
             >
-              {'>'}
+              ▶
             </Calendar.Right>
           </Calendar.Header>
 
@@ -192,52 +192,28 @@ const customCalendarCode = `
 
   render(<Example />)`
 
+type CalendarMeta = Meta<typeof Calendar>
+type Story = StoryObj<CalendarMeta>
+
 const meta = {
   title: 'Components/Calendar',
   component: Calendar,
   tags: ['!autodocs'],
   parameters: {
-    layout: 'centered',
+    layout: 'fullsceen',
   },
-} satisfies Meta<typeof Calendar>
-
+} satisfies CalendarMeta
 export default meta
 
-type Story = StoryObj<typeof meta>
-
 export const BasicCalendar: Story = {
-  args: {
-    value: new Date(2026, 2, 26),
-    onChange: () => {},
-  },
-  parameters: {
-    layout: 'padded',
-    docs: {
-      source: {
-        code: basicCalendarCode,
-      },
-    },
-  },
+  tags: ['!dev'],
   render: () => (
-    <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-      <LiveCodeBlock code={basicCalendarCode} noInline scope={{ Calendar }} />
-    </div>
+    <LiveCodeBlock code={basicCalendarCode} noInline scope={{ Calendar }} />
   ),
 }
 
 export const CustomCalendar: Story = {
-  args: {
-    value: new Date(2026, 2, 26),
-    onChange: () => {},
-  },
-  parameters: {
-    layout: 'padded',
-    docs: {
-      source: {
-        code: customCalendarCode,
-      },
-    },
-  },
+  tags: ['!dev'],
   render: () => (
     <LiveCodeBlock
       code={customCalendarCode}

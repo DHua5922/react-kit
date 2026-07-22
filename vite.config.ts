@@ -56,6 +56,12 @@ export default defineConfig({
         'src/setupTests.ts',
         'src/index.ts',
       ],
+      thresholds: {
+        statements: 90,
+        branches: 80,
+        functions: 75,
+        lines: 90,
+      },
     },
   },
 })

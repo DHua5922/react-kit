@@ -1,12 +1,12 @@
 .container {
-    max-width: calc(100% / 7);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  max-width: calc(100% / 7);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .number {
-        padding: 8px;
-        border: none;
-    }
+.container .number {
+  padding: 8px;
+  border: none;
 }

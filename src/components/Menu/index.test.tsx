@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { act } from 'react'
 import { vi } from 'vitest'
 import Menu from '.'
 
@@ -11,10 +12,12 @@ describe('Menu', () => {
     renderMenu({ onSelect: onItemClick })
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
 
-    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open menu' }))
+    )
     expect(screen.getByText('Profile')).toBeInTheDocument()
 
-    await user.click(screen.getByText('Profile'))
+    await act(() => user.click(screen.getByText('Profile')))
     expect(onItemClick).toHaveBeenCalledTimes(1)
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
   })
@@ -26,11 +29,13 @@ describe('Menu', () => {
 
     renderMenu({ onShowMenu, onHideMenu })
 
-    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open menu' }))
+    )
     expect(onShowMenu).toHaveBeenCalledTimes(1)
     expect(screen.getByText('Profile')).toBeInTheDocument()
 
-    await user.keyboard('{Escape}')
+    await act(() => user.keyboard('{Escape}'))
     expect(onHideMenu).toHaveBeenCalledTimes(1)
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
   })
@@ -40,13 +45,15 @@ describe('Menu', () => {
 
     renderMenu()
 
-    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open menu' }))
+    )
     const profileItem = screen.getByRole('button', { name: 'Profile' })
     const billingItem = screen.getByRole('button', { name: 'Billing' })
 
     expect(profileItem).toHaveFocus()
 
-    await user.keyboard('{Tab}')
+    await act(() => user.keyboard('{Tab}'))
     expect(billingItem).toHaveFocus()
   })
 
@@ -55,10 +62,12 @@ describe('Menu', () => {
 
     renderMenu()
 
-    await user.click(screen.getByRole('button', { name: 'Open menu' }))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open menu' }))
+    )
     expect(screen.getByRole('button', { name: 'Profile' })).toBeInTheDocument()
 
-    await user.keyboard('{Tab}')
+    await act(() => user.keyboard('{Tab}'))
     expect(screen.getByRole('button', { name: 'Profile' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Billing' })).toHaveFocus()
   })

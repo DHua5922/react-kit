@@ -1,11 +1,11 @@
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 999;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
 
-    .container {
-        position: absolute;
-        left: var(--left, auto);
-        top: var(--top, auto);
-    }
+.overlay .container {
+  position: absolute;
+  left: var(--left, auto);
+  top: var(--top, auto);
 }

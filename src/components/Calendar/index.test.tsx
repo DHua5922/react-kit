@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { act } from 'react'
 import { vi } from 'vitest'
 import Calendar from '.'
 
@@ -8,7 +9,6 @@ const testDateValue = new Date(2026, 2, 15)
 function renderCalendar(onChange = vi.fn(), value = testDateValue) {
   return render(
     <Calendar value={value} onChange={onChange}>
-
       <Calendar.Header style={{ justifyContent: 'space-between' }}>
         <Calendar.Left style={{ cursor: 'pointer' }} />
         <Calendar.Title />
@@ -18,7 +18,6 @@ function renderCalendar(onChange = vi.fn(), value = testDateValue) {
       <Calendar.Weekdays />
 
       <Calendar.Days />
-      
     </Calendar>
   )
 }
@@ -37,7 +36,7 @@ describe('Calendar', () => {
 
     renderCalendar()
 
-    await user.click(screen.getByText('◀'))
+    await act(() => user.click(screen.getByText('◀')))
     expect(screen.getByText('February 2026')).toBeInTheDocument()
   })
 
@@ -46,7 +45,7 @@ describe('Calendar', () => {
 
     renderCalendar()
 
-    await user.click(screen.getByText('▶'))
+    await act(() => user.click(screen.getByText('▶')))
     expect(screen.getByText('April 2026')).toBeInTheDocument()
   })
 

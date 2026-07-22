@@ -137,7 +137,7 @@ const customCalendarCode = `
         <Calendar value={chosenDate} onChange={(date) => setChosenDate(date)}>
           <Calendar.Header>
             <Calendar.Left
-              onPress={() => setCurrentMonth(subMonths(currentMonth, 1))}
+              onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
             >
               ◀
             </Calendar.Left>
@@ -147,7 +147,7 @@ const customCalendarCode = `
             </Calendar.Title>
 
             <Calendar.Right
-              onPress={() => setCurrentMonth(addMonths(currentMonth, 1))}
+              onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
             >
               ▶
             </Calendar.Right>

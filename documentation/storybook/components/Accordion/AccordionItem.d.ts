@@ -1,8 +1,8 @@
 import { HTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
     eventKey: string;
 }
-export default function AccordionItem({ children, eventKey, ...props }: Props): import("react/jsx-runtime").JSX.Element;
-export {};
+declare const AccordionItem: import('../../../node_modules/react').ForwardRefExoticComponent<AccordionItemProps & import('../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default AccordionItem;
 //# sourceMappingURL=AccordionItem.d.ts.map

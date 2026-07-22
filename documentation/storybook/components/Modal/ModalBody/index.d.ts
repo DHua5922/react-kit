@@ -1,4 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-export default function ModalBody({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
+export type ModalBodyProps = HTMLAttributes<HTMLDivElement>;
+declare const ModalBody: import('../../../../node_modules/react').ForwardRefExoticComponent<ModalBodyProps & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default ModalBody;
 //# sourceMappingURL=index.d.ts.map

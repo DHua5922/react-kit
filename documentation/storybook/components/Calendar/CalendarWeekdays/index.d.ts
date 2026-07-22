@@ -1,4 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-export default function CalendarWeekdays({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
+export type CalendarWeekdaysProps = HTMLAttributes<HTMLDivElement>;
+declare const CalendarWeekdays: import('../../../../node_modules/react').ForwardRefExoticComponent<CalendarWeekdaysProps & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default CalendarWeekdays;
 //# sourceMappingURL=index.d.ts.map

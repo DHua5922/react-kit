@@ -1,4 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-export default function ModalHeader({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
+export type ModalHeaderProps = HTMLAttributes<HTMLDivElement>;
+declare const ModalHeader: import('../../../../node_modules/react').ForwardRefExoticComponent<ModalHeaderProps & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default ModalHeader;
 //# sourceMappingURL=index.d.ts.map

@@ -1,11 +1,11 @@
 import { HTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
     left?: string;
     top?: string;
     show?: boolean;
     onHide?: () => void;
 }
-export default function Popup({ children, left, top, show, onHide, className, ...props }: Props): import('../../../node_modules/react').ReactPortal | null;
-export {};
+declare const Popup: import('../../../node_modules/react').ForwardRefExoticComponent<PopupProps & import('../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default Popup;
 //# sourceMappingURL=index.d.ts.map

@@ -1,9 +1,9 @@
 import { HTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface AccordionProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
     activeKeys: string[];
     onSelect: (key: string) => void;
 }
-export default function Accordion({ children, activeKeys, onSelect, ...props }: Props): import("react/jsx-runtime").JSX.Element;
-export {};
+declare const Accordion: import('../../../node_modules/react').ForwardRefExoticComponent<AccordionProps & import('../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default Accordion;
 //# sourceMappingURL=Accordion.d.ts.map

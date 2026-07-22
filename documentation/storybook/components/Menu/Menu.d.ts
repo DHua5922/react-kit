@@ -9,7 +9,7 @@ interface MenuHookProps {
     offsetMenuPosHorizontal?: number;
     onSelect?: (item: unknown) => void;
 }
-interface MenuProps extends MenuHookProps {
+export interface MenuProps extends MenuHookProps {
     children?: ReactNode;
 }
 export default function Menu({ children, showMenu, defaultShowMenu, onShowMenu, onHideMenu, offsetMenuPosVertical, offsetMenuPosHorizontal, onSelect, }: MenuProps): import("react/jsx-runtime").JSX.Element;

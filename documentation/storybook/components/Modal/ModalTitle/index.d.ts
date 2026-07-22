@@ -1,4 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-export default function ModalTitle({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>): import("react/jsx-runtime").JSX.Element;
+export type ModalTitleProps = HTMLAttributes<HTMLHeadingElement>;
+declare const ModalTitle: import('../../../../node_modules/react').ForwardRefExoticComponent<ModalTitleProps & import('../../../../node_modules/react').RefAttributes<HTMLHeadingElement>>;
+export default ModalTitle;
 //# sourceMappingURL=index.d.ts.map

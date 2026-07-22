@@ -1,4 +1,6 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-export default function AccordionBody({ children, className, ...props }: HTMLAttributes<HTMLDivElement>): import("react/jsx-runtime").JSX.Element;
+export type AccordionBodyProps = HTMLAttributes<HTMLDivElement>;
+declare const AccordionBody: import('../../../../node_modules/react').ForwardRefExoticComponent<AccordionBodyProps & import('../../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default AccordionBody;
 //# sourceMappingURL=index.d.ts.map

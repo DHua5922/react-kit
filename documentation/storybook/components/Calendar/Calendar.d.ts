@@ -1,9 +1,9 @@
 import { HTMLAttributes } from '../../../node_modules/react';
 
-interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'> {
+export interface CalendarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'> {
     value: Date;
     onChange: (date: Date) => void;
 }
-export default function Calendar({ children, value, onChange, ...props }: Props): import("react/jsx-runtime").JSX.Element;
-export {};
+declare const Calendar: import('../../../node_modules/react').ForwardRefExoticComponent<CalendarProps & import('../../../node_modules/react').RefAttributes<HTMLDivElement>>;
+export default Calendar;
 //# sourceMappingURL=Calendar.d.ts.map

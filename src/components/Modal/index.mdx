@@ -28,10 +28,12 @@ Users should be able to navigate through the modal content and close the
 modal using only a keyboard. They should also be able to understand whether
 the modal is currently open.
 
+Consumers are responsible for providing an accessible name for icon-only
+controls, such as `Modal.CloseButton`, using `aria-label` or visible text.
+
 ## Basic usage
 
-Click the button to open the modal. Then click outside the modal, click the
-close button, or press Esc to close it.
+Click the button to open the modal. Then click the close button or press Esc to close it.
 
 <Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
 

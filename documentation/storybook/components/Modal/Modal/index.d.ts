@@ -1,10 +1,10 @@
 import { HTMLAttributes } from '../../../../node_modules/react';
 
-interface Props extends HTMLAttributes<HTMLDialogElement> {
+export interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
     show?: boolean;
     onShow?: () => void;
     onHide?: () => void;
 }
-export default function Modal({ children, className, show, onShow, onHide, ...props }: Props): import("react/jsx-runtime").JSX.Element;
-export {};
+declare const Modal: import('../../../../node_modules/react').ForwardRefExoticComponent<ModalProps & import('../../../../node_modules/react').RefAttributes<HTMLDialogElement>>;
+export default Modal;
 //# sourceMappingURL=index.d.ts.map

@@ -52,7 +52,6 @@ const MenuToggle = forwardRef<HTMLButtonElement, MenuToggleProps>(
         <button
           ref={ref}
           type="button"
-          aria-haspopup="menu"
           aria-expanded={Boolean(context.showMenu)}
           onKeyDown={handleKeyDown}
           onClick={handleClick}

@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { forwardRef, useContext, useRef } from 'react'
 import type {
   KeyboardEvent as ReactKeyboardEvent,
   ButtonHTMLAttributes,
@@ -42,25 +42,27 @@ function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
   return { triggerRef, handleClick, handleKeyDown }
 }
 
-export default function MenuToggle({
-  children,
-  onClick,
-  ...props
-}: MenuToggleProps) {
-  const context = useContext(MenuContext)
-  const { triggerRef, handleClick, handleKeyDown } = useMenuToggle(onClick)
+const MenuToggle = forwardRef<HTMLButtonElement, MenuToggleProps>(
+  function MenuToggle({ children, onClick, ...props }, ref) {
+    const context = useContext(MenuContext)
+    const { triggerRef, handleClick, handleKeyDown } = useMenuToggle(onClick)
 
-  return (
-    <div ref={triggerRef}>
-      <button
-        aria-haspopup="menu"
-        aria-expanded={Boolean(context.showMenu)}
-        onKeyDown={handleKeyDown}
-        onClick={handleClick}
-        {...props}
-      >
-        {children}
-      </button>
-    </div>
-  )
-}
+    return (
+      <div ref={triggerRef}>
+        <button
+          ref={ref}
+          type="button"
+          aria-haspopup="menu"
+          aria-expanded={Boolean(context.showMenu)}
+          onKeyDown={handleKeyDown}
+          onClick={handleClick}
+          {...props}
+        >
+          {children}
+        </button>
+      </div>
+    )
+  }
+)
+
+export default MenuToggle

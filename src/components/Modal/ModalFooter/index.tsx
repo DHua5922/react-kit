@@ -1,16 +1,16 @@
-import { HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.css'
 
 export type ModalFooterProps = HTMLAttributes<HTMLDivElement>
 
-export default function ModalFooter({
-  children,
-  className = '',
-  ...props
-}: ModalFooterProps) {
-  return (
-    <div className={`${styles.container} ${className}`} {...props}>
-      {children}
-    </div>
-  )
-}
+const ModalFooter = forwardRef<HTMLDivElement, ModalFooterProps>(
+  function ModalFooter({ children, className = '', ...props }, ref) {
+    return (
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
+        {children}
+      </div>
+    )
+  }
+)
+
+export default ModalFooter

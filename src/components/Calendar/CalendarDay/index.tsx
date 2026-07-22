@@ -1,5 +1,6 @@
 import styles from './index.module.css'
 import { ButtonHTMLAttributes, useContext } from 'react'
+import { forwardRef } from 'react'
 import CalendarContext from '../CalendarContext'
 import { format, isSameMonth } from 'date-fns'
 
@@ -40,37 +41,39 @@ function useCalendarDay(value: Date, onClick?: (value: Date) => void) {
   }
 }
 
-export default function CalendarDay({
-  className = '',
-  children,
-  value,
-  onClick,
-  style,
-  ...props
-}: CalendarDayProps) {
-  const { isChosen, isInCurrentMonth, handleDayNumberClick } = useCalendarDay(
-    value,
-    onClick
-  )
+const CalendarDay = forwardRef<HTMLButtonElement, CalendarDayProps>(
+  function CalendarDay(
+    { className = '', children, value, onClick, style, ...props },
+    ref
+  ) {
+    const { isChosen, isInCurrentMonth, handleDayNumberClick } = useCalendarDay(
+      value,
+      onClick
+    )
 
-  const numberContainerStyle = {
-    backgroundColor: isInCurrentMonth && isChosen ? '#0d6efd' : 'transparent',
-    color: isChosen && isInCurrentMonth ? '#ffffff' : '#000000',
-    opacity: isInCurrentMonth ? 1 : 0.25,
-    cursor: !isChosen ? 'pointer' : 'default',
-    ...style,
+    const numberContainerStyle = {
+      backgroundColor: isInCurrentMonth && isChosen ? '#0d6efd' : 'transparent',
+      color: isChosen && isInCurrentMonth ? '#ffffff' : '#000000',
+      opacity: isInCurrentMonth ? 1 : 0.25,
+      cursor: !isChosen ? 'pointer' : 'default',
+      ...style,
+    }
+
+    return (
+      <div className={`${styles.container} ${className}`}>
+        <button
+          ref={ref}
+          type="button"
+          className={styles.number}
+          {...props}
+          onClick={handleDayNumberClick}
+          style={numberContainerStyle}
+        >
+          {children || format(value, 'd')}
+        </button>
+      </div>
+    )
   }
+)
 
-  return (
-    <div className={`${styles.container} ${className}`}>
-      <button
-        className={styles.number}
-        {...props}
-        onClick={handleDayNumberClick}
-        style={numberContainerStyle}
-      >
-        {children || format(value, 'd')}
-      </button>
-    </div>
-  )
-}
+export default CalendarDay

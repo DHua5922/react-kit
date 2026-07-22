@@ -1,18 +1,20 @@
-import { HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 import AccordionItemContext from './AccordionItemContext'
 
 export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
   eventKey: string
 }
 
-export default function AccordionItem({
-  children,
-  eventKey,
-  ...props
-}: AccordionItemProps) {
-  return (
-    <AccordionItemContext.Provider value={{ eventKey }}>
-      <div {...props}>{children}</div>
-    </AccordionItemContext.Provider>
-  )
-}
+const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(
+  function AccordionItem({ children, eventKey, ...props }, ref) {
+    return (
+      <AccordionItemContext.Provider value={{ eventKey }}>
+        <div ref={ref} {...props}>
+          {children}
+        </div>
+      </AccordionItemContext.Provider>
+    )
+  }
+)
+
+export default AccordionItem

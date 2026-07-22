@@ -1,16 +1,16 @@
-import { HTMLAttributes } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 import styles from './index.module.css'
 
 export type ModalTitleProps = HTMLAttributes<HTMLHeadingElement>
 
-export default function ModalTitle({
-  children,
-  className = '',
-  ...props
-}: ModalTitleProps) {
-  return (
-    <h2 className={`${styles.container} ${className}`} {...props}>
-      {children}
-    </h2>
-  )
-}
+const ModalTitle = forwardRef<HTMLHeadingElement, ModalTitleProps>(
+  function ModalTitle({ children, className = '', ...props }, ref) {
+    return (
+      <h2 ref={ref} className={`${styles.container} ${className}`} {...props}>
+        {children}
+      </h2>
+    )
+  }
+)
+
+export default ModalTitle

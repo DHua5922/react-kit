@@ -1,5 +1,5 @@
 import CalendarContext from '../CalendarContext'
-import { useContext, HTMLAttributes } from 'react'
+import { forwardRef, useContext, HTMLAttributes } from 'react'
 import CalendarDay from '../CalendarDay'
 import {
   addDays,
@@ -36,19 +36,23 @@ function getDatesInMonth(currentMonth: Date) {
   return daysBefore.concat(allDaysInMonth, daysAfter)
 }
 
-export default function CalendarDays({
-  children,
-  className = '',
-  ...props
-}: CalendarDaysProps) {
-  const { currentMonth } = useContext(CalendarContext)
+const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
+  function CalendarDays({ children, className = '', ...props }, ref) {
+    const { currentMonth } = useContext(CalendarContext)
 
-  return (
-    <div className={`${styles.container} ${className}`} {...props}>
-      {children || <DefaultCalendarDays currentMonth={currentMonth} />}
-    </div>
-  )
-}
+    return (
+      <div
+        ref={ref}
+        className={`${styles.container} ${className}`}
+        {...props}
+      >
+        {children || <DefaultCalendarDays currentMonth={currentMonth} />}
+      </div>
+    )
+  }
+)
+
+export default CalendarDays
 
 function DefaultCalendarDays({ currentMonth }: { currentMonth: Date }) {
   const daysInMonth = getDatesInMonth(currentMonth)

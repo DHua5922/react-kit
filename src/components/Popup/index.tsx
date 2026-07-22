@@ -1,5 +1,6 @@
 import {
   useEffect,
+  forwardRef,
   HTMLAttributes,
   CSSProperties,
   MouseEvent as ReactMouseEvent,
@@ -31,15 +32,18 @@ function usePopup(show: boolean, onHide?: () => void) {
   }, [onHide, show])
 }
 
-export default function Popup({
-  children,
-  left,
-  top,
-  show = false,
-  onHide,
-  className = '',
-  ...props
-}: PopupProps) {
+const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
+  {
+    children,
+    left,
+    top,
+    show = false,
+    onHide,
+    className = '',
+    ...props
+  },
+  ref
+) {
   usePopup(show, onHide)
 
   if (!show) {
@@ -58,6 +62,7 @@ export default function Popup({
   return createPortal(
     <div className={styles.overlay} onClick={onHide}>
       <div
+        ref={ref}
         className={`${styles.container} ${className}`}
         style={containerStyle}
         onClick={handleModalClick}
@@ -68,4 +73,6 @@ export default function Popup({
     </div>,
     document.body
   )
-}
+})
+
+export default Popup

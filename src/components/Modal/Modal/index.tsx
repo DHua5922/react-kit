@@ -1,4 +1,11 @@
-import { HTMLAttributes, SyntheticEvent, useEffect, useRef } from 'react'
+import {
+  forwardRef,
+  HTMLAttributes,
+  SyntheticEvent,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react'
 import ModalContext from '../ModalContext'
 import styles from './index.module.css'
 
@@ -22,15 +29,12 @@ function useModal(show: boolean) {
   return dialogRef
 }
 
-export default function Modal({
-  children,
-  className = '',
-  show,
-  onShow,
-  onHide,
-  ...props
-}: ModalProps) {
+const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
+  { children, className = '', show, onShow, onHide, ...props },
+  ref
+) {
   const dialogRef = useModal(!!show)
+  useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement)
   const value = { show, onShow, onHide }
 
   const handleCancelDialog = (
@@ -53,4 +57,6 @@ export default function Modal({
       </dialog>
     </ModalContext.Provider>
   )
-}
+})
+
+export default Modal

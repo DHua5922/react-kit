@@ -15,7 +15,7 @@ const liveCode = `function Example() {
 
   return (
     <>
-      <button onClick={handleOpen}>Open Modal</button>
+      <button type="button" onClick={handleOpen}>Open Modal</button>
 
       <Modal show={show} onShow={handleOpen} onHide={handleClose}>
         <Modal.Header>
@@ -28,7 +28,7 @@ const liveCode = `function Example() {
         </Modal.Body>
 
         <Modal.Footer>
-          <button onClick={handleClose}>Close</button>
+          <button type="button" onClick={handleClose}>Close</button>
         </Modal.Footer>
       </Modal>
     </>

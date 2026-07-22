@@ -1,4 +1,11 @@
-import { useContext, useEffect, useRef, HTMLAttributes } from 'react'
+import {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  HTMLAttributes,
+} from 'react'
 import Popup from '../../Popup'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
@@ -31,27 +38,28 @@ function useMenuContent() {
   }
 }
 
-export default function MenuContent({
-  children,
-  className = '',
-  ...props
-}: MenuContentProps) {
-  const { containerRef, context } = useMenuContent()
+const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
+  function MenuContent({ children, className = '', ...props }, ref) {
+    const { containerRef, context } = useMenuContent()
+    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
-  return (
-    <Popup
-      left={context.menuPos.left}
-      top={context.menuPos.top}
-      show={context.showMenu}
-      onHide={context.onHideMenu}
-    >
-      <div
-        ref={containerRef}
-        className={`${styles.container} ${className}`}
-        {...props}
+    return (
+      <Popup
+        left={context.menuPos.left}
+        top={context.menuPos.top}
+        show={context.showMenu}
+        onHide={context.onHideMenu}
       >
-        {children}
-      </div>
-    </Popup>
-  )
-}
+        <div
+          ref={containerRef}
+          className={`${styles.container} ${className}`}
+          {...props}
+        >
+          {children}
+        </div>
+      </Popup>
+    )
+  }
+)
+
+export default MenuContent

@@ -17,7 +17,7 @@ function renderModal(props = {}) {
       <Modal.Body>Modal body content goes here.</Modal.Body>
       
       <Modal.Footer>
-        <button onClick={onHide}>Close</button>
+        <button type="button" onClick={onHide}>Close</button>
       </Modal.Footer>
     </Modal>
   )

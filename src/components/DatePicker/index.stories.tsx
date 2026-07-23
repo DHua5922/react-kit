@@ -61,6 +61,10 @@ type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
   tags: ['!dev'],
+  args: {
+    open: false,
+    onOpenChange: () => {},
+  },
   render: () => (
     <LiveCodeBlock code={liveCode} noInline scope={{ DatePicker, Calendar }} />
   ),

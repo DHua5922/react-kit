@@ -1,4 +1,11 @@
-export { Accordion, Calendar, Modal, Menu, Popup } from './components'
+export {
+  Accordion,
+  Calendar,
+  DatePicker,
+  Modal,
+  Menu,
+  Popup,
+} from './components'
 
 // Types
 export type {
@@ -15,6 +22,9 @@ export type {
   CalendarTitleProps,
   CalendarWeekdayProps,
   CalendarWeekdaysProps,
+  DatePickerProps,
+  DatePickerPopupProps,
+  DatePickerToggleProps,
   MenuProps,
   MenuContentProps,
   MenuItemProps,

@@ -2,8 +2,8 @@ import { ReactNode, useMemo, useState } from 'react'
 import DatePickerContext from './DatePickerContext'
 
 export interface DatePickerProps {
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
+  open: boolean
+  onOpenChange: (open: boolean) => void
   children?: ReactNode
   offsetMenuPosVertical?: number
   offsetMenuPosHorizontal?: number

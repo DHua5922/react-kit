@@ -1,26 +1,32 @@
-import { HTMLAttributes, useContext } from 'react'
+import { ButtonHTMLAttributes, forwardRef, useContext } from 'react'
 import AccordionContext from '../AccordionContext'
 import AccordionItemContext from '../AccordionItemContext'
 import styles from './index.module.css'
 
-export default function AccordionHeader({
-  children,
-  className = '',
-  ...props
-}: HTMLAttributes<HTMLButtonElement>) {
-  const { activeKeys, onSelect } = useContext(AccordionContext)
-  const { eventKey } = useContext(AccordionItemContext)
-  const isExpanded = activeKeys.includes(eventKey)
+export type AccordionHeaderProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-  return (
-    <button
-      type="button"
-      className={`${styles.button} ${isExpanded ? styles.active : ''} ${className}`}
-      aria-expanded={isExpanded}
-      onClick={() => onSelect(eventKey)}
-      {...props}
-    >
-      {children}
-    </button>
-  )
-}
+const AccordionHeader = forwardRef<HTMLButtonElement, AccordionHeaderProps>(
+  function AccordionHeader({ children, className = '', ...props }, ref) {
+    const { activeKeys, onSelect } = useContext(AccordionContext)
+    const { eventKey } = useContext(AccordionItemContext)
+    const isExpanded = activeKeys.includes(eventKey)
+    const defaultClassName = `${styles.button} ${isExpanded ? styles.active : ''}`
+
+    const handleClick = () => onSelect(eventKey)
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        className={`${defaultClassName} ${className}`}
+        aria-expanded={isExpanded}
+        onClick={handleClick}
+        {...props}
+      >
+        {children}
+      </button>
+    )
+  }
+)
+
+export default AccordionHeader

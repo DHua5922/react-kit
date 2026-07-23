@@ -11,29 +11,29 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "build:watch": "vite build --watch",
-    "build:docs": "rm -rf documentation/storybook && storybook build --output-dir documentation/storybook",
-    "preview": "vite preview",
+    "build:docs": "rm -rf documentation/docs && storybook build --output-dir documentation/docs",
     "test": "vitest run --coverage",
-    "test:run": "vitest run",
-    "test:ui": "vitest --ui",
+    "test:ui": "vitest --ui --coverage",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "docs:serve": "npx http-server documentation -p 3001 -o",
     "docs:dev": "yarn build:docs && yarn docs:serve",
-    "clean": "rm -rf dist && rm -rf storybook-static && rm -rf documentation/storybook",
-    "validate": "yarn typecheck && yarn lint && yarn test",
+    "clean": "rm -rf dist && rm -rf storybook-static && rm -rf documentation/docs",
+    "validate": "yarn format:check && yarn typecheck && yarn lint && yarn test",
     "prepublishOnly": "yarn validate && yarn build"
   },
   "keywords": [
@@ -46,17 +46,14 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.6.14",
-    "@storybook/addon-interactions": "^8.6.14",
-    "@storybook/addon-links": "^8.6.14",
     "@storybook/blocks": "^8.6.14",
     "@storybook/react": "^8.6.14",
     "@storybook/react-vite": "^8.6.14",
-    "@storybook/test": "^8.6.14",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
@@ -75,6 +72,7 @@
     "prettier": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-live": "^4.1.8",
     "storybook": "^8.6.14",
     "typescript": "^5.3.3",
     "vite": "^5.0.12",
@@ -82,9 +80,7 @@
     "vitest": "^1.2.2"
   },
   "dependencies": {
-    "date-fns": "^4.1.0",
-    "react-live": "^4.1.8",
-    "styled-components": "^6.3.12"
+    "date-fns": "^4.1.0"
   },
   "repository": {
     "type": "git",

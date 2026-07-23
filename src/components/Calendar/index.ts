@@ -8,6 +8,16 @@ import CalendarTitle from './CalendarTitle'
 import CalendarWeekday from './CalendarWeekday'
 import CalendarWeekdays from './CalendarWeekdays'
 
+export type { CalendarProps } from './Calendar'
+export type { CalendarDayProps } from './CalendarDay'
+export type { CalendarDaysProps } from './CalendarDays'
+export type { CalendarHeaderProps } from './CalendarHeader'
+export type { CalendarLeftProps } from './CalendarLeft'
+export type { CalendarRightProps } from './CalendarRight'
+export type { CalendarTitleProps } from './CalendarTitle'
+export type { CalendarWeekdayProps } from './CalendarWeekday'
+export type { CalendarWeekdaysProps } from './CalendarWeekdays'
+
 const Calendar = Object.assign(CalendarParent, {
   Day: CalendarDay,
   Days: CalendarDays,

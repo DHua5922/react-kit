@@ -1,67 +1,67 @@
-import React, { useContext, useRef } from "react";
-import MenuContext from "./MenuContext";
+import { forwardRef, useContext, useRef } from 'react'
+import type {
+  KeyboardEvent as ReactKeyboardEvent,
+  ButtonHTMLAttributes,
+  MouseEventHandler,
+} from 'react'
+import MenuContext from './MenuContext'
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
-}
+export type MenuToggleProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-function MenuToggle({ children, onClick, type, ...props }: Props) {
-  const context = useContext(MenuContext);
-  const triggerRef = useRef<HTMLDivElement>(null);
-
-  if (!context) {
-    return null;
-  }
+function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
+  const context = useContext(MenuContext)
+  const triggerRef = useRef<HTMLDivElement>(null)
 
   const openMenu = () => {
-    const trigger = triggerRef.current;
+    const trigger = triggerRef.current
     if (!trigger) {
-      context.onShowMenu();
-      return;
+      context.onShowMenu()
+      return
     }
 
-    const rect = trigger.getBoundingClientRect();
+    const rect = trigger.getBoundingClientRect()
     context.setMenuPos({
       top: `${rect.bottom + context.offsetMenuPosVertical}px`,
       left: `${rect.left + context.offsetMenuPosHorizontal}px`,
-    });
-    context.onShowMenu();
-  };
+    })
+    context.onShowMenu()
+  }
 
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    onClick?.(event);
-    openMenu();
-  };
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+    onClick?.(event)
+    openMenu()
+  }
 
-  if (React.isValidElement(children)) {
-    const child = children as React.ReactElement<{
-      onClick?: React.MouseEventHandler<HTMLElement>;
-    }>;
+  const handleKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault()
+      openMenu()
+    }
+  }
+
+  return { triggerRef, handleClick, handleKeyDown }
+}
+
+const MenuToggle = forwardRef<HTMLButtonElement, MenuToggleProps>(
+  function MenuToggle({ children, onClick, ...props }, ref) {
+    const context = useContext(MenuContext)
+    const { triggerRef, handleClick, handleKeyDown } = useMenuToggle(onClick)
 
     return (
       <div ref={triggerRef}>
-        {React.cloneElement(child, {
-          ...props,
-          ...child.props,
-          onClick: (event: React.MouseEvent<HTMLElement>) => {
-            child.props.onClick?.(event);
-            onClick?.(
-              event as unknown as React.MouseEvent<HTMLButtonElement, MouseEvent>,
-            );
-            openMenu();
-          },
-        })}
+        <button
+          ref={ref}
+          type="button"
+          aria-expanded={Boolean(context.showMenu)}
+          onKeyDown={handleKeyDown}
+          onClick={handleClick}
+          {...props}
+        >
+          {children}
+        </button>
       </div>
-    );
+    )
   }
+)
 
-  return (
-    <div ref={triggerRef}>
-      <button type={type || "button"} onClick={handleClick} {...props}>
-        {children}
-      </button>
-    </div>
-  );
-}
-
-export default MenuToggle;
+export default MenuToggle

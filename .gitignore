@@ -34,10 +34,12 @@ coverage/
 
 # Storybook
 storybook-static/
+documentation/docs/
 
 # Temporary files
 *.tmp
 *.temp
+vite.config.*.timestamp-*.mjs
 
 # Cache
 .cache/

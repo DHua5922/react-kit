@@ -1,15 +1,13 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-interface DefaultValue {
-  show?: boolean;
-  onShow?: () => void;
-  onHide?: () => void;
+interface Type {
+  onHide?: () => void
 }
 
-const ModalContext = createContext<DefaultValue>({
-  show: false,
-  onShow: () => {},
+const defaultValues: Type = {
   onHide: () => {},
-});
+}
 
-export default ModalContext;
+const ModalContext = createContext<Type>(defaultValues)
+
+export default ModalContext

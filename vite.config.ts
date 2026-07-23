@@ -30,7 +30,7 @@ export default defineConfig({
       fileName: () => 'index.js',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'date-fns'],
       output: {
         globals: {
           react: 'React',
@@ -56,6 +56,12 @@ export default defineConfig({
         'src/setupTests.ts',
         'src/index.ts',
       ],
+      thresholds: {
+        statements: 90,
+        branches: 80,
+        functions: 75,
+        lines: 90,
+      },
     },
   },
 })

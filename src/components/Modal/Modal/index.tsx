@@ -1,40 +1,56 @@
-import { HTMLAttributes, useEffect, useRef } from 'react'
+import {
+  forwardRef,
+  DialogHTMLAttributes,
+  SyntheticEvent,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from 'react'
 import ModalContext from '../ModalContext'
 import styles from './index.module.css'
 
-interface Props extends HTMLAttributes<HTMLDialogElement> {
+export interface ModalProps extends DialogHTMLAttributes<HTMLDialogElement> {
   show?: boolean
-  onShow?: () => void
   onHide?: () => void
 }
 
-export default function Modal({
-  children,
-  className = '',
-  show,
-  onShow,
-  onHide,
-  ...props
-}: Props) {
+function useModal(show: boolean) {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
-    if (show) {
-      dialogRef.current?.showModal()
-    } else {
-      dialogRef.current?.close()
+    const dialog = dialogRef.current
+
+    if (show && !dialog?.open) {
+      dialog?.showModal()
+    } else if (!show && dialog?.open) {
+      dialog.close()
     }
   }, [show])
 
+  return dialogRef
+}
+
+const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
+  { children, className = '', show, onHide, ...props },
+  ref
+) {
+  const value = { onHide }
+  const dialogRef = useModal(!!show)
+
+  const handleCancelDialog = (
+    event: SyntheticEvent<HTMLDialogElement, Event>
+  ) => {
+    event.preventDefault()
+    onHide?.()
+  }
+
+  useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement)
+
   return (
-    <ModalContext.Provider value={{ show, onShow, onHide }}>
+    <ModalContext.Provider value={value}>
       <dialog
         ref={dialogRef}
-        onClose={onHide}
-        onCancel={(event) => {
-          event.preventDefault()
-          onHide?.()
-        }}
+        onCancel={handleCancelDialog}
         className={`${styles.container} ${className}`}
         {...props}
       >
@@ -42,4 +58,6 @@ export default function Modal({
       </dialog>
     </ModalContext.Provider>
   )
-}
+})
+
+export default Modal

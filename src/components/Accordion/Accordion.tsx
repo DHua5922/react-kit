@@ -1,21 +1,26 @@
-import { HTMLAttributes, ReactNode } from 'react'
+import { forwardRef, HTMLAttributes } from 'react'
 import AccordionContext from './AccordionContext'
 
-interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onSelect'> {
+export interface AccordionProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'onSelect'
+> {
   activeKeys: string[]
   onSelect: (key: string) => void
-  children?: ReactNode
 }
 
-export default function Accordion({
-  children,
-  activeKeys,
-  onSelect,
-  ...props
-}: Props) {
+const Accordion = forwardRef<HTMLDivElement, AccordionProps>(function Accordion(
+  { children, activeKeys, onSelect, ...props },
+  ref
+) {
+  const contextValue = { activeKeys, onSelect }
   return (
-    <AccordionContext.Provider value={{ activeKeys, onSelect }}>
-      <div {...props}>{children}</div>
+    <AccordionContext.Provider value={contextValue}>
+      <div ref={ref} {...props}>
+        {children}
+      </div>
     </AccordionContext.Provider>
   )
-}
+})
+
+export default Accordion

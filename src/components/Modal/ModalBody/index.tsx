@@ -1,14 +1,17 @@
-import { HTMLAttributes } from "react";
-import styles from "./index.module.css";
+import { forwardRef, HTMLAttributes } from 'react'
+import styles from './index.module.css'
 
-export default function ModalBody({
-  children,
-  className = "",
-  ...props
-}: HTMLAttributes<HTMLDivElement>) {
+export type ModalBodyProps = HTMLAttributes<HTMLDivElement>
+
+const ModalBody = forwardRef<HTMLDivElement, ModalBodyProps>(function ModalBody(
+  { children, className = '', ...props },
+  ref
+) {
   return (
-    <div className={`${styles.container} ${className}`} {...props}>
+    <div ref={ref} className={`${styles.container} ${className}`} {...props}>
       {children}
     </div>
-  );
-}
+  )
+})
+
+export default ModalBody

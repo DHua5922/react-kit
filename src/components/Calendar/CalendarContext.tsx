@@ -1,17 +1,19 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-interface DefaultValue {
-  value: Date;
-  onChange: (date: Date) => void;
-  currentMonth: Date;
-  setCurrentMonth: (date: Date) => void;
+interface Type {
+  value: Date
+  onChange: (date: Date) => void
+  currentMonth: Date
+  setCurrentMonth: (date: Date) => void
 }
 
-const CalendarContext = createContext({
+const defaultValues: Type = {
   value: new Date(),
   onChange: () => {},
   currentMonth: new Date(),
   setCurrentMonth: () => {},
-} as DefaultValue);
+}
 
-export default CalendarContext;
+const CalendarContext = createContext<Type>(defaultValues)
+
+export default CalendarContext

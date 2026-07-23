@@ -1,9 +1,13 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-const AccordionItemContext = createContext<{
-  eventKey: string;
-}>({
-  eventKey: "",
-});
+interface Type {
+  eventKey: string
+}
 
-export default AccordionItemContext;
+const defaultValues: Type = {
+  eventKey: '',
+}
+
+const AccordionItemContext = createContext<Type>(defaultValues)
+
+export default AccordionItemContext

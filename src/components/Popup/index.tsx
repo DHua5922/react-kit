@@ -1,24 +1,28 @@
-import React, { useEffect } from 'react'
+import {
+  useEffect,
+  forwardRef,
+  HTMLAttributes,
+  CSSProperties,
+  MouseEvent as ReactMouseEvent,
+  useState,
+} from 'react'
 import { createPortal } from 'react-dom'
 import styles from './index.module.css'
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   left?: string
   top?: string
-  children?: React.ReactNode
   show?: boolean
-  onHide: () => void
+  onHide?: () => void
 }
 
-export default function Popup({
-  children,
-  left,
-  top,
-  show = false,
-  onHide,
-  className = '',
-  ...props
-}: Props) {
+function usePopup(show: boolean, onHide?: () => void) {
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setPortalTarget(document.body)
+  }, [])
+
   useEffect(() => {
     if (!show) {
       return undefined
@@ -26,7 +30,7 @@ export default function Popup({
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onHide()
+        onHide && onHide()
       }
     }
 
@@ -34,26 +38,54 @@ export default function Popup({
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onHide, show])
 
-  if (!show) {
+  return portalTarget
+}
+
+const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
+  {
+    children,
+    left,
+    top,
+    show = false,
+    onHide,
+    className = '',
+    onClick,
+    style,
+    ...props
+  },
+  ref
+) {
+  const portalTarget = usePopup(show, onHide)
+
+  if (!show || !portalTarget) {
     return null
   }
 
   const containerStyle = {
     '--left': left,
     '--top': top,
-  } as React.CSSProperties
+    ...style,
+  } as CSSProperties
+
+  const handleModalClick = (event: ReactMouseEvent<HTMLDivElement>) => {
+    event.stopPropagation()
+    onClick?.(event)
+  }
 
   return createPortal(
     <div className={styles.overlay} onClick={onHide}>
       <div
+        ref={ref}
         className={`${styles.container} ${className}`}
-        style={containerStyle}
-        onClick={(event) => event.stopPropagation()}
         {...props}
+        style={containerStyle}
+        onClick={handleModalClick}
       >
         {children}
       </div>
     </div>,
-    document.body
+    portalTarget
   )
-}
+})
+
+export default Popup

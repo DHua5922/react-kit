@@ -1,1 +1,0 @@
-{"version":3,"file":"MenuToggle.d.ts","sourceRoot":"","sources":["../../../../src/components/Menu/MenuToggle.tsx"],"names":[],"mappings":"AAAA,OAAO,KAA6B,MAAM,OAAO,CAAC;AAGlD,UAAU,KAAM,SAAQ,KAAK,CAAC,oBAAoB,CAAC,iBAAiB,CAAC;IACnE,QAAQ,CAAC,EAAE,KAAK,CAAC,SAAS,CAAC;CAC5B;AAED,iBAAS,UAAU,CAAC,EAAE,QAAQ,EAAE,OAAO,EAAE,IAAI,EAAE,GAAG,KAAK,EAAE,EAAE,KAAK,kDAyD/D;AAED,eAAe,UAAU,CAAC"}

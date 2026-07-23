@@ -1,0 +1,9 @@
+.container {
+  max-width: calc(100% / 7);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border: none;
+}

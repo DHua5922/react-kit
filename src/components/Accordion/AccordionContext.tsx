@@ -1,11 +1,15 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
-const AccordionContext = createContext<{
-  activeKeys: string[];
-  onSelect: (key: string) => void;
-}>({
+interface Type {
+  activeKeys: string[]
+  onSelect: (key: string) => void
+}
+
+const defaultValues: Type = {
   activeKeys: [],
   onSelect: () => {},
-});
+}
 
-export default AccordionContext;
+const AccordionContext = createContext<Type>(defaultValues)
+
+export default AccordionContext

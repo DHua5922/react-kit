@@ -1,0 +1,71 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as Stories from './index.stories'
+import Accordion from '.'
+import AccordionItem from './AccordionItem'
+
+<Meta of={Stories} />
+
+# Accordion
+
+Accordions organize related content into expandable sections. They work well
+when users need to scan several headings while viewing only one or a few
+sections at a time.
+
+## Usage guidance
+
+Use an accordion when:
+
+- Content can be divided into clearly labeled sections.
+- Showing everything simultaneously would make the page difficult to scan.
+- Users do not need to compare the hidden sections side by side.
+
+Avoid using an accordion for essential information that users must always see.
+
+## Accessibility
+
+Accordion headers should clearly describe their associated content. Users
+should be able to operate each header using only a keyboard and understand
+whether the section is expanded.
+
+Consumers are responsible for supplying the ARIA relationships between each
+header and its associated panel. Use attributes such as `id`, `aria-controls`,
+and `aria-labelledby` to connect them when appropriate.
+
+Collapsed panels are removed from keyboard navigation and the accessibility
+tree until their item key is included in `activeKeys`.
+
+## Basic usage
+
+`Accordion` is a controlled component. Supply the expanded item keys through
+`activeKeys`, and update them when `onSelect` receives a selected item key.
+
+In the example below, clicking the header updates `activeKeys` to expand or
+collapse its content.
+
+<Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### Accordion
+
+Accepts standard props for an HTML `<div>` element, except `onSelect`. Use
+`onSelect` to receive the selected accordion item key.
+
+<ArgTypes of={Accordion} />
+
+### Accordion.Item
+
+Accepts standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+<ArgTypes of={AccordionItem} />
+
+### Accordion.Header
+
+Accepts standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
+
+### Accordion.Body
+
+Accepts standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.

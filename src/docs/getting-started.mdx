@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Getting Started" />
+
+# Getting started
+
+React Kit is a lightweight, composable component library for React 18 and 19.
+
+## Installation
+
+Install the package with your preferred package manager:
+
+```bash
+yarn add @dhua5922/react-kit
+```
+
+```bash
+npm install @dhua5922/react-kit
+```
+
+React and ReactDOM are peer dependencies and must already be installed in your
+application.
+
+## Import styles
+
+Import the stylesheet once near your application entry point:
+
+```tsx
+import '@dhua5922/react-kit/style.css'
+```
+
+## Quick start
+
+Import components from the package root and manage controlled state in your
+application:
+
+```tsx
+import { useState } from 'react'
+import { Popup } from '@dhua5922/react-kit'
+import '@dhua5922/react-kit/style.css'
+
+export default function Example() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <>
+      <button type="button" onClick={() => setShow(true)}>
+        Open popup
+      </button>
+
+      <Popup show={show} onHide={() => setShow(false)}>
+        Popup content
+      </Popup>
+    </>
+  )
+}
+```
+
+See the component guides in the sidebar for complete examples, prop
+documentation, and accessibility responsibilities.

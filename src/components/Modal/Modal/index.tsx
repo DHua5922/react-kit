@@ -34,9 +34,8 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
   { children, className = '', show, onHide, ...props },
   ref
 ) {
+  const value = { onHide }
   const dialogRef = useModal(!!show)
-  useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement)
-  const value = { show, onHide }
 
   const handleCancelDialog = (
     event: SyntheticEvent<HTMLDialogElement, Event>
@@ -44,6 +43,8 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
     event.preventDefault()
     onHide?.()
   }
+
+  useImperativeHandle(ref, () => dialogRef.current as HTMLDialogElement)
 
   return (
     <ModalContext.Provider value={value}>

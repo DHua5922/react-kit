@@ -112,6 +112,13 @@ function useLiveCodeBlock(code: string) {
     setEditableCode(code)
   }, [code])
 
+  useEffect(
+    () => () => {
+      clearTimeout(copiedTimeout.current)
+    },
+    []
+  )
+
   return {
     editableCode,
     setEditableCode,
@@ -135,27 +142,25 @@ export default function LiveCodeBlock({
   }
 
   return (
-    <>
-      <LiveProvider
-        code={editableCode}
-        scope={liveScope}
-        theme={theme}
-        noInline={noInline}
-        enableTypeScript
-        {...props}
-      >
-        <div className={styles['header']}>RESULT</div>
-        <LivePreview className={styles['live-preview']} />
+    <LiveProvider
+      code={editableCode}
+      scope={liveScope}
+      theme={theme}
+      noInline={noInline}
+      enableTypeScript
+      {...props}
+    >
+      <div className={styles['header']}>RESULT</div>
+      <LivePreview className={styles['live-preview']} />
 
-        <LiveEditorHeader copied={copied} copyCode={copyCode} />
-        <LiveEditor
-          className={styles['live-editor']}
-          onChange={setEditableCode}
-        />
+      <LiveEditorHeader copied={copied} copyCode={copyCode} />
+      <LiveEditor
+        className={styles['live-editor']}
+        onChange={setEditableCode}
+      />
 
-        <LiveError className={styles['live-error']} />
-      </LiveProvider>
-    </>
+      <LiveError className={styles['live-error']} />
+    </LiveProvider>
   )
 }
 

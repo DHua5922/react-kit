@@ -1,4 +1,3 @@
-import { format } from 'date-fns'
 import CalendarContext from './CalendarContext'
 import { forwardRef, useEffect, useState, HTMLAttributes } from 'react'
 
@@ -24,7 +23,7 @@ const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calendar(
 
   return (
     <CalendarContext.Provider value={contextValue}>
-      <div ref={ref} key={format(currentMonth, 'yyyy-MM')} {...props}>
+      <div ref={ref} {...props}>
         {children}
       </div>
     </CalendarContext.Provider>

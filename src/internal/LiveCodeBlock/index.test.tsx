@@ -42,9 +42,7 @@ describe('LiveCodeBlock', () => {
     await act(async () => {
       render(<LiveCodeBlock code={'<div>Copy me</div>'} />)
     })
-    await act(() =>
-      user.click(screen.getByRole('button', { name: 'Copy code' }))
-    )
+    await user.click(screen.getByRole('button', { name: 'Copy code' }))
 
     expect(screen.getByRole('button', { name: 'Copied!' })).toBeInTheDocument()
     expect(writeText).toHaveBeenCalledWith('<div>Copy me</div>')

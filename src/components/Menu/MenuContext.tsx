@@ -2,9 +2,9 @@ import { createContext } from 'react'
 
 interface Type {
   showMenu?: boolean
-  onShowMenu?: () => void
-  onHideMenu?: () => void
-  onSelect?: (item: unknown) => void
+  onShowMenu: () => void
+  onHideMenu: () => void
+  onSelect: (item: unknown) => void
   offsetMenuPosVertical: number
   offsetMenuPosHorizontal: number
   menuPos: {

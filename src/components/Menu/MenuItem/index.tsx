@@ -15,20 +15,15 @@ export interface MenuItemProps extends Omit<
 }
 
 const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
-  { children, className = '', onClick, value, style, ...props },
+  { children, className = '', onClick, value, ...props },
   ref
 ) {
   const { onSelect, onHideMenu } = useContext(MenuContext)
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
-    onSelect && onSelect(value)
-    onClick && onClick(event)
-    onHideMenu && onHideMenu()
-  }
-
-  const buttonStyle = {
-    cursor: onSelect ? 'pointer' : 'default',
-    ...style,
+    onSelect(value)
+    onClick?.(event)
+    onHideMenu()
   }
 
   return (
@@ -37,7 +32,6 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
       type="button"
       className={`${styles.container} ${className}`}
       onClick={handleClick}
-      style={buttonStyle}
       {...props}
     >
       {children}

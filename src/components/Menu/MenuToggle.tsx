@@ -15,7 +15,7 @@ function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
   const openMenu = () => {
     const trigger = triggerRef.current
     if (!trigger) {
-      context.onShowMenu && context.onShowMenu()
+      context.onShowMenu()
       return
     }
 
@@ -24,7 +24,7 @@ function useMenuToggle(onClick?: MouseEventHandler<HTMLButtonElement>) {
       top: `${rect.bottom + context.offsetMenuPosVertical}px`,
       left: `${rect.left + context.offsetMenuPosHorizontal}px`,
     })
-    context.onShowMenu && context.onShowMenu()
+    context.onShowMenu()
   }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {

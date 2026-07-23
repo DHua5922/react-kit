@@ -27,4 +27,3 @@ export type {
   ModalCloseButtonProps,
   PopupProps,
 } from './components'
-export type { ComponentSize, ComponentVariant } from './types/common'

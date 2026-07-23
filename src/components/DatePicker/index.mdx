@@ -1,0 +1,52 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
+import * as Stories from './index.stories'
+import DatePicker from '.'
+import DatePickerToggle from './DatePickerToggle'
+import DatePickerPopup from './DatePickerPopup'
+
+<Meta of={Stories} />
+
+# DatePicker
+
+`DatePicker` shows a calendar from which the user can choose a date from.
+
+## Usage guidance
+
+Use a DatePicker when:
+
+- Users need to choose a date.
+- Users do not need to see the calendar all the time.
+
+Avoid using a date picker when users should always see the calendar. Use the `Calendar` component or your custom calendar instead.
+
+## Accessibility
+
+Consumers are responsible for:
+
+- providing ARIA attributes to the calendar and to the toggler for showing calendar, depending on the content.
+- allowing keyboard to focus on the toggler, keeping the focus on the calendar popup once it shows, and navigating the calendar.
+
+## Basic usage
+
+Click the button to open the calendar. Then choose a date, click outside the
+calendar, or press Escape to close it.
+
+<Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
+
+## Props
+
+### DatePicker
+
+<ArgTypes of={DatePicker} />
+
+### DatePicker.Toggle
+
+Accepts standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+### DatePicker.Popup
+
+Accepts standard props for an HTML `<div>` element:
+`React.HTMLAttributes<HTMLDivElement>`.
+
+<ArgTypes of={DatePickerPopup} />

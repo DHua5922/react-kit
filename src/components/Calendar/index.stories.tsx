@@ -15,16 +15,7 @@ import {
 
 const basicCalendarCode = `function Example() {
   const [value, setValue] = React.useState(new Date(2026, 2, 26))
-
-  const containerStyle = {
-    width: 360,
-    padding: 20,
-    border: '1px solid #e2e8f0',
-    borderRadius: 16,
-    background: '#ffffff',
-    boxShadow: '0 10px 30px rgba(15, 23, 42, 0.08)',
-  }
-
+  
   const headerStyle = {
     justifyContent: 'space-between'
   }
@@ -43,28 +34,26 @@ const basicCalendarCode = `function Example() {
   }
 
   return (
-    <div style={containerStyle}>
-      <Calendar value={value} onChange={setValue}>
-        <Calendar.Header style={headerStyle}>
-          <Calendar.Left
-            aria-label="Previous month"
-            style={directionButtonStyle}
-          >
-            ◀
-          </Calendar.Left>
+    <Calendar value={value} onChange={setValue}>
+      <Calendar.Header style={headerStyle}>
+        <Calendar.Left
+          aria-label="Previous month"
+          style={directionButtonStyle}
+        >
+          ◀
+        </Calendar.Left>
 
-          <Calendar.Title />
+        <Calendar.Title />
 
-          <Calendar.Right aria-label="Next month" style={directionButtonStyle}>
-            ▶
-          </Calendar.Right>
-        </Calendar.Header>
+        <Calendar.Right aria-label="Next month" style={directionButtonStyle}>
+          ▶
+        </Calendar.Right>
+      </Calendar.Header>
 
-        <Calendar.Weekdays style={weekdaysStyle} />
+      <Calendar.Weekdays style={weekdaysStyle} />
 
-        <Calendar.Days style={daysStyle} />
-      </Calendar>
-    </div>
+      <Calendar.Days style={daysStyle} />
+    </Calendar>
   )
 }
 

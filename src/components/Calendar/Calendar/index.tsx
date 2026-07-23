@@ -1,5 +1,6 @@
-import CalendarContext from './CalendarContext'
+import CalendarContext from '../CalendarContext'
 import { forwardRef, useEffect, useState, HTMLAttributes } from 'react'
+import styles from './index.module.css'
 
 export interface CalendarProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -10,20 +11,19 @@ export interface CalendarProps extends Omit<
 }
 
 const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calendar(
-  { children, value, onChange, ...props },
+  { children, value, onChange, className = '', ...props },
   ref
 ) {
   const [currentMonth, setCurrentMonth] = useState(value)
+  const contextValue = { value, onChange, currentMonth, setCurrentMonth }
 
   useEffect(() => {
     setCurrentMonth(value)
   }, [value])
 
-  const contextValue = { value, onChange, currentMonth, setCurrentMonth }
-
   return (
     <CalendarContext.Provider value={contextValue}>
-      <div ref={ref} {...props}>
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children}
       </div>
     </CalendarContext.Provider>

@@ -34,7 +34,7 @@ coverage/
 
 # Storybook
 storybook-static/
-documentation/storybook/
+documentation/docs/
 
 # Temporary files
 *.tmp

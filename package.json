@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "build:watch": "vite build --watch",
-    "build:docs": "rm -rf documentation/storybook && storybook build --output-dir documentation/storybook",
+    "build:docs": "rm -rf documentation/docs && storybook build --output-dir documentation/docs",
     "test": "vitest run --coverage",
     "test:ui": "vitest --ui --coverage",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -32,7 +32,7 @@
     "build-storybook": "storybook build",
     "docs:serve": "npx http-server documentation -p 3001 -o",
     "docs:dev": "yarn build:docs && yarn docs:serve",
-    "clean": "rm -rf dist && rm -rf storybook-static && rm -rf documentation/storybook",
+    "clean": "rm -rf dist && rm -rf storybook-static && rm -rf documentation/docs",
     "validate": "yarn format:check && yarn typecheck && yarn lint && yarn test",
     "prepublishOnly": "yarn validate && yarn build"
   },

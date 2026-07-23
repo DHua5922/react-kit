@@ -1,15 +1,13 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
 import * as Stories from './index.stories'
 import Calendar from '.'
-import CalendarLeft from './CalendarLeft'
-import CalendarRight from './CalendarRight'
 import CalendarDay from './CalendarDay'
 
 <Meta of={Stories} />
 
 # Calendar
 
-The Calendar component displays the current month and year, along with day
+`Calendar` displays the current month and year, along with day
 buttons for date selection.
 
 ## Usage guidance
@@ -17,14 +15,21 @@ buttons for date selection.
 Use a calendar when:
 
 - Users need to choose a date from a calendar view.
-- You are building a custom date input that includes date selection.
+- You are building a custom date-selection interface.
 
-Avoid using a calendar when none of the above applies.
+Avoid using a calendar when a standard date input provides a simpler
+experience.
 
 ## Accessibility
 
 Users should be able to go to the previous month, go to the next month, and
 choose a date using only a keyboard.
+
+Consumers are responsible for giving icon-only navigation controls accessible
+names, such as `aria-label="Previous month"` and `aria-label="Next month"`.
+When `Calendar` is used as an application calendar or date-picker pattern,
+consumers must also provide the appropriate roles, selected-date semantics,
+instructions, and keyboard behavior for that use case.
 
 ## Basic usage
 
@@ -33,10 +38,10 @@ months.
 
 <Canvas of={Stories.BasicCalendar} sourceState="none" layout="fullscreen" />
 
-## Creating Custom Calendar
+## Custom calendar
 
-Click a day to select it. Use the next and previous buttons to move between
-months.
+Compose the subcomponents to customize the heading, weekday labels, day
+content, navigation behavior, and styles.
 
 <Canvas of={Stories.CustomCalendar} sourceState="none" layout="fullscreen" />
 
@@ -44,53 +49,65 @@ months.
 
 ### Calendar
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element, except `value` and
+`onChange`. Supply the selected date through `value` and receive new selections
+through `onChange`.
+
 `React.HTMLAttributes<HTMLDivElement>`.
 
 <ArgTypes of={Calendar} />
 
 ### Calendar.Header
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Calendar.Left
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element:
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
-<ArgTypes of={CalendarLeft} />
+Native `onClick` handlers receive the button's mouse event and run alongside
+the built-in month navigation. Calling `event.preventDefault()` prevents the
+navigation.
 
 ### Calendar.Right
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element:
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
-<ArgTypes of={CalendarRight} />
+Native `onClick` handlers receive the button's mouse event and run alongside
+the built-in month navigation. Calling `event.preventDefault()` prevents the
+navigation.
 
 ### Calendar.Title
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Calendar.Weekdays
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Calendar.Weekday
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Calendar.Days
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Calendar.Day
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element, except the native
+`value`. Supply the represented date through `value`. `Calendar` reports
+selected dates through its root `onChange`, while native `onClick` handlers
+receive the button's mouse event. Default days outside the displayed month are
+disabled.
+
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
 <ArgTypes of={CalendarDay} />

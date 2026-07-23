@@ -5,10 +5,10 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: "24"
+  NODE_VERSION: '24'
 
 jobs:
-  run-unit-tests:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,3 +25,9 @@ jobs:
 
       - name: Run checks
         run: yarn validate
+
+      - name: Build library
+        run: yarn build
+
+      - name: Build Storybook
+        run: yarn build-storybook

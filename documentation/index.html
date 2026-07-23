@@ -220,20 +220,20 @@
 
         <div class="stats">
           <div class="stat">
-            <span class="stat-number">2.35kB</span>
-            <span class="stat-label">Total Bundle Size</span>
+            <span class="stat-number">5</span>
+            <span class="stat-label">Component APIs</span>
           </div>
           <div class="stat">
-            <span class="stat-number">~1kB</span>
-            <span class="stat-label">Gzipped</span>
+            <span class="stat-number">18–19</span>
+            <span class="stat-label">React Support</span>
           </div>
           <div class="stat">
             <span class="stat-number">100%</span>
             <span class="stat-label">TypeScript</span>
           </div>
           <div class="stat">
-            <span class="stat-number">14+</span>
-            <span class="stat-label">Tests</span>
+            <span class="stat-number">MIT</span>
+            <span class="stat-label">License</span>
           </div>
         </div>
       </header>
@@ -267,6 +267,7 @@
             href="https://github.com/DHua5922/react-kit"
             class="btn btn-outline"
             target="_blank"
+            rel="noopener noreferrer"
             >View on GitHub</a
           >
         </div>
@@ -316,16 +317,22 @@
         <div class="code-block">yarn add @dhua5922/react-kit</div>
 
         <h4>Basic Usage</h4>
-        <pre class="code-block"><code>import React, { useState } from 'react'
-import { Center } from '@dhua5922/react-kit'
+        <pre class="code-block"><code>import { useState } from 'react'
+import { Popup } from '@dhua5922/react-kit'
+import '@dhua5922/react-kit/style.css'
 
 function App() {
-  const [value, setValue] = useState(new Date())
+  const [show, setShow] = useState(false)
 
   return (
-    &lt;Center&gt;
-      centered
-    &lt;/Center&gt;
+    &lt;&gt;
+      &lt;button type="button" onClick={() =&gt; setShow(true)}&gt;
+        Open popup
+      &lt;/button&gt;
+      &lt;Popup show={show} onHide={() =&gt; setShow(false)}&gt;
+        Popup content
+      &lt;/Popup&gt;
+    &lt;/&gt;
   )
 }</code></pre>
 
@@ -337,6 +344,7 @@ function App() {
             href="https://github.com/DHua5922/react-kit"
             class="btn btn-outline"
             target="_blank"
+            rel="noopener noreferrer"
             >View on GitHub</a
           >
         </div>

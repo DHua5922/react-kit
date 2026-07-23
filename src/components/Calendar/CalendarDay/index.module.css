@@ -4,9 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.container .number {
   padding: 8px;
   border: none;
 }

@@ -39,6 +39,7 @@ documentation/storybook/
 # Temporary files
 *.tmp
 *.temp
+vite.config.*.timestamp-*.mjs
 
 # Cache
 .cache/

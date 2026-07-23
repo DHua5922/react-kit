@@ -33,15 +33,15 @@ const liveCode = `function Example() {
         Selected: {selection}
       </p>
 
-      <Menu offsetMenuPosVertical={8}>
+      <Menu offsetMenuPosVertical={8} onSelect={setSelection}>
         <Menu.Toggle style={menuToggleStyle}>
           Open menu
         </Menu.Toggle>
 
         <Menu.Content>
-          <Menu.Item onClick={onClickItem('Profile')}>Profile</Menu.Item>
-          <Menu.Item onClick={onClickItem('Billing')}>Billing</Menu.Item>
-          <Menu.Item onClick={onClickItem('Sign out')}>Sign out</Menu.Item>
+          <Menu.Item value="profile">Profile</Menu.Item>
+          <Menu.Item value="billing">Billing</Menu.Item>
+          <Menu.Item value="sign out">Sign out</Menu.Item>
         </Menu.Content>
       </Menu>
     </div>

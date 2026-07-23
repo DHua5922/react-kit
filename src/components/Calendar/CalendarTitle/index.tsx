@@ -9,11 +9,7 @@ const CalendarTitle = forwardRef<HTMLDivElement, CalendarTitleProps>(
   function CalendarTitle({ children, className = '', ...props }, ref) {
     const { currentMonth } = useContext(CalendarContext)
     return (
-      <div
-        ref={ref}
-        className={`${styles.container} ${className}`}
-        {...props}
-      >
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children || format(currentMonth, 'MMMM yyyy')}
       </div>
     )

@@ -11,12 +11,14 @@ const AccordionBody = forwardRef<HTMLDivElement, AccordionBodyProps>(
     const { eventKey } = useContext(AccordionItemContext)
     const isExpanded = activeKeys.includes(eventKey)
     const defaultClassName = `${styles.container} ${isExpanded ? styles.expanded : ''}`
+    const inertProps: { inert?: '' } = isExpanded ? {} : { inert: '' }
 
     return (
       <div
         ref={ref}
         className={`${defaultClassName} ${className}`}
         aria-hidden={!isExpanded}
+        {...inertProps}
         {...props}
       >
         <div className={styles['container--inner']}>{children}</div>

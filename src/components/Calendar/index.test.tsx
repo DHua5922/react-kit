@@ -9,10 +9,10 @@ const testDateValue = new Date(2026, 2, 15)
 function renderCalendar(onChange = vi.fn(), value = testDateValue) {
   return render(
     <Calendar value={value} onChange={onChange}>
-      <Calendar.Header style={{ justifyContent: 'space-between' }}>
-        <Calendar.Left style={{ cursor: 'pointer' }} />
+      <Calendar.Header>
+        <Calendar.Left aria-label="Previous month" />
         <Calendar.Title />
-        <Calendar.Right style={{ cursor: 'pointer' }} />
+        <Calendar.Right aria-label="Next month" />
       </Calendar.Header>
 
       <Calendar.Weekdays />
@@ -36,7 +36,9 @@ describe('Calendar', () => {
 
     renderCalendar()
 
-    await act(() => user.click(screen.getByText('◀')))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Previous month' }))
+    )
     expect(screen.getByText('February 2026')).toBeInTheDocument()
   })
 
@@ -45,7 +47,9 @@ describe('Calendar', () => {
 
     renderCalendar()
 
-    await act(() => user.click(screen.getByText('▶')))
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Next month' }))
+    )
     expect(screen.getByText('April 2026')).toBeInTheDocument()
   })
 
@@ -58,5 +62,35 @@ describe('Calendar', () => {
     await user.click(screen.getByText('15'))
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith(testDateValue)
+  })
+
+  it('disables default days outside the displayed month', () => {
+    renderCalendar()
+
+    const disabledDays = screen
+      .getAllByRole('button')
+      .filter((button) => button.hasAttribute('disabled'))
+
+    expect(disabledDays.length).toBeGreaterThan(0)
+  })
+
+  it('runs a native click handler without replacing month navigation', async () => {
+    const user = userEvent.setup()
+    const onClick = vi.fn()
+
+    render(
+      <Calendar value={testDateValue} onChange={vi.fn()}>
+        <Calendar.Title />
+        <Calendar.Left aria-label="Previous month" onClick={onClick} />
+      </Calendar>
+    )
+
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Previous month' }))
+    )
+
+    expect(onClick).toHaveBeenCalledOnce()
+    expect(onClick.mock.calls[0][0].nativeEvent).toBeInstanceOf(MouseEvent)
+    expect(screen.getByText('February 2026')).toBeInTheDocument()
   })
 })

@@ -27,13 +27,15 @@
     "test:ui": "vitest --ui --coverage",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext ts,tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "docs:serve": "npx http-server documentation -p 3001 -o",
     "docs:dev": "yarn build:docs && yarn docs:serve",
     "clean": "rm -rf dist && rm -rf storybook-static && rm -rf documentation/storybook",
-    "validate": "yarn typecheck && yarn lint && yarn test",
+    "validate": "yarn format:check && yarn typecheck && yarn lint && yarn test",
     "prepublishOnly": "yarn validate && yarn build"
   },
   "keywords": [

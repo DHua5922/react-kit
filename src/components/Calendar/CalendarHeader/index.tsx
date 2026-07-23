@@ -6,11 +6,7 @@ export type CalendarHeaderProps = HTMLAttributes<HTMLDivElement>
 const CalendarHeader = forwardRef<HTMLDivElement, CalendarHeaderProps>(
   function CalendarHeader({ children, className = '', ...props }, ref) {
     return (
-      <div
-        ref={ref}
-        className={`${styles.container} ${className}`}
-        {...props}
-      >
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children}
       </div>
     )

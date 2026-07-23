@@ -46,13 +46,16 @@ const basicCalendarCode = `function Example() {
     <div style={containerStyle}>
       <Calendar value={value} onChange={setValue}>
         <Calendar.Header style={headerStyle}>
-          <Calendar.Left style={directionButtonStyle}>
+          <Calendar.Left
+            aria-label="Previous month"
+            style={directionButtonStyle}
+          >
             ◀
           </Calendar.Left>
 
           <Calendar.Title />
 
-          <Calendar.Right style={directionButtonStyle}>
+          <Calendar.Right aria-label="Next month" style={directionButtonStyle}>
             ▶
           </Calendar.Right>
         </Calendar.Header>
@@ -137,6 +140,7 @@ const customCalendarCode = `
         <Calendar value={chosenDate} onChange={(date) => setChosenDate(date)}>
           <Calendar.Header>
             <Calendar.Left
+              aria-label="Previous month"
               onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
             >
               ◀
@@ -147,6 +151,7 @@ const customCalendarCode = `
             </Calendar.Title>
 
             <Calendar.Right
+              aria-label="Next month"
               onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
             >
               ▶
@@ -170,7 +175,6 @@ const customCalendarCode = `
               return (
                 <Calendar.Day
                   value={date}
-                  onClick={(date) => setChosenDate(date)}
                   key={date.toISOString()}
                   style={{
                     backgroundColor:
@@ -178,7 +182,6 @@ const customCalendarCode = `
                         ? 'lightblue'
                         : 'transparent',
                   }}
-                  textStyle={{ color: '#000000' }}
                 >
                   {date.getDate()}
                 </Calendar.Day>

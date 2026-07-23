@@ -6,7 +6,7 @@ import Popup from '.'
 
 # Popup
 
-The Popup component shows content when it is triggered by a user action.
+`Popup` displays contextual content in a portal.
 
 ## Usage guidance
 
@@ -19,13 +19,20 @@ Avoid using a popup when content should always be shown.
 
 ## Accessibility
 
-Popup component can be used for different things, depending on the situation. If it's for creating a dropdown menu, then users should be able to open the menu,
-choose an option, and close the menu using only a keyboard. They should also be able to understand whether the menu is currently open. If it's custom
-dropdown input, accessibility should function the same way as the HTML `select` element.
+`Popup` provides portal rendering, positioning, outside-click dismissal, and
+Escape-key dismissal. It does not assign an accessibility role because the
+appropriate semantics depend on the content.
+
+Consumers are responsible for supplying an appropriate role, accessible name,
+trigger relationship, focus behavior, and role-specific keyboard interactions.
+For example, content used as a menu must implement the complete menu pattern;
+content used as a custom select must implement the complete select or combobox
+pattern.
 
 ## Basic usage
 
-Click the button to open the popup. Then press Esc to close it.
+Click the button to open the popup. Click outside it or press Escape to close
+it.
 
 <Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
 
@@ -33,7 +40,7 @@ Click the button to open the popup. Then press Esc to close it.
 
 ### Popup
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 <ArgTypes of={Popup} />

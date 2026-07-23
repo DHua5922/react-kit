@@ -22,13 +22,15 @@ Or:
 npm install @dhua5922/react-kit
 ```
 
-React Kit supports React and ReactDOM 18 and 19. Import the stylesheet once near your application entry point:
+React Kit supports React and ReactDOM 18 and 19. Import the stylesheet once
+near your application entry point:
 
 ```tsx
 import '@dhua5922/react-kit/style.css'
 ```
 
-React Kit is distributed as an ES module and requires a bundler or runtime that supports ESM package exports.
+React Kit is distributed as an ES module and requires a bundler or runtime that
+supports ESM package exports.
 
 ## Quick Start
 
@@ -72,7 +74,8 @@ export default function Example() {
 
 ## Components
 
-See them[Storybook documentation](https://huadylan.com/react-kit/storybook/) for their complete components and examples.
+See the [Storybook documentation](https://huadylan.com/react-kit/storybook/)
+for complete component guides and examples.
 
 ## TypeScript
 
@@ -97,7 +100,8 @@ DOM-rendering subcomponents forward refs normally.
 React Kit uses semantic HTML and exposes native element attributes so consumers
 can adapt components to their use case. Consumers are responsible for:
 
-- Connecting related elements with IDs and attributes such as `aria-controls` and `aria-labelledby`.
+- Connecting related elements with IDs and attributes such as `aria-controls`
+  and `aria-labelledby`.
 - Providing accessible names for icon-only controls.
 - Selecting appropriate roles for flexible primitives such as `Menu`.
 - Implementing additional focus and keyboard behavior required by those roles.

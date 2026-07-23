@@ -4,6 +4,7 @@ import {
   HTMLAttributes,
   CSSProperties,
   MouseEvent as ReactMouseEvent,
+  useState,
 } from 'react'
 import { createPortal } from 'react-dom'
 import styles from './index.module.css'
@@ -16,6 +17,12 @@ export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 function usePopup(show: boolean, onHide?: () => void) {
+  const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
+
+  useEffect(() => {
+    setPortalTarget(document.body)
+  }, [])
+
   useEffect(() => {
     if (!show) {
       return undefined
@@ -30,6 +37,8 @@ function usePopup(show: boolean, onHide?: () => void) {
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [onHide, show])
+
+  return portalTarget
 }
 
 const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
@@ -40,23 +49,27 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
     show = false,
     onHide,
     className = '',
+    onClick,
+    style,
     ...props
   },
   ref
 ) {
-  usePopup(show, onHide)
+  const portalTarget = usePopup(show, onHide)
 
-  if (!show) {
+  if (!show || !portalTarget) {
     return null
   }
 
   const containerStyle = {
     '--left': left,
     '--top': top,
+    ...style,
   } as CSSProperties
 
   const handleModalClick = (event: ReactMouseEvent<HTMLDivElement>) => {
     event.stopPropagation()
+    onClick?.(event)
   }
 
   return createPortal(
@@ -64,14 +77,14 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
       <div
         ref={ref}
         className={`${styles.container} ${className}`}
+        {...props}
         style={containerStyle}
         onClick={handleModalClick}
-        {...props}
       >
         {children}
       </div>
     </div>,
-    document.body
+    portalTarget
   )
 })
 

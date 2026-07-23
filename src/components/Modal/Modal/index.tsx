@@ -1,6 +1,6 @@
 import {
   forwardRef,
-  HTMLAttributes,
+  DialogHTMLAttributes,
   SyntheticEvent,
   useEffect,
   useImperativeHandle,
@@ -9,19 +9,21 @@ import {
 import ModalContext from '../ModalContext'
 import styles from './index.module.css'
 
-export interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
+export interface ModalProps extends DialogHTMLAttributes<HTMLDialogElement> {
   show?: boolean
   onHide?: () => void
 }
 
 function useModal(show: boolean) {
   const dialogRef = useRef<HTMLDialogElement>(null)
-  
+
   useEffect(() => {
-    if (show) {
-      dialogRef.current?.showModal()
-    } else {
-      dialogRef.current?.close()
+    const dialog = dialogRef.current
+
+    if (show && !dialog?.open) {
+      dialog?.showModal()
+    } else if (!show && dialog?.open) {
+      dialog.close()
     }
   }, [show])
 
@@ -47,7 +49,6 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
     <ModalContext.Provider value={value}>
       <dialog
         ref={dialogRef}
-        onClose={onHide}
         onCancel={handleCancelDialog}
         className={`${styles.container} ${className}`}
         {...props}

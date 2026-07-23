@@ -1,18 +1,17 @@
 import styles from './index.module.css'
-import { ButtonHTMLAttributes, useContext } from 'react'
+import { ButtonHTMLAttributes, MouseEventHandler, useContext } from 'react'
 import { forwardRef } from 'react'
 import CalendarContext from '../CalendarContext'
 import { format, isSameMonth } from 'date-fns'
 
 export interface CalendarDayProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'value' | 'onClick'
+  'value'
 > {
   value: Date
-  onClick?: (value: Date) => void
 }
 
-function useCalendarDay(value: Date, onClick?: (value: Date) => void) {
+function useCalendarDay(value: Date) {
   const {
     currentMonth,
     value: chosenDate,
@@ -27,51 +26,58 @@ function useCalendarDay(value: Date, onClick?: (value: Date) => void) {
 
   const isInCurrentMonth = isSameMonth(value, currentMonth)
 
-  const handleDayNumberClick = () => {
+  const selectDate = () => {
     if (isInCurrentMonth) {
       onChange(value)
-      onClick && onClick(value)
     }
   }
 
   return {
     isChosen,
     isInCurrentMonth,
-    handleDayNumberClick,
+    selectDate,
   }
 }
 
 const CalendarDay = forwardRef<HTMLButtonElement, CalendarDayProps>(
   function CalendarDay(
-    { className = '', children, value, onClick, style, ...props },
+    { className = '', children, value, onClick, disabled, style, ...props },
     ref
   ) {
-    const { isChosen, isInCurrentMonth, handleDayNumberClick } = useCalendarDay(
-      value,
-      onClick
-    )
+    const { isChosen, isInCurrentMonth, selectDate } = useCalendarDay(value)
+
+    const isDisabled = Boolean(disabled || !isInCurrentMonth)
+
+    const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
+      onClick?.(event)
+
+      if (event.defaultPrevented) {
+        return
+      }
+
+      selectDate()
+    }
 
     const numberContainerStyle = {
       backgroundColor: isInCurrentMonth && isChosen ? '#0d6efd' : 'transparent',
       color: isChosen && isInCurrentMonth ? '#ffffff' : '#000000',
       opacity: isInCurrentMonth ? 1 : 0.25,
-      cursor: !isChosen ? 'pointer' : 'default',
+      cursor: isDisabled ? 'not-allowed' : 'pointer',
       ...style,
     }
 
     return (
-      <div className={`${styles.container} ${className}`}>
-        <button
-          ref={ref}
-          type="button"
-          className={styles.number}
-          {...props}
-          onClick={handleDayNumberClick}
-          style={numberContainerStyle}
-        >
-          {children || format(value, 'd')}
-        </button>
-      </div>
+      <button
+        ref={ref}
+        type="button"
+        className={`${styles.container} ${className}`}
+        {...props}
+        disabled={isDisabled}
+        onClick={handleClick}
+        style={numberContainerStyle}
+      >
+        {children ?? format(value, 'd')}
+      </button>
     )
   }
 )

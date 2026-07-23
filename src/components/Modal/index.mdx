@@ -11,29 +11,30 @@ import ModalFooter from './ModalFooter'
 
 # Modal
 
-The Modal component displays popup content when triggered by a user action.
+`Modal` presents focused content in a native modal dialog.
 
 ## Usage guidance
 
-Use a modal when:
+Use a modal when users must complete or acknowledge a focused task before
+returning to the underlying page.
 
-- Users do not need to see the content at all times.
-
-Avoid using a modal when users should always see the content.
+Avoid using a modal for nonessential information or interactions that can
+remain within the normal page flow.
 
 ## Accessibility
 
-When a modal is shown, focus should automatically move into the modal.
-Users should be able to navigate through the modal content and close the
-modal using only a keyboard. They should also be able to understand whether
-the modal is currently open.
+When a modal opens, focus moves into it. Users should be able to navigate its
+content and close it using only a keyboard.
 
 Consumers are responsible for providing an accessible name for icon-only
 controls, such as `Modal.CloseButton`, using `aria-label` or visible text.
+Consumers must also give the dialog itself an accessible name, typically by
+connecting `Modal.Title` with `aria-labelledby` or by supplying `aria-label`.
 
 ## Basic usage
 
-Click the button to open the modal. Then click the close button or press Esc to close it.
+Click the button to open the modal. Then click the close button or press Escape
+to close it.
 
 <Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
 
@@ -41,32 +42,32 @@ Click the button to open the modal. Then click the close button or press Esc to 
 
 ### Modal
 
-Accepts all standard props for an HTML `<dialog>` element:
-`React.HTMLAttributes<HTMLDialogElement>`.
+Accepts standard props for an HTML `<dialog>` element:
+`React.DialogHTMLAttributes<HTMLDialogElement>`.
 
 <ArgTypes of={Modal} />
 
 ### Modal.Header
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Modal.CloseButton
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element:
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
 ### Modal.Title
 
-Accepts all standard props for an HTML `<h2>` element:
+Accepts standard props for an HTML `<h2>` element:
 `React.HTMLAttributes<HTMLHeadingElement>`.
 
 ### Modal.Body
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Modal.Footer
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.

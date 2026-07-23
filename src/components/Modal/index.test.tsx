@@ -2,6 +2,7 @@ import { describe, test, expect, vi } from 'vitest'
 import Modal from '.'
 import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { StrictMode } from 'react'
 
 function renderModal(props = {}) {
   const onHide = vi.fn()
@@ -14,9 +15,11 @@ function renderModal(props = {}) {
       </Modal.Header>
 
       <Modal.Body>Modal body content goes here.</Modal.Body>
-      
+
       <Modal.Footer>
-        <button type="button" onClick={onHide}>Close</button>
+        <button type="button" onClick={onHide}>
+          Close
+        </button>
       </Modal.Footer>
     </Modal>
   )
@@ -54,5 +57,18 @@ describe('Modal', () => {
 
     await user.click(screen.getByRole('button', { name: /Close/i }))
     expect(onHide).toHaveBeenCalledOnce()
+  })
+
+  test('opens the native dialog only once in Strict Mode', () => {
+    const showModal = vi.spyOn(HTMLDialogElement.prototype, 'showModal')
+
+    render(
+      <StrictMode>
+        <Modal show aria-label="Example modal" />
+      </StrictMode>
+    )
+
+    expect(showModal).toHaveBeenCalledOnce()
+    showModal.mockRestore()
   })
 })

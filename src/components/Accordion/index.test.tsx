@@ -15,6 +15,7 @@ describe('Accordion', () => {
       'aria-hidden',
       'true'
     )
+    expect(screen.getByText('Body').parentElement).toHaveAttribute('inert')
   })
 
   it('expands the body when its key is active', () => {
@@ -28,6 +29,7 @@ describe('Accordion', () => {
       'aria-hidden',
       'false'
     )
+    expect(screen.getByText('Body').parentElement).not.toHaveAttribute('inert')
   })
 
   it('reports the selected item key when its header is clicked', async () => {

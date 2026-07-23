@@ -4,6 +4,7 @@ import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
 const liveCode = `function Example() {
   const [show, setShow] = React.useState(false)
+  const titleId = 'example-modal-title'
 
   const handleOpen = () => {
     setShow(true)
@@ -17,10 +18,10 @@ const liveCode = `function Example() {
     <>
       <button type="button" onClick={handleOpen}>Open Modal</button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} aria-labelledby={titleId}>
         <Modal.Header>
-          <Modal.Title>Modal Title</Modal.Title>
-          <Modal.CloseButton />
+          <Modal.Title id={titleId}>Modal Title</Modal.Title>
+          <Modal.CloseButton aria-label="Close modal" />
         </Modal.Header>
 
         <Modal.Body>

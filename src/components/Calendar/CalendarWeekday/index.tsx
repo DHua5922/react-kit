@@ -6,11 +6,7 @@ export type CalendarWeekdayProps = HTMLAttributes<HTMLDivElement>
 const CalendarWeekday = forwardRef<HTMLDivElement, CalendarWeekdayProps>(
   function CalendarWeekday({ children, className = '', ...props }, ref) {
     return (
-      <div
-        ref={ref}
-        className={`${styles.container} ${className}`}
-        {...props}
-      >
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children}
       </div>
     )

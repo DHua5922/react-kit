@@ -41,11 +41,7 @@ const CalendarDays = forwardRef<HTMLDivElement, CalendarDaysProps>(
     const { currentMonth } = useContext(CalendarContext)
 
     return (
-      <div
-        ref={ref}
-        className={`${styles.container} ${className}`}
-        {...props}
-      >
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children || <DefaultCalendarDays currentMonth={currentMonth} />}
       </div>
     )

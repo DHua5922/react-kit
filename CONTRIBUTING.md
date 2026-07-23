@@ -49,9 +49,9 @@ requests.
    yarn build-storybook
    ```
 
-`yarn validate` runs the TypeScript check, ESLint, and the Vitest suite. The
-library and Storybook builds catch packaging and documentation issues that unit
-tests may not reveal.
+`yarn validate` checks formatting, TypeScript, ESLint, and the Vitest suite.
+The library and Storybook builds catch packaging and documentation issues that
+unit tests may not reveal.
 
 ## Useful Commands
 
@@ -63,10 +63,12 @@ tests may not reveal.
 | `yarn typecheck`       | Check TypeScript without emitting files      |
 | `yarn lint`            | Run ESLint with zero warnings allowed        |
 | `yarn lint:fix`        | Apply safe ESLint fixes                      |
+| `yarn format`          | Format supported repository files            |
+| `yarn format:check`    | Check formatting without changing files      |
 | `yarn build`           | Build the ESM library, CSS, and declarations |
 | `yarn build-storybook` | Build Storybook locally                      |
 | `yarn build:docs`      | Build Storybook into the documentation site  |
-| `yarn validate`        | Run typecheck, lint, and tests               |
+| `yarn validate`        | Run formatting, typecheck, lint, and tests   |
 
 ## Repository Structure
 

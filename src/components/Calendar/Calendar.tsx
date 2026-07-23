@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import CalendarContext from './CalendarContext'
-import { forwardRef, useState, HTMLAttributes } from 'react'
+import { forwardRef, useEffect, useState, HTMLAttributes } from 'react'
 
 export interface CalendarProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -15,6 +15,11 @@ const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calendar(
   ref
 ) {
   const [currentMonth, setCurrentMonth] = useState(value)
+
+  useEffect(() => {
+    setCurrentMonth(value)
+  }, [value])
+
   const contextValue = { value, onChange, currentMonth, setCurrentMonth }
 
   return (

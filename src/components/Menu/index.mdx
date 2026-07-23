@@ -7,7 +7,7 @@ import Menu from '.'
 
 # Menu
 
-The Menu component displays a list of options that users can choose from.
+`Menu` displays a list of options from which users can choose.
 
 ## Usage guidance
 
@@ -31,7 +31,7 @@ the keyboard behavior required by those roles.
 ## Basic usage
 
 Click the button to open the menu. Then choose an option, click outside the
-menu, or press Esc to close it.
+menu, or press Escape to close it.
 
 <Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
 
@@ -39,21 +39,26 @@ menu, or press Esc to close it.
 
 ### Menu
 
+`Menu` renders a context provider rather than a DOM element. Use `showMenu` to
+control visibility, or `defaultShowMenu` for uncontrolled initial state.
+
 <ArgTypes of={Menu} />
 
 ### Menu.Toggle
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element:
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
 ### Menu.Content
 
-Accepts all standard props for an HTML `<div>` element:
+Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
 
 ### Menu.Item
 
-Accepts all standard props for an HTML `<button>` element:
+Accepts standard props for an HTML `<button>` element, except the native
+`value`. Supply the selected item data through `value`.
+
 `React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
 <ArgTypes of={MenuItem} />

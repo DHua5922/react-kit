@@ -9,11 +9,7 @@ const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const CalendarWeekdays = forwardRef<HTMLDivElement, CalendarWeekdaysProps>(
   function CalendarWeekdays({ children, className = '', ...props }, ref) {
     return (
-      <div
-        ref={ref}
-        className={`${styles.container} ${className}`}
-        {...props}
-      >
+      <div ref={ref} className={`${styles.container} ${className}`} {...props}>
         {children ||
           weekdays.map((weekday) => (
             <CalendarWeekday key={weekday}>{weekday}</CalendarWeekday>

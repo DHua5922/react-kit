@@ -3,7 +3,7 @@ import Menu from '.'
 import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
 const liveCode = `function Example() {
-  const [selection, setSelection] = React.useState('Profile')
+  const [selection, setSelection] = React.useState('profile')
 
   const containerStyle = {
     minHeight: 220,

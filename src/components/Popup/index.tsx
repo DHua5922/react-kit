@@ -12,11 +12,11 @@ import styles from './index.module.css'
 export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
   left?: string
   top?: string
-  show?: boolean
-  onHide?: () => void
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
-function usePopup(show: boolean, onHide?: () => void) {
+function usePopup(open: boolean, onOpenChange?: (open: boolean) => void) {
   const [portalTarget, setPortalTarget] = useState<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -24,19 +24,17 @@ function usePopup(show: boolean, onHide?: () => void) {
   }, [])
 
   useEffect(() => {
-    if (!show) {
-      return undefined
-    }
+    if (!open) return
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        onHide && onHide()
+        onOpenChange?.(false)
       }
     }
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onHide, show])
+  }, [onOpenChange, open])
 
   return portalTarget
 }
@@ -46,8 +44,8 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
     children,
     left,
     top,
-    show = false,
-    onHide,
+    open = false,
+    onOpenChange,
     className = '',
     onClick,
     style,
@@ -55,9 +53,9 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
   },
   ref
 ) {
-  const portalTarget = usePopup(show, onHide)
+  const portalTarget = usePopup(open, onOpenChange)
 
-  if (!show || !portalTarget) {
+  if (!open || !portalTarget) {
     return null
   }
 
@@ -73,7 +71,7 @@ const Popup = forwardRef<HTMLDivElement, PopupProps>(function Popup(
   }
 
   return createPortal(
-    <div className={styles.overlay} onClick={onHide}>
+    <div className={styles.overlay} onClick={() => onOpenChange?.(false)}>
       <div
         ref={ref}
         className={`${styles.container} ${className}`}

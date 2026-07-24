@@ -29,6 +29,13 @@ For example, content used as a menu must implement the complete menu pattern;
 content used as a custom select must implement the complete select or combobox
 pattern.
 
+## Positioning
+
+`Popup` uses the coordinates supplied by its consumer. It does not automatically
+flip or shift content to avoid viewport edges. Keep popup dimensions and offsets
+within the available viewport, or use a collision-aware positioning solution
+when the interface requires automatic placement.
+
 ## Basic usage
 
 Click the button to open the popup. Click outside it or press Escape to close
@@ -42,5 +49,7 @@ it.
 
 Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
+
+Use `open` with `onOpenChange` to control visibility.
 
 <ArgTypes of={Popup} />

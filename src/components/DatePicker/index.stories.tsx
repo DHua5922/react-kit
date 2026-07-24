@@ -24,11 +24,9 @@ const liveCode = `function Example() {
       </p>
 
       <DatePicker open={open} onOpenChange={setOpen}>
-        <DatePicker.Toggle aria-haspopup="dialog">
-          Open calendar
-        </DatePicker.Toggle>
+        <DatePicker.Toggle>Open calendar</DatePicker.Toggle>
 
-        <DatePicker.Popup role="dialog" aria-label="Choose a date">
+        <DatePicker.Popup>
           <Calendar value={date} onChange={onChangeDate} style={calendarStyle}>
             <Calendar.Header>
               <Calendar.Left aria-label="Previous month">◀</Calendar.Left>
@@ -65,10 +63,6 @@ type Story = StoryObj<typeof meta>
 
 export const Example: Story = {
   tags: ['!dev'],
-  args: {
-    open: false,
-    onOpenChange: () => {},
-  },
   render: () => (
     <LiveCodeBlock code={liveCode} noInline scope={{ DatePicker, Calendar }} />
   ),

@@ -1,17 +1,11 @@
-import {
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react'
+import { forwardRef, useContext, useImperativeHandle } from 'react'
 import type {
   ButtonHTMLAttributes,
   ForwardedRef,
   MouseEventHandler,
 } from 'react'
 import DatePickerContext from './DatePickerContext'
+import usePopupPosition from '@/internal/usePopupPosition'
 
 export type DatePickerToggleProps = ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -28,33 +22,14 @@ function useDatePickerToggle(
     setPopupPos,
   } = useContext(DatePickerContext)
 
-  const triggerRef = useRef<HTMLButtonElement>(null)
+  const { triggerRef, updatePosition } = usePopupPosition<HTMLButtonElement>({
+    open: showPopup,
+    horizontalOffset: popupOffsetHorizontal,
+    verticalOffset: popupOffsetVertical,
+    setPosition: setPopupPos,
+  })
 
   useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)
-
-  const updatePopupPosition = useCallback(() => {
-    const trigger = triggerRef.current
-    if (!trigger) return
-
-    const rect = trigger.getBoundingClientRect()
-    setPopupPos({
-      top: `${rect.bottom + popupOffsetVertical}px`,
-      left: `${rect.left + popupOffsetHorizontal}px`,
-    })
-  }, [popupOffsetHorizontal, popupOffsetVertical, setPopupPos])
-
-  useEffect(() => {
-    if (!showPopup) return undefined
-
-    updatePopupPosition()
-    window.addEventListener('scroll', updatePopupPosition, true)
-    window.addEventListener('resize', updatePopupPosition)
-
-    return () => {
-      window.removeEventListener('scroll', updatePopupPosition, true)
-      window.removeEventListener('resize', updatePopupPosition)
-    }
-  }, [showPopup, updatePopupPosition])
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onClick?.(event)
@@ -66,7 +41,7 @@ function useDatePickerToggle(
       return
     }
 
-    updatePopupPosition()
+    updatePosition()
     openPopup()
   }
 

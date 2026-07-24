@@ -33,7 +33,7 @@ const liveCode = `function Example() {
         Selected: {selection}
       </p>
 
-      <Menu offsetMenuPosVertical={8} onSelect={setSelection}>
+      <Menu popupOffsetVertical={8} onSelect={setSelection}>
         <Menu.Toggle style={menuToggleStyle}>
           Open menu
         </Menu.Toggle>

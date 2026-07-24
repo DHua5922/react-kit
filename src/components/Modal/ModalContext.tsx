@@ -1,11 +1,11 @@
 import { createContext } from 'react'
 
 interface Type {
-  onHide?: () => void
+  closeModal: () => void
 }
 
 const defaultValues: Type = {
-  onHide: () => {},
+  closeModal: () => {},
 }
 
 const ModalContext = createContext<Type>(defaultValues)

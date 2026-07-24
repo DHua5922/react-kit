@@ -17,7 +17,7 @@ function useMenuContent() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!context.showMenu) {
+    if (!context.open) {
       return
     }
 
@@ -30,7 +30,7 @@ function useMenuContent() {
       'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     )
     firstFocusable?.focus()
-  }, [context.showMenu])
+  }, [context.open])
 
   return {
     containerRef,
@@ -45,10 +45,10 @@ const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
 
     return (
       <Popup
-        left={context.menuPos.left}
-        top={context.menuPos.top}
-        show={context.showMenu}
-        onHide={context.onHideMenu}
+        left={context.popupPosition.left}
+        top={context.popupPosition.top}
+        open={context.open}
+        onOpenChange={context.setOpen}
       >
         <div
           ref={containerRef}

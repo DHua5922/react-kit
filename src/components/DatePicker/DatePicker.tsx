@@ -5,15 +5,15 @@ export interface DatePickerProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   children?: ReactNode
-  offsetMenuPosVertical?: number
-  offsetMenuPosHorizontal?: number
+  popupOffsetVertical?: number
+  popupOffsetHorizontal?: number
 }
 
 function useDatePicker({
   open,
   onOpenChange,
-  offsetMenuPosVertical = 0,
-  offsetMenuPosHorizontal = 0,
+  popupOffsetVertical = 0,
+  popupOffsetHorizontal = 0,
 }: DatePickerProps) {
   const [popupPos, setPopupPos] = useState({
     top: 'auto',
@@ -22,11 +22,11 @@ function useDatePicker({
 
   const contextValue = useMemo(
     () => ({
-      showPopup: open || false,
-      openPopup: () => onOpenChange?.(true),
-      closePopup: () => onOpenChange?.(false),
-      offsetMenuPosVertical,
-      offsetMenuPosHorizontal,
+      showPopup: open,
+      openPopup: () => onOpenChange(true),
+      closePopup: () => onOpenChange(false),
+      popupOffsetVertical,
+      popupOffsetHorizontal,
       popupPos,
       setPopupPos,
     }),
@@ -35,8 +35,8 @@ function useDatePicker({
       onOpenChange,
       popupPos,
       setPopupPos,
-      offsetMenuPosHorizontal,
-      offsetMenuPosVertical,
+      popupOffsetHorizontal,
+      popupOffsetVertical,
     ]
   )
 
@@ -47,14 +47,14 @@ export default function DatePicker({
   open,
   onOpenChange,
   children,
-  offsetMenuPosVertical = 0,
-  offsetMenuPosHorizontal = 0,
+  popupOffsetVertical = 0,
+  popupOffsetHorizontal = 0,
 }: DatePickerProps) {
   const contextValue = useDatePicker({
     open,
     onOpenChange,
-    offsetMenuPosVertical,
-    offsetMenuPosHorizontal,
+    popupOffsetVertical,
+    popupOffsetHorizontal,
   })
 
   return (

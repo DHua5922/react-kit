@@ -2,7 +2,10 @@ import { forwardRef, useContext } from 'react'
 import DatePickerContext from './DatePickerContext'
 import Popup, { PopupProps } from '../Popup'
 
-export type DatePickerPopupProps = PopupProps
+export type DatePickerPopupProps = Omit<
+  PopupProps,
+  'show' | 'left' | 'top' | 'onHide'
+>
 
 const DatePickerPopup = forwardRef<HTMLDivElement, DatePickerPopupProps>(
   function DatePickerPopup({ children, ...props }, ref) {

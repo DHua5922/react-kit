@@ -24,16 +24,16 @@ const liveCode = `function Example() {
       </p>
 
       <DatePicker open={open} onOpenChange={setOpen}>
-        <DatePicker.Toggle>
-          <button>Open menu</button>
+        <DatePicker.Toggle aria-haspopup="dialog">
+          Open calendar
         </DatePicker.Toggle>
 
-        <DatePicker.Popup>
+        <DatePicker.Popup role="dialog" aria-label="Choose a date">
           <Calendar value={date} onChange={onChangeDate} style={calendarStyle}>
             <Calendar.Header>
-              <Calendar.Left>◀</Calendar.Left>
+              <Calendar.Left aria-label="Previous month">◀</Calendar.Left>
               <Calendar.Title />
-              <Calendar.Right>▶</Calendar.Right>
+              <Calendar.Right aria-label="Next month">▶</Calendar.Right>
             </Calendar.Header>
 
             <Calendar.Weekdays />
@@ -53,6 +53,10 @@ const meta = {
   component: DatePicker,
   tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
+  args: {
+    open: false,
+    onOpenChange: () => {},
+  },
 } satisfies Meta<typeof DatePicker>
 
 export default meta

@@ -1,5 +1,4 @@
 import {
-  cloneElement,
   forwardRef,
   useCallback,
   useContext,
@@ -11,7 +10,6 @@ import type {
   ButtonHTMLAttributes,
   ForwardedRef,
   MouseEventHandler,
-  ReactElement,
 } from 'react'
 import DatePickerContext from './DatePickerContext'
 
@@ -23,9 +21,10 @@ function useDatePickerToggle(
 ) {
   const {
     showPopup,
+    closePopup,
     openPopup,
-    offsetMenuPosHorizontal,
-    offsetMenuPosVertical,
+    popupOffsetHorizontal,
+    popupOffsetVertical,
     setPopupPos,
   } = useContext(DatePickerContext)
 
@@ -39,10 +38,10 @@ function useDatePickerToggle(
 
     const rect = trigger.getBoundingClientRect()
     setPopupPos({
-      top: `${rect.bottom + offsetMenuPosVertical}px`,
-      left: `${rect.left + offsetMenuPosHorizontal}px`,
+      top: `${rect.bottom + popupOffsetVertical}px`,
+      left: `${rect.left + popupOffsetHorizontal}px`,
     })
-  }, [offsetMenuPosHorizontal, offsetMenuPosVertical, setPopupPos])
+  }, [popupOffsetHorizontal, popupOffsetVertical, setPopupPos])
 
   useEffect(() => {
     if (!showPopup) return undefined
@@ -59,22 +58,42 @@ function useDatePickerToggle(
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onClick?.(event)
+
+    if (event.defaultPrevented) return
+
+    if (showPopup) {
+      closePopup()
+      return
+    }
+
     updatePopupPosition()
     openPopup()
   }
 
-  return { handleClick, triggerRef }
+  return { handleClick, showPopup, triggerRef }
 }
 
 const DatePickerToggle = forwardRef<HTMLButtonElement, DatePickerToggleProps>(
-  function DatePickerToggle({ children, onClick, ...props }, ref) {
-    const { handleClick, triggerRef } = useDatePickerToggle(ref, onClick)
+  function DatePickerToggle(
+    { children, onClick, type = 'button', ...props },
+    ref
+  ) {
+    const { handleClick, showPopup, triggerRef } = useDatePickerToggle(
+      ref,
+      onClick
+    )
 
-    return cloneElement(children as ReactElement, {
-      onClick: handleClick,
-      ...props,
-      ref: triggerRef,
-    })
+    return (
+      <button
+        ref={triggerRef}
+        type={type}
+        {...props}
+        aria-expanded={showPopup}
+        onClick={handleClick}
+      >
+        {children}
+      </button>
+    )
   }
 )
 

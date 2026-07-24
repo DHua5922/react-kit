@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act, useState } from 'react'
+import type { MouseEventHandler } from 'react'
 import { vi } from 'vitest'
 import DatePicker from '.'
 import Calendar from '../Calendar'
@@ -9,6 +10,39 @@ import type { CalendarProps } from '../Calendar'
 const currentDate = new Date()
 
 describe('DatePicker', () => {
+  it('updates the toggle state when the popup opens and closes', async () => {
+    const user = userEvent.setup()
+
+    renderDatePicker()
+
+    const toggle = screen.getByRole('button', { name: 'Open Calendar' })
+    expect(toggle).toHaveAttribute('type', 'button')
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+
+    await act(() => user.click(toggle))
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'true')
+    await act(() => user.click(toggle))
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  it('does not open when the toggle click is prevented', async () => {
+    const user = userEvent.setup()
+    const preventOpen: MouseEventHandler<HTMLButtonElement> = (event) => {
+      event.preventDefault()
+    }
+
+    renderDatePicker({}, preventOpen)
+
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open Calendar' }))
+    )
+
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
   it('positions the popup below the toggle', async () => {
     const user = userEvent.setup()
 
@@ -94,7 +128,7 @@ describe('DatePicker', () => {
     ).not.toBeInTheDocument()
   })
 
-  it('keeps the calendar open while tabbing through', async () => {
+  it('keeps the calendar open when focus moves with Tab', async () => {
     const user = userEvent.setup()
 
     renderDatePicker()
@@ -113,15 +147,23 @@ describe('DatePicker', () => {
   })
 })
 
-function renderDatePicker(props: Partial<CalendarProps> = {}) {
-  render(<TestDatePicker {...props} />)
+function renderDatePicker(
+  props: Partial<CalendarProps> = {},
+  toggleOnClick?: MouseEventHandler<HTMLButtonElement>
+) {
+  render(<TestDatePicker {...props} toggleOnClick={toggleOnClick} />)
+}
+
+interface TestDatePickerProps extends Partial<CalendarProps> {
+  toggleOnClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 function TestDatePicker({
   value = currentDate,
   onChange,
+  toggleOnClick,
   ...props
-}: Partial<CalendarProps>) {
+}: TestDatePickerProps) {
   const [open, setOpen] = useState(false)
 
   const handleChange = (date: Date) => {
@@ -131,11 +173,15 @@ function TestDatePicker({
 
   return (
     <DatePicker open={open} onOpenChange={setOpen}>
-      <DatePicker.Toggle>
-        <button>Open Calendar</button>
+      <DatePicker.Toggle aria-haspopup="dialog" onClick={toggleOnClick}>
+        Open Calendar
       </DatePicker.Toggle>
 
-      <DatePicker.Popup data-testid="date-picker-popup">
+      <DatePicker.Popup
+        role="dialog"
+        aria-label="Choose a date"
+        data-testid="date-picker-popup"
+      >
         <Calendar value={value} onChange={handleChange} {...props}>
           <Calendar.Header>
             <Calendar.Left aria-label="Previous month">◀</Calendar.Left>

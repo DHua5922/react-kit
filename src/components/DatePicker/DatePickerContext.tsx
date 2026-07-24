@@ -4,8 +4,8 @@ interface Type {
   showPopup: boolean
   openPopup: () => void
   closePopup: () => void
-  offsetMenuPosVertical: number
-  offsetMenuPosHorizontal: number
+  popupOffsetVertical: number
+  popupOffsetHorizontal: number
   popupPos: {
     top: string
     left: string
@@ -17,8 +17,8 @@ const defaultValues: Type = {
   showPopup: false,
   openPopup: () => {},
   closePopup: () => {},
-  offsetMenuPosVertical: 0,
-  offsetMenuPosHorizontal: 0,
+  popupOffsetVertical: 0,
+  popupOffsetHorizontal: 0,
   popupPos: {
     top: '0px',
     left: '0px',

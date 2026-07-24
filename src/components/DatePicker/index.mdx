@@ -1,14 +1,13 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
 import * as Stories from './index.stories'
 import DatePicker from '.'
-import DatePickerToggle from './DatePickerToggle'
 import DatePickerPopup from './DatePickerPopup'
 
 <Meta of={Stories} />
 
 # DatePicker
 
-`DatePicker` shows a calendar from which the user can choose a date from.
+`DatePicker` displays a consumer-provided calendar for choosing a date.
 
 ## Usage guidance
 
@@ -23,13 +22,24 @@ Avoid using a date picker when users should always see the calendar. Use the `Ca
 
 Consumers are responsible for:
 
-- providing ARIA attributes to the calendar and to the toggler for showing calendar, depending on the content.
-- allowing keyboard to focus on the toggler, keeping the focus on the calendar popup once it shows, and navigating the calendar.
+- Choosing an appropriate role for `DatePicker.Popup`.
+- Giving `DatePicker.Popup` an accessible name with `aria-label` or
+  `aria-labelledby`.
+- Setting `aria-haspopup` on `DatePicker.Toggle` when it helps communicate the
+  chosen popup type.
+- Providing accessible names for icon-only calendar controls.
+- Managing focus when the popup opens and closes, if the application requires
+  focus to move between the toggle and calendar.
+- Providing the calendar's keyboard interaction and any additional
+  use-case-specific ARIA relationships.
+
+`DatePicker.Toggle` renders a button with `type="button"` and its current
+`aria-expanded` state.
 
 ## Basic usage
 
-Click the button to open the calendar. Then choose a date, click outside the
-calendar, or press Escape to close it.
+Click the button to toggle the calendar. The example also closes it when a date
+is chosen, the user clicks outside the calendar, or Escape is pressed.
 
 <Canvas of={Stories.Example} sourceState="none" layout="fullscreen" />
 
@@ -41,14 +51,10 @@ calendar, or press Escape to close it.
 
 ### DatePicker.Toggle
 
-Accepts standard props for an HTML `<div>` element:
-`React.HTMLAttributes<HTMLDivElement>`.
-
-<ArgTypes of={DatePickerToggle} />
+Accepts standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.
 
 ### DatePicker.Popup
 
 Accepts standard props for an HTML `<div>` element:
 `React.HTMLAttributes<HTMLDivElement>`.
-
-<ArgTypes of={DatePickerPopup} />

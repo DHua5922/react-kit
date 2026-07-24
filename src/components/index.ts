@@ -1,5 +1,6 @@
 export { default as Accordion } from './Accordion'
 export { default as Calendar } from './Calendar'
+export { default as DatePicker } from './DatePicker'
 export { default as Modal } from './Modal'
 export { default as Menu } from './Menu'
 export { default as Popup } from './Popup'
@@ -10,6 +11,7 @@ export type {
   AccordionBodyProps,
   AccordionHeaderProps,
 } from './Accordion'
+
 export type {
   CalendarProps,
   CalendarDayProps,
@@ -21,12 +23,20 @@ export type {
   CalendarWeekdayProps,
   CalendarWeekdaysProps,
 } from './Calendar'
+
+export type {
+  DatePickerProps,
+  DatePickerPopupProps,
+  DatePickerToggleProps,
+} from './DatePicker'
+
 export type {
   MenuProps,
   MenuContentProps,
   MenuItemProps,
   MenuToggleProps,
 } from './Menu'
+
 export type {
   ModalProps,
   ModalHeaderProps,
@@ -35,4 +45,5 @@ export type {
   ModalFooterProps,
   ModalCloseButtonProps,
 } from './Modal'
+
 export type { PopupProps } from './Popup'

@@ -15,12 +15,10 @@ const DatePickerPopup = forwardRef<HTMLDivElement, DatePickerPopupProps>(
       <Popup
         ref={ref}
         {...props}
-        open={context.showPopup}
+        open={context.open}
         left={context.popupPos.left}
         top={context.popupPos.top}
-        onOpenChange={(open) => {
-          if (!open) context.closePopup()
-        }}
+        onOpenChange={context.setOpen}
       >
         {children}
       </Popup>

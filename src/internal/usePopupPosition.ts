@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react'
+import type { RefObject } from 'react'
 
-interface UsePopupPositionOptions {
+interface UsePopupPositionOptions<T extends HTMLElement> {
   open: boolean
   horizontalOffset: number
   verticalOffset: number
   setPosition: (position: { top: string; left: string }) => void
+  triggerRef?: RefObject<T>
 }
 
 export default function usePopupPosition<T extends HTMLElement>({
@@ -12,8 +14,10 @@ export default function usePopupPosition<T extends HTMLElement>({
   horizontalOffset,
   verticalOffset,
   setPosition,
-}: UsePopupPositionOptions) {
-  const triggerRef = useRef<T>(null)
+  triggerRef: providedTriggerRef,
+}: UsePopupPositionOptions<T>) {
+  const internalTriggerRef = useRef<T>(null)
+  const triggerRef = providedTriggerRef ?? internalTriggerRef
 
   const updatePosition = useCallback(() => {
     const trigger = triggerRef.current
@@ -24,7 +28,7 @@ export default function usePopupPosition<T extends HTMLElement>({
       top: `${rect.bottom + verticalOffset}px`,
       left: `${rect.left + horizontalOffset}px`,
     })
-  }, [horizontalOffset, setPosition, verticalOffset])
+  }, [horizontalOffset, setPosition, triggerRef, verticalOffset])
 
   useEffect(() => {
     if (!open) return

@@ -1,4 +1,5 @@
 import { createContext } from 'react'
+import type { RefObject } from 'react'
 
 interface Type {
   open: boolean
@@ -11,6 +12,7 @@ interface Type {
     left: string
   }
   setPopupPosition: (position: { top: string; left: string }) => void
+  triggerRef: RefObject<HTMLButtonElement>
 }
 
 const defaultValues: Type = {
@@ -24,6 +26,7 @@ const defaultValues: Type = {
     left: '0px',
   },
   setPopupPosition: () => {},
+  triggerRef: { current: null },
 }
 
 const MenuContext = createContext<Type>(defaultValues)

@@ -14,16 +14,15 @@ function useDatePickerToggle(
   onClick?: MouseEventHandler<HTMLButtonElement>
 ) {
   const {
-    showPopup,
-    closePopup,
-    openPopup,
+    open,
+    setOpen,
     popupOffsetHorizontal,
     popupOffsetVertical,
     setPopupPos,
   } = useContext(DatePickerContext)
 
   const { triggerRef, updatePosition } = usePopupPosition<HTMLButtonElement>({
-    open: showPopup,
+    open,
     horizontalOffset: popupOffsetHorizontal,
     verticalOffset: popupOffsetVertical,
     setPosition: setPopupPos,
@@ -36,16 +35,16 @@ function useDatePickerToggle(
 
     if (event.defaultPrevented) return
 
-    if (showPopup) {
-      closePopup()
+    if (open) {
+      setOpen(false)
       return
     }
 
     updatePosition()
-    openPopup()
+    setOpen(true)
   }
 
-  return { handleClick, showPopup, triggerRef }
+  return { handleClick, open, triggerRef }
 }
 
 const DatePickerToggle = forwardRef<HTMLButtonElement, DatePickerToggleProps>(
@@ -53,17 +52,14 @@ const DatePickerToggle = forwardRef<HTMLButtonElement, DatePickerToggleProps>(
     { children, onClick, type = 'button', ...props },
     ref
   ) {
-    const { handleClick, showPopup, triggerRef } = useDatePickerToggle(
-      ref,
-      onClick
-    )
+    const { handleClick, open, triggerRef } = useDatePickerToggle(ref, onClick)
 
     return (
       <button
         ref={triggerRef}
         type={type}
         {...props}
-        aria-expanded={showPopup}
+        aria-expanded={open}
         onClick={handleClick}
       >
         {children}

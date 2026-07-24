@@ -38,6 +38,7 @@ describe('Menu', () => {
     await act(() => user.keyboard('{Escape}'))
     expect(onOpenChange).toHaveBeenLastCalledWith(false)
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open menu' })).toHaveFocus()
   })
 
   it('does not open when the toggle click is prevented', async () => {

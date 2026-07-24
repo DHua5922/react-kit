@@ -21,12 +21,14 @@ function useMenuToggle(
     popupOffsetHorizontal,
     popupOffsetVertical,
     setPopupPosition,
+    triggerRef: contextTriggerRef,
   } = useContext(MenuContext)
   const { triggerRef, updatePosition } = usePopupPosition<HTMLButtonElement>({
     open,
     horizontalOffset: popupOffsetHorizontal,
     verticalOffset: popupOffsetVertical,
     setPosition: setPopupPosition,
+    triggerRef: contextTriggerRef,
   })
 
   useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)

@@ -21,9 +21,8 @@ function useDatePicker({
   })
 
   const contextValue = {
-    showPopup: open,
-    openPopup: () => onOpenChange(true),
-    closePopup: () => onOpenChange(false),
+    open,
+    setOpen: onOpenChange,
     popupOffsetVertical,
     popupOffsetHorizontal,
     popupPos,

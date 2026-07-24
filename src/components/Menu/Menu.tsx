@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useRef, useState } from 'react'
 import MenuContext from './MenuContext'
 
 export interface MenuProps {
@@ -24,6 +24,7 @@ function useMenu({
     top: 'auto',
     left: 'auto',
   })
+  const triggerRef = useRef<HTMLButtonElement>(null)
   const isControlled = open !== undefined
   const isOpen = isControlled ? open : internalOpen
 
@@ -40,6 +41,7 @@ function useMenu({
     popupOffsetHorizontal,
     popupPosition,
     setPopupPosition,
+    triggerRef,
     onSelect: onSelect ?? (() => {}),
   }
 

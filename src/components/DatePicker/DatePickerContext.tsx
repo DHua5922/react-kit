@@ -1,9 +1,8 @@
 import { createContext } from 'react'
 
 interface Type {
-  showPopup: boolean
-  openPopup: () => void
-  closePopup: () => void
+  open: boolean
+  setOpen: (open: boolean) => void
   popupOffsetVertical: number
   popupOffsetHorizontal: number
   popupPos: {
@@ -14,9 +13,8 @@ interface Type {
 }
 
 const defaultValues: Type = {
-  showPopup: false,
-  openPopup: () => {},
-  closePopup: () => {},
+  open: false,
+  setOpen: () => {},
   popupOffsetVertical: 0,
   popupOffsetHorizontal: 0,
   popupPos: {

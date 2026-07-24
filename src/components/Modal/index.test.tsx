@@ -50,6 +50,19 @@ describe('Modal', () => {
     expect(onOpenChange).toHaveBeenCalledWith(false)
   })
 
+  test('does not close when the consumer prevents cancellation', () => {
+    const onCancel = vi.fn((event) => event.preventDefault())
+    const { onOpenChange } = renderModal({ onCancel })
+
+    fireEvent(
+      screen.getByRole('dialog'),
+      new Event('cancel', { cancelable: true })
+    )
+
+    expect(onCancel).toHaveBeenCalledOnce()
+    expect(onOpenChange).not.toHaveBeenCalled()
+  })
+
   test('closes modal when close button is clicked', async () => {
     const user = userEvent.setup()
 

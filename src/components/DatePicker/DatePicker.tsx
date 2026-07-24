@@ -15,7 +15,7 @@ function useDatePicker({
   popupOffsetVertical = 0,
   popupOffsetHorizontal = 0,
 }: DatePickerProps) {
-  const [popupPos, setPopupPos] = useState({
+  const [popupPosition, setPopupPosition] = useState({
     top: 'auto',
     left: 'auto',
   })
@@ -25,8 +25,8 @@ function useDatePicker({
     setOpen: onOpenChange,
     popupOffsetVertical,
     popupOffsetHorizontal,
-    popupPos,
-    setPopupPos,
+    popupPosition,
+    setPopupPosition,
   }
 
   return contextValue

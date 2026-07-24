@@ -28,7 +28,7 @@ const ModalCloseButton = forwardRef<HTMLButtonElement, ModalCloseButtonProps>(
         onClick={handleClick}
         {...props}
       >
-        {children || 'X'}
+        {children ?? 'X'}
       </button>
     )
   }

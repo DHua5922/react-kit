@@ -18,14 +18,14 @@ function useDatePickerToggle(
     setOpen,
     popupOffsetHorizontal,
     popupOffsetVertical,
-    setPopupPos,
+    setPopupPosition,
   } = useContext(DatePickerContext)
 
   const { triggerRef, updatePosition } = usePopupPosition<HTMLButtonElement>({
     open,
     horizontalOffset: popupOffsetHorizontal,
     verticalOffset: popupOffsetVertical,
-    setPosition: setPopupPos,
+    setPosition: setPopupPosition,
   })
 
   useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)

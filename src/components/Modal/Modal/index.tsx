@@ -31,7 +31,7 @@ function useModal(open: boolean) {
 }
 
 const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
-  { children, className = '', open = false, onOpenChange, ...props },
+  { children, className = '', open = false, onCancel, onOpenChange, ...props },
   ref
 ) {
   const value = { closeModal: () => onOpenChange?.(false) }
@@ -40,6 +40,9 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
   const handleCancelDialog = (
     event: SyntheticEvent<HTMLDialogElement, Event>
   ) => {
+    onCancel?.(event)
+    if (event.defaultPrevented) return
+
     event.preventDefault()
     onOpenChange?.(false)
   }
@@ -50,9 +53,9 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
     <ModalContext.Provider value={value}>
       <dialog
         ref={dialogRef}
-        onCancel={handleCancelDialog}
         className={`${styles.container} ${className}`}
         {...props}
+        onCancel={handleCancelDialog}
       >
         {children}
       </dialog>

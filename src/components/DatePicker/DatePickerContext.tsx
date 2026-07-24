@@ -5,11 +5,11 @@ interface Type {
   setOpen: (open: boolean) => void
   popupOffsetVertical: number
   popupOffsetHorizontal: number
-  popupPos: {
+  popupPosition: {
     top: string
     left: string
   }
-  setPopupPos: (position: { top: string; left: string }) => void
+  setPopupPosition: (position: { top: string; left: string }) => void
 }
 
 const defaultValues: Type = {
@@ -17,11 +17,11 @@ const defaultValues: Type = {
   setOpen: () => {},
   popupOffsetVertical: 0,
   popupOffsetHorizontal: 0,
-  popupPos: {
+  popupPosition: {
     top: '0px',
     left: '0px',
   },
-  setPopupPos: () => {},
+  setPopupPosition: () => {},
 }
 
 const DatePickerContext = createContext<Type>(defaultValues)

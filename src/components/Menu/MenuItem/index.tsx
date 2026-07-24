@@ -7,26 +7,26 @@ import {
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
 
-export interface MenuItemProps extends Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'value'
-> {
-  value: unknown
-}
+export type MenuItemProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
-  { children, className = '', onClick, value, ...props },
-  ref
+function useMenuItem(
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>['onClick']
 ) {
-  const { onSelect, setOpen } = useContext(MenuContext)
+  const { setOpen } = useContext(MenuContext)
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
     onClick?.(event)
-    if (event.defaultPrevented) return
-
-    onSelect(value)
-    setOpen(false)
+    if (!event.defaultPrevented) setOpen(false)
   }
+
+  return handleClick
+}
+
+const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
+  { children, className = '', onClick, ...props },
+  ref
+) {
+  const handleClick = useMenuItem(onClick)
 
   return (
     <button

@@ -33,15 +33,15 @@ function useDatePickerToggle(
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onClick?.(event)
 
-    if (event.defaultPrevented) return
+    if (!event.defaultPrevented) {
+      if (open) {
+        setOpen(false)
+        return
+      }
 
-    if (open) {
-      setOpen(false)
-      return
+      updatePosition()
+      setOpen(true)
     }
-
-    updatePosition()
-    setOpen(true)
   }
 
   return { handleClick, open, triggerRef }

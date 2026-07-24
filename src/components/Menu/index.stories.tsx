@@ -3,7 +3,7 @@ import Menu from '.'
 import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
 const liveCode = `function Example() {
-  const [selection, setSelection] = React.useState('profile')
+  const [selectedItem, setSelectedItem] = React.useState('profile')
 
   const containerStyle = {
     minHeight: 220,
@@ -25,23 +25,23 @@ const liveCode = `function Example() {
     cursor: 'pointer',
   }
 
-  const onClickItem = (item: string) => () => setSelection(item)
+  const onClickItem = (item: string) => () => setSelectedItem(item)
 
   return (
     <div style={containerStyle}>
       <p style={chosenDisplayStyle}>
-        Selected: {selection}
+        Selected: {selectedItem}
       </p>
 
-      <Menu popupOffsetVertical={8} onSelect={setSelection}>
+      <Menu popupOffsetVertical={8}>
         <Menu.Toggle style={menuToggleStyle}>
           Open menu
         </Menu.Toggle>
 
         <Menu.Content>
-          <Menu.Item value="profile">Profile</Menu.Item>
-          <Menu.Item value="billing">Billing</Menu.Item>
-          <Menu.Item value="sign out">Sign out</Menu.Item>
+          <Menu.Item onClick={onClickItem('profile')}>Profile</Menu.Item>
+          <Menu.Item onClick={onClickItem('billing')}>Billing</Menu.Item>
+          <Menu.Item onClick={onClickItem('sign out')}>Sign out</Menu.Item>
         </Menu.Content>
       </Menu>
     </div>

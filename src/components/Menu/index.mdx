@@ -1,6 +1,5 @@
 import { Meta, Canvas, ArgTypes } from '@storybook/blocks'
 import * as Stories from './index.stories'
-import MenuItem from './MenuItem'
 import Menu from '.'
 
 <Meta of={Stories} />
@@ -57,9 +56,5 @@ Accepts standard props for an HTML `<div>` element:
 
 ### Menu.Item
 
-Accepts standard props for an HTML `<button>` element, except the native
-`value`. Supply the selected item data through `value`.
-
-Based on `React.ButtonHTMLAttributes<HTMLButtonElement>`.
-
-<ArgTypes of={MenuItem} />
+Accepts standard props for an HTML `<button>` element:
+`React.ButtonHTMLAttributes<HTMLButtonElement>`.

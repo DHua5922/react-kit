@@ -4,7 +4,6 @@ import type { RefObject } from 'react'
 interface Type {
   open: boolean
   setOpen: (open: boolean) => void
-  onSelect: (item: unknown) => void
   popupOffsetVertical: number
   popupOffsetHorizontal: number
   popupPosition: {
@@ -18,7 +17,6 @@ interface Type {
 const defaultValues: Type = {
   open: false,
   setOpen: () => {},
-  onSelect: () => {},
   popupOffsetVertical: 0,
   popupOffsetHorizontal: 0,
   popupPosition: {

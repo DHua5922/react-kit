@@ -13,46 +13,46 @@ import styles from './index.module.css'
 
 export type MenuContentProps = HTMLAttributes<HTMLDivElement>
 
-function useMenuContent() {
+function useMenuContent(onKeyDown?: KeyboardEventHandler<HTMLDivElement>) {
   const context = useContext(MenuContext)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (!context.open) {
-      return
-    }
+  const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    onKeyDown?.(event)
 
-    const container = containerRef.current
-    if (!container) {
-      return
-    }
-
-    const firstFocusable = container.querySelector<HTMLElement>(
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    )
-    firstFocusable?.focus()
-  }, [context.open])
-
-  return {
-    containerRef,
-    context,
-  }
-}
-
-const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  function MenuContent({ children, className = '', onKeyDown, ...props }, ref) {
-    const { containerRef, context } = useMenuContent()
-    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
-
-    const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
-      onKeyDown?.(event)
-      if (event.defaultPrevented || event.key !== 'Escape') return
-
+    if (!event.defaultPrevented && event.key === 'Escape') {
       event.preventDefault()
       event.stopPropagation()
       context.setOpen(false)
       context.triggerRef.current?.focus()
     }
+  }
+
+  useEffect(() => {
+    if (context.open) {
+      const container = containerRef.current
+
+      if (container) {
+        const firstFocusable = container.querySelector<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+        firstFocusable?.focus()
+      }
+    }
+  }, [context.open])
+
+  return {
+    containerRef,
+    context,
+    handleKeyDown,
+  }
+}
+
+const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
+  function MenuContent({ children, className = '', onKeyDown, ...props }, ref) {
+    const { containerRef, context, handleKeyDown } = useMenuContent(onKeyDown)
+
+    useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
     return (
       <Popup

@@ -31,8 +31,6 @@ function useMenuToggle(
     triggerRef: contextTriggerRef,
   })
 
-  useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)
-
   const openMenu = () => {
     updatePosition()
     setOpen(true)
@@ -41,25 +39,24 @@ function useMenuToggle(
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onClick?.(event)
 
-    if (event.defaultPrevented) return
-
-    if (open) {
-      setOpen(false)
-      return
+    if (!event.defaultPrevented) {
+      if (open) setOpen(false)
+      else openMenu()
     }
-
-    openMenu()
   }
 
   const handleKeyDown: KeyboardEventHandler<HTMLButtonElement> = (event) => {
     onKeyDown?.(event)
-    if (event.defaultPrevented) return
 
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault()
-      openMenu()
+    if (!event.defaultPrevented) {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault()
+        openMenu()
+      }
     }
   }
+
+  useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)
 
   return { open, triggerRef, handleClick, handleKeyDown }
 }

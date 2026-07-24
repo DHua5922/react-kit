@@ -50,12 +50,7 @@ const CalendarDay = forwardRef<HTMLButtonElement, CalendarDayProps>(
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       onClick?.(event)
-
-      if (event.defaultPrevented) {
-        return
-      }
-
-      selectDate()
+      if (!event.defaultPrevented) selectDate()
     }
 
     const numberContainerStyle = {

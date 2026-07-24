@@ -17,12 +17,10 @@ const CalendarRight = forwardRef<HTMLButtonElement, CalendarRightProps>(
     const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
       onClick?.(event)
 
-      if (event.defaultPrevented) {
-        return
+      if (!event.defaultPrevented) {
+        const newMonth = addMonths(currentMonth, 1)
+        setCurrentMonth(newMonth)
       }
-
-      const newMonth = addMonths(currentMonth, 1)
-      setCurrentMonth(newMonth)
     }
 
     return (

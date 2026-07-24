@@ -8,7 +8,7 @@ control.
 ## Documentation
 
 Browse the component guides and live-editable examples at
-[huadylan.com/react-kit/storybook](https://huadylan.com/react-kit/storybook/).
+[Storybook](https://huadylan.com/react-kit/docs/).
 
 ## Installation
 
@@ -74,7 +74,7 @@ export default function Example() {
 
 ## Components
 
-See the [Storybook documentation](https://huadylan.com/react-kit/storybook/)
+See the [Storybook documentation](https://huadylan.com/react-kit/docs/)
 for complete component guides and examples.
 
 ## TypeScript

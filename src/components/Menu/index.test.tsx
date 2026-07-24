@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { act } from 'react'
+import type { ComponentProps, MouseEventHandler } from 'react'
 import { vi } from 'vitest'
 import Menu from '.'
 
@@ -24,20 +25,61 @@ describe('Menu', () => {
 
   it('opens the menu when the toggle is clicked and closes with Escape', async () => {
     const user = userEvent.setup()
-    const onShowMenu = vi.fn()
-    const onHideMenu = vi.fn()
+    const onOpenChange = vi.fn()
 
-    renderMenu({ onShowMenu, onHideMenu })
+    renderMenu({ onOpenChange })
 
     await act(() =>
       user.click(screen.getByRole('button', { name: 'Open menu' }))
     )
-    expect(onShowMenu).toHaveBeenCalledTimes(1)
+    expect(onOpenChange).toHaveBeenLastCalledWith(true)
     expect(screen.getByText('Profile')).toBeInTheDocument()
 
     await act(() => user.keyboard('{Escape}'))
-    expect(onHideMenu).toHaveBeenCalledTimes(1)
+    expect(onOpenChange).toHaveBeenLastCalledWith(false)
     expect(screen.queryByText('Profile')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Open menu' })).toHaveFocus()
+  })
+
+  it('does not open when the toggle click is prevented', async () => {
+    const user = userEvent.setup()
+    const preventOpen: MouseEventHandler<HTMLButtonElement> = (event) => {
+      event.preventDefault()
+    }
+
+    renderMenu({}, preventOpen)
+
+    await act(() =>
+      user.click(screen.getByRole('button', { name: 'Open menu' }))
+    )
+    expect(screen.queryByText('Profile')).not.toBeInTheDocument()
+  })
+
+  it('keeps the menu positioned below its toggle while scrolling', async () => {
+    const user = userEvent.setup()
+    let bottom = 140
+
+    renderMenu()
+
+    const toggle = screen.getByRole('button', { name: 'Open menu' })
+    vi.spyOn(toggle, 'getBoundingClientRect').mockImplementation(
+      () =>
+        ({
+          bottom,
+          left: 24,
+        }) as DOMRect
+    )
+
+    await act(() => user.click(toggle))
+
+    const popup = screen.getByText('Profile').parentElement?.parentElement
+    expect(popup?.style.getPropertyValue('--top')).toBe('140px')
+
+    bottom = 80
+    fireEvent.scroll(window)
+
+    expect(popup?.style.getPropertyValue('--top')).toBe('80px')
+    expect(popup?.style.getPropertyValue('--left')).toBe('24px')
   })
 
   it('focuses the first menu item on open and tabs to the next item', async () => {
@@ -73,10 +115,13 @@ describe('Menu', () => {
   })
 })
 
-function renderMenu(props = {}) {
+function renderMenu(
+  props: ComponentProps<typeof Menu> = {},
+  toggleOnClick?: MouseEventHandler<HTMLButtonElement>
+) {
   render(
     <Menu {...props}>
-      <Menu.Toggle>Open menu</Menu.Toggle>
+      <Menu.Toggle onClick={toggleOnClick}>Open menu</Menu.Toggle>
 
       <Menu.Content>
         <Menu.Item value="profile">Profile</Menu.Item>

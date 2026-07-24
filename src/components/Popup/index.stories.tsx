@@ -3,7 +3,7 @@ import Popup from '.'
 import LiveCodeBlock from '@/internal/LiveCodeBlock'
 
 const liveCode = `function Example() {
-  const [show, setShow] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
   
   const containerStyle = {
     minHeight: 260,
@@ -28,11 +28,7 @@ const liveCode = `function Example() {
   }
 
   const onOpenPopup = () => {
-    setShow(true)
-  }
-
-  const onClosePopup = () => {
-    setShow(false)
+    setOpen(true)
   }
 
   return (
@@ -46,8 +42,8 @@ const liveCode = `function Example() {
       </button>
 
       <Popup
-        show={show}
-        onHide={onClosePopup}
+        open={open}
+        onOpenChange={setOpen}
         left="32px"
         top="88px"
       >

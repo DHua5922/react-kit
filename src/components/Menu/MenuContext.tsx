@@ -1,31 +1,32 @@
 import { createContext } from 'react'
+import type { RefObject } from 'react'
 
 interface Type {
-  showMenu?: boolean
-  onShowMenu: () => void
-  onHideMenu: () => void
+  open: boolean
+  setOpen: (open: boolean) => void
   onSelect: (item: unknown) => void
-  offsetMenuPosVertical: number
-  offsetMenuPosHorizontal: number
-  menuPos: {
+  popupOffsetVertical: number
+  popupOffsetHorizontal: number
+  popupPosition: {
     top: string
     left: string
   }
-  setMenuPos: (position: { top: string; left: string }) => void
+  setPopupPosition: (position: { top: string; left: string }) => void
+  triggerRef: RefObject<HTMLButtonElement>
 }
 
 const defaultValues: Type = {
-  showMenu: false,
-  onShowMenu: () => {},
-  onHideMenu: () => {},
+  open: false,
+  setOpen: () => {},
   onSelect: () => {},
-  offsetMenuPosVertical: 0,
-  offsetMenuPosHorizontal: 0,
-  menuPos: {
+  popupOffsetVertical: 0,
+  popupOffsetHorizontal: 0,
+  popupPosition: {
     top: '0px',
     left: '0px',
   },
-  setMenuPos: () => {},
+  setPopupPosition: () => {},
+  triggerRef: { current: null },
 }
 
 const MenuContext = createContext<Type>(defaultValues)

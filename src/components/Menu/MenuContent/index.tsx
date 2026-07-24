@@ -6,6 +6,7 @@ import {
   useRef,
   HTMLAttributes,
 } from 'react'
+import type { KeyboardEventHandler } from 'react'
 import Popup from '../../Popup'
 import MenuContext from '../MenuContext'
 import styles from './index.module.css'
@@ -17,7 +18,7 @@ function useMenuContent() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!context.showMenu) {
+    if (!context.open) {
       return
     }
 
@@ -30,7 +31,7 @@ function useMenuContent() {
       'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     )
     firstFocusable?.focus()
-  }, [context.showMenu])
+  }, [context.open])
 
   return {
     containerRef,
@@ -39,21 +40,32 @@ function useMenuContent() {
 }
 
 const MenuContent = forwardRef<HTMLDivElement, MenuContentProps>(
-  function MenuContent({ children, className = '', ...props }, ref) {
+  function MenuContent({ children, className = '', onKeyDown, ...props }, ref) {
     const { containerRef, context } = useMenuContent()
     useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
+    const handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+      onKeyDown?.(event)
+      if (event.defaultPrevented || event.key !== 'Escape') return
+
+      event.preventDefault()
+      event.stopPropagation()
+      context.setOpen(false)
+      context.triggerRef.current?.focus()
+    }
+
     return (
       <Popup
-        left={context.menuPos.left}
-        top={context.menuPos.top}
-        show={context.showMenu}
-        onHide={context.onHideMenu}
+        left={context.popupPosition.left}
+        top={context.popupPosition.top}
+        open={context.open}
+        onOpenChange={context.setOpen}
       >
         <div
           ref={containerRef}
           className={`${styles.container} ${className}`}
           {...props}
+          onKeyDown={handleKeyDown}
         >
           {children}
         </div>

@@ -1,17 +1,11 @@
-import {
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from 'react'
+import { forwardRef, useContext, useImperativeHandle } from 'react'
 import type {
   ButtonHTMLAttributes,
   ForwardedRef,
   MouseEventHandler,
 } from 'react'
 import DatePickerContext from './DatePickerContext'
+import usePopupPosition from '@/internal/usePopupPosition'
 
 export type DatePickerToggleProps = ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -20,57 +14,37 @@ function useDatePickerToggle(
   onClick?: MouseEventHandler<HTMLButtonElement>
 ) {
   const {
-    showPopup,
-    closePopup,
-    openPopup,
+    open,
+    setOpen,
     popupOffsetHorizontal,
     popupOffsetVertical,
-    setPopupPos,
+    setPopupPosition,
   } = useContext(DatePickerContext)
 
-  const triggerRef = useRef<HTMLButtonElement>(null)
+  const { triggerRef, updatePosition } = usePopupPosition<HTMLButtonElement>({
+    open,
+    horizontalOffset: popupOffsetHorizontal,
+    verticalOffset: popupOffsetVertical,
+    setPosition: setPopupPosition,
+  })
 
   useImperativeHandle(ref, () => triggerRef.current as HTMLButtonElement)
-
-  const updatePopupPosition = useCallback(() => {
-    const trigger = triggerRef.current
-    if (!trigger) return
-
-    const rect = trigger.getBoundingClientRect()
-    setPopupPos({
-      top: `${rect.bottom + popupOffsetVertical}px`,
-      left: `${rect.left + popupOffsetHorizontal}px`,
-    })
-  }, [popupOffsetHorizontal, popupOffsetVertical, setPopupPos])
-
-  useEffect(() => {
-    if (!showPopup) return undefined
-
-    updatePopupPosition()
-    window.addEventListener('scroll', updatePopupPosition, true)
-    window.addEventListener('resize', updatePopupPosition)
-
-    return () => {
-      window.removeEventListener('scroll', updatePopupPosition, true)
-      window.removeEventListener('resize', updatePopupPosition)
-    }
-  }, [showPopup, updatePopupPosition])
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     onClick?.(event)
 
     if (event.defaultPrevented) return
 
-    if (showPopup) {
-      closePopup()
+    if (open) {
+      setOpen(false)
       return
     }
 
-    updatePopupPosition()
-    openPopup()
+    updatePosition()
+    setOpen(true)
   }
 
-  return { handleClick, showPopup, triggerRef }
+  return { handleClick, open, triggerRef }
 }
 
 const DatePickerToggle = forwardRef<HTMLButtonElement, DatePickerToggleProps>(
@@ -78,17 +52,14 @@ const DatePickerToggle = forwardRef<HTMLButtonElement, DatePickerToggleProps>(
     { children, onClick, type = 'button', ...props },
     ref
   ) {
-    const { handleClick, showPopup, triggerRef } = useDatePickerToggle(
-      ref,
-      onClick
-    )
+    const { handleClick, open, triggerRef } = useDatePickerToggle(ref, onClick)
 
     return (
       <button
         ref={triggerRef}
         type={type}
         {...props}
-        aria-expanded={showPopup}
+        aria-expanded={open}
         onClick={handleClick}
       >
         {children}

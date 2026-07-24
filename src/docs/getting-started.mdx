@@ -40,15 +40,15 @@ import { Popup } from '@dhua5922/react-kit'
 import '@dhua5922/react-kit/style.css'
 
 export default function Example() {
-  const [show, setShow] = useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <>
-      <button type="button" onClick={() => setShow(true)}>
+      <button type="button" onClick={() => setOpen(true)}>
         Open popup
       </button>
 
-      <Popup show={show} onHide={() => setShow(false)}>
+      <Popup open={open} onOpenChange={setOpen}>
         Popup content
       </Popup>
     </>

@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from 'react'
+import { ReactNode, useState } from 'react'
 import DatePickerContext from './DatePickerContext'
 
 export interface DatePickerProps {
@@ -15,30 +15,19 @@ function useDatePicker({
   popupOffsetVertical = 0,
   popupOffsetHorizontal = 0,
 }: DatePickerProps) {
-  const [popupPos, setPopupPos] = useState({
+  const [popupPosition, setPopupPosition] = useState({
     top: 'auto',
     left: 'auto',
   })
 
-  const contextValue = useMemo(
-    () => ({
-      showPopup: open,
-      openPopup: () => onOpenChange(true),
-      closePopup: () => onOpenChange(false),
-      popupOffsetVertical,
-      popupOffsetHorizontal,
-      popupPos,
-      setPopupPos,
-    }),
-    [
-      open,
-      onOpenChange,
-      popupPos,
-      setPopupPos,
-      popupOffsetHorizontal,
-      popupOffsetVertical,
-    ]
-  )
+  const contextValue = {
+    open,
+    setOpen: onOpenChange,
+    popupOffsetVertical,
+    popupOffsetHorizontal,
+    popupPosition,
+    setPopupPosition,
+  }
 
   return contextValue
 }

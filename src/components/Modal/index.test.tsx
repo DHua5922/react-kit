@@ -5,10 +5,10 @@ import userEvent from '@testing-library/user-event'
 import { StrictMode } from 'react'
 
 function renderModal(props = {}) {
-  const onHide = vi.fn()
+  const onOpenChange = vi.fn()
 
   render(
-    <Modal show={true} onHide={onHide} {...props}>
+    <Modal open onOpenChange={onOpenChange} {...props}>
       <Modal.Header>
         <Modal.Title>Modal Title</Modal.Title>
         <Modal.CloseButton />
@@ -17,18 +17,18 @@ function renderModal(props = {}) {
       <Modal.Body>Modal body content goes here.</Modal.Body>
 
       <Modal.Footer>
-        <button type="button" onClick={onHide}>
+        <button type="button" onClick={() => onOpenChange(false)}>
           Close
         </button>
       </Modal.Footer>
     </Modal>
   )
 
-  return { onHide }
+  return { onOpenChange }
 }
 
 describe('Modal', () => {
-  test('shows modal when show = true', () => {
+  test('shows modal when open is true', () => {
     renderModal()
 
     expect(screen.getByRole('dialog')).toHaveAttribute('open')
@@ -40,23 +40,36 @@ describe('Modal', () => {
   })
 
   test('closes modal when Escape key is pressed', () => {
-    const { onHide } = renderModal()
+    const { onOpenChange } = renderModal()
 
     fireEvent(
       screen.getByRole('dialog'),
       new Event('cancel', { cancelable: true })
     )
 
-    expect(onHide).toHaveBeenCalledOnce()
+    expect(onOpenChange).toHaveBeenCalledWith(false)
+  })
+
+  test('does not close when the consumer prevents cancellation', () => {
+    const onCancel = vi.fn((event) => event.preventDefault())
+    const { onOpenChange } = renderModal({ onCancel })
+
+    fireEvent(
+      screen.getByRole('dialog'),
+      new Event('cancel', { cancelable: true })
+    )
+
+    expect(onCancel).toHaveBeenCalledOnce()
+    expect(onOpenChange).not.toHaveBeenCalled()
   })
 
   test('closes modal when close button is clicked', async () => {
     const user = userEvent.setup()
 
-    const { onHide } = renderModal()
+    const { onOpenChange } = renderModal()
 
     await user.click(screen.getByRole('button', { name: /Close/i }))
-    expect(onHide).toHaveBeenCalledOnce()
+    expect(onOpenChange).toHaveBeenCalledWith(false)
   })
 
   test('opens the native dialog only once in Strict Mode', () => {
@@ -64,7 +77,7 @@ describe('Modal', () => {
 
     render(
       <StrictMode>
-        <Modal show aria-label="Example modal" />
+        <Modal open aria-label="Example modal" />
       </StrictMode>
     )
 

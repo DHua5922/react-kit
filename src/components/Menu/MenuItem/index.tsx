@@ -18,12 +18,14 @@ const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(function MenuItem(
   { children, className = '', onClick, value, ...props },
   ref
 ) {
-  const { onSelect, onHideMenu } = useContext(MenuContext)
+  const { onSelect, setOpen } = useContext(MenuContext)
 
   const handleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
-    onSelect(value)
     onClick?.(event)
-    onHideMenu()
+    if (event.defaultPrevented) return
+
+    onSelect(value)
+    setOpen(false)
   }
 
   return (

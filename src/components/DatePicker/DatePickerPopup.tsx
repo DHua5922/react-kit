@@ -4,7 +4,7 @@ import Popup, { PopupProps } from '../Popup'
 
 export type DatePickerPopupProps = Omit<
   PopupProps,
-  'show' | 'left' | 'top' | 'onHide'
+  'open' | 'left' | 'top' | 'onOpenChange'
 >
 
 const DatePickerPopup = forwardRef<HTMLDivElement, DatePickerPopupProps>(
@@ -15,10 +15,10 @@ const DatePickerPopup = forwardRef<HTMLDivElement, DatePickerPopupProps>(
       <Popup
         ref={ref}
         {...props}
-        show={context.showPopup}
-        left={context.popupPos.left}
-        top={context.popupPos.top}
-        onHide={context.closePopup}
+        open={context.open}
+        left={context.popupPosition.left}
+        top={context.popupPosition.top}
+        onOpenChange={context.setOpen}
       >
         {children}
       </Popup>
